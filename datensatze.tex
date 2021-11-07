@@ -1,0 +1,24 @@
+\section{Datensätze}\raggedbottom
+Zum Training und zur Evaluation von neuronalen Netzen sind große Datensätze erforderlich. Für die Aufgabenstellung Durchschnittsrepräsentation aus Textbewertungen zu erzeugen, werden Datensätze mit mehreren Bewertungen und Zusammenfassungen zu einem Produkt benötigt.
+
+Es bietet sich an Bewertungen von großen Webportalen wie Amazon oder Yelp zu verwenden. 
+Diese Portale haben zu den unterschiedlichsten Produkten und Restaurants zahlreiche Bewertungen.
+
+Es existieren bereits bestehende Amazon und Yelp Datensätze mit menschlich erstellten Gold-Standard Zusammenfassungen. 
+Das Variational Autoencoder Modell lässt sich somit mit den Review Daten auf Rekonstruktion trainieren.
+
+\subsection{Amazon Datensatz}
+Der Amazon Review Datensatz \citep{brazinskas2020-unsupervised} umfasst nach dem Vorverarbeiten 4.807.338 Bewertungen zu 192.742 Produkten. 
+Die Bewertungen wurden aus den Kategorien Kleidung, Schuhe, Schmuck, Elektronikartikel, Gesundheit- und Pflegeprodukte, Einrichtung und Küchenartikeln gewählt.
+Der Datensatz hat somit diverse Produkte, bei denen jeweils unterschiedliche Eigenschaften wichtig sind.
+Die entsprechenden Bewertungen sind bereits in Trainings- und Validierungsdaten gesplittet.
+Der Amazon Datensatz wurde gefiltert und es wurden nur Produkte mit mindestens 10 Bewertungen, die eine Länge zwischen 20 und 70 Wörter haben, ausgewählt.
+Des Weiteren enthält der Amazon Datensatz manuell erstellte Zusammenfassungen, die für den Dev / Test Split im Verhältnis von 28 / 32 vorliegen.
+Die meisten Bewertungen im Amazon Datensatz sind eher objektiv formuliert und beziehen sich auf die einzelnen Produktspezifischen Eigenschaften.
+\subsection{Yelp Datensatz}
+Der Yelp Review Datensatz \citep{pmlr-v97-chu19b} besteht aus 1.126.653 Bewertungen zu 43.087 Restaurants, die bereits in Trainings- und Validierungsdaten gesplittet sind. 
+Zusätzlich enthält der Datensatz 200 menschlich durch Amazon Mechanical Turk (AMT) Arbeiter erstellte Zusammenfassungen, die zu einem Dev / Test Verhältnis von 100 / 100 gesplittet werden. 
+Der Yelp Review Datensatz unterscheidet sich vom Amazon Datensatz dadurch, dass die Bewertungen wesentlich mehr persönliche Details und Erfahrungen der Nutzer enthalten.
+Das Variational Autoencoder Modell hat hier die Aufgabe, wichtige Informationen zu extrahieren und unwichtiges Rauschen in den Daten herauszufiltern, um eine gute Durchschnittsrepräsentation zu bestimmen.
+Insbesondere in den Yelp Reviews befinden sich meistens unnötige Zusatzinformationen, die nicht zur Bewertung des Restaurants an sich beitragen, wie zum Beispiel das Erwähnen von privat ausgetragenen Geburtstagsfeiern. 
+\pagebreak

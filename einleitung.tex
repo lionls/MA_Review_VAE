@@ -1,0 +1,49 @@
+\section{Einleitung}\raggedbottom
+Das automatisierte Zusammenfassen von Dokumenten ist im Bereich des Natural Language Processing (NLP) eine große Herausforderung.
+Natural Language Processing ist ein Unterbereich der künstlichen Intelligenz, der sich mit dem maschinellen Verarbeiten von natürlicher Sprache auseinandersetzt. 
+Aufgrund von neuen Methoden und immer größeren, komplexeren Netzwerken lassen sich hervorragende Ergebnisse in diversen NLP Aufgabenbereichen erzielen. 
+Insbesondere lassen sich große, kostenspielig vortrainierte Modelle mit vielen Parametern durch Transfer Learning in diversen speziellen Aufgabenbereichen einsetzen. 
+
+GPT-2 erzielte unter Verwendung von Transformern großartige Ergebnisse bei der Textgenerierung, unter anderem auch bei der abstraktiven Zusammenfassung von Texten. 
+Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen Text. 
+
+\subsection{Motivation}
+Im NLP (\textbf{N}atural \textbf{L}anguage \textbf{P}rocessing) Bereich gibt es viele unterschiedliche Ansätze zur Textzusammenfassung von einzelnen Dokumenten.
+Da des Öfteren unterschiedliche Dokumente mit diversen Inhalten zu identischen Themen existieren, stellt sich die Frage wie diese unterschiedlichen Dokumente zu einem umfassenden Dokument zusammengefasst werden können.
+
+Als Datengrundlage gelten hier der Amazon Review und Yelp Review Datensatz, der zu Produkten oder Restaurants mehrere unterschiedliche Bewertungen liefert.
+Ziel dieser Masterarbeit ist es einen Variational Auto Encoder unter Verwendung von Transformern zu entwickeln, der die entsprechend unterschiedlichen Bewertungen zu einem Produkt beziehungsweise Restaurant abstraktiv zusammenfasst.
+In der Zusammenfassung sollen sich möglichst viele Aspekte der ursprünglichen Bewertungen wiederfinden.
+
+\subsection{Ziel und Aufbau der Arbeit}
+Das Ziel dieser Arbeit ist mehrere Dokumente abstraktiv zu einem Dokument zusammenzufassen. Hierzu wird der Variational Auto Encoder OPTIMUS, der auf BERT und GPT-2 basiert verwendet. 
+
+% Zunächst werden in Kapitel 2 die verwendeten Grundlagen zu Summarization, neuronalen Netzen, Deep Learning und den zugehörigen Subthemen erläutert. Ebenfalls wird auf die Einbettung von Wörtern eingegangen. Zur späteren Generierung von Question Answering Datensätzen werden in diesem Kapitel Abfragen mittels der Abfragesprache SPARQL an Knowledge Bases erklärt.
+
+% Anschließend wird in Kapitel 3 die bidirektionale Transformer Architektur (BERT) erklärt, wobei detailliert auf die besonderen Merkmale wie Transformer Architekturen und Attention Layer eingegangen wird. Des Weiteren zeichnet sich BERT durch seine besonderen Pre-Trainingsmethoden, welche die Bidirektionalität des Modells ermöglichen, aus. 
+
+% Im Anschluss werden in Kapitel 4, unter Verwendung von Python, Datensätze mit unterschiedlichen Vorgehensweisen generiert. Zum einen wird durch Abfragen auf Knowledge Bases ein Evaluationsdatensatz generiert, zum anderen wird durch maschinelle Übersetzung eines englischen Datensatzes ins Deutsche ein Trainings- und Evaluationsdatensatz erstellt. Es wird Bezug auf die besonderen Problematiken und Herausforderungen während der Entwicklung genommen. 
+
+% Danach werden in Kapitel 5 zwei unterschiedlich vortrainierte Modelle mit den selbsterstellten Datensätzen und Kombinationen von anderen Datensätzen nachtrainiert. Insbesondere wird hier auf den Fine-Tuningsvorgang und die Wahl der unterschiedlichen Kombinationen der Datensätze eingegangen. 
+
+% In Kapitel 6 werden die unterschiedlich trainierten Modelle evaluiert und untereinander verglichen. 
+% In der abschließenden Zusammenfassung in Kapitel 7 wird ein Fazit und ein Ausblick auf weitere Forschungsgebiete gegeben.
+
+
+\subsection{Terminologie}
+
+\textbf{Adaptive Moment Estimation} (Adam) ist ein Optimierer für neuronale Netze.
+
+\textbf{Fine-Tuning} ist ein Trainingsprozess, der ein bereits vortrainiertes neuronales Netz an eine spezielle Aufgabenstellung anpasst und auf diese trainiert. Die bereits im Pre-Training gefundenen Parameter werden weiter angepasst.
+
+\textbf{Global Vectors for Word Representation} (GloVe) ein Verfahren für das Zuweisen von Vektorrepräsentationen zu Worten.
+
+\textbf{JavaScript Object Notation} (JSON) ist ein in Textform vorliegendes Datenformat.
+
+\textbf{Natural Language Processing} (NLP) beschreibt das maschinelle Verarbeiten und Analysieren von natürlichen Sprachen unter Verwendung von unterschiedlichen Techniken und Verfahren. 
+
+\textbf{Pre-Training} beschreibt den initialen Trainingsprozess eines neuronalen Netzes. Im Bereich des NLP wird Pre-Training verwendet, um ein allgemeines Sprachmodell zu trainieren, welches später auf individuelle Aufgabenstellungen nachtrainiert wird.
+
+\textbf{Tokenisierung} ist die Segmentierung eines Textes in eine Folge von Tokens. Die einzelnen Tokens sind Zeichenketten bestehend aus einem oder mehreren Zeichen.
+
+\pagebreak

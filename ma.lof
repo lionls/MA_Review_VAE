@@ -3,6 +3,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {1}{\ignorespaces Transformer Encoder (links) und Transformer Decoder (rechts)}}{6}{figure.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2}{\ignorespaces VAE Modellarchitektur von OPTIMUS mit BERT als Encoder und GPT-2 als Decoder}}{9}{figure.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces VAE Modellarchitektur}}{8}{figure.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces Methoden um den Latentvector in GPT-2 zu injizieren}}{9}{figure.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces VAE Modellarchitektur von OPTIMUS mit BERT als Encoder und GPT-2 als Decoder}}{11}{figure.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4}{\ignorespaces Methoden um den Latentvector in GPT-2 zu injizieren}}{11}{figure.4}%

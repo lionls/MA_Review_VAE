@@ -37,32 +37,34 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Variational Autoencoder}{8}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}ELBO}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.1}Evidence Lower Bound}{9}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Cyclical Annealing Schedule}{8}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.1.1}Reparametisierung}{9}{subsubsection.4.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Optimus}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.2}Cyclical Annealing Schedule}{10}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Latent Space Operations}{10}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.3}Optimus}{10}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Datensätze}{11}{section.5}%
+\contentsline {subsection}{\numberline {4.4}Latent Space Operations}{12}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Amazon Datensatz}{11}{subsection.5.1}%
+\contentsline {section}{\numberline {5}Datensätze}{13}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Yelp Datensatz}{11}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.1}Amazon Datensatz}{13}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Training von Optimus für Control Code Generation}{12}{section.6}%
+\contentsline {subsection}{\numberline {5.2}Yelp Datensatz}{13}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Controllable Generation mittels Gradientenverschiebung}{13}{section.7}%
+\contentsline {section}{\numberline {6}Training von Optimus für Control Code Generation}{14}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}Gradientenverschiebung nach Bag of Words Klassifizierer}{13}{subsection.7.1}%
+\contentsline {section}{\numberline {7}Controllable Generation mittels Gradientenverschiebung}{15}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Kombiniert mit Beam Search}{13}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.1}Gradientenverschiebung nach Bag of Words Klassifizierer}{15}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Evaluierung der Modelle}{14}{section.8}%
+\contentsline {subsection}{\numberline {7.2}Kombiniert mit Beam Search}{15}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{15}{section.9}%
+\contentsline {section}{\numberline {8}Evaluierung der Modelle}{16}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Abbildungsverzeichnis}{16}{section*.4}%
+\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{17}{section.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Tabellenverzeichnis}{16}{section*.5}%
+\contentsline {section}{Abbildungsverzeichnis}{18}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Tabellenverzeichnis}{18}{section*.5}%

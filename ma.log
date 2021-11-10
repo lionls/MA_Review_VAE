@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  7 NOV 2021 14:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  10 NOV 2021 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma
+**/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma.tex
 (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> (./imports.tex (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2021-02-18> (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/imports.tex (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
@@ -542,8 +542,7 @@ Package csquotes Info: ... found 'babel' package.
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count413
 \l__pdf_internal_box=\box52
-)
-No file ma.aux.
+) (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma.aux)
 \openout1 = `ma.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
@@ -564,7 +563,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
 LaTeX Font Info:    ... okay on input line 70.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
 LaTeX Font Info:    ... okay on input line 70.
-(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count414
 \scratchdimen=\dimen166
@@ -635,7 +634,7 @@ Package biblatex Info: ... file 'ma.bbl' not found.
 No file ma.bbl.
 Package biblatex Info: Reference section=0 on input line 70.
 Package biblatex Info: Reference segment=0 on input line 70.
-(./titelmakros.tex
+(/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/titelmakros.tex
 <bilder/HHU_Logo.pdf, id=4, 896.34875pt x 218.8175pt>
 File: bilder/HHU_Logo.pdf Graphic file (type pdf)
 <use bilder/HHU_Logo.pdf>
@@ -643,7 +642,7 @@ Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
 (pdftex.def)             Requested size: 130.0pt x 31.73273pt.
  [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./bilder/HHU_Logo.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/bilder/HHU_Logo.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.105 \end{titlepage}
@@ -655,7 +654,7 @@ l.105 \end{titlepage}
 l.130 \end{titlepage}
                       [1
 
-] (./zusammenfassung.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/zusammenfassung.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.151 \end{titlepage}
@@ -667,18 +666,18 @@ l.151 \end{titlepage}
 
  [1
 
-]) (./einleitung.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+]) (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/einleitung.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.43 \textbf{Natural Language Processing}
                                           (NLP) beschreibt das maschinelle V... [1
 
 
-]) [2] (./grundlagen.tex
+]) [2] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/grundlagen.tex
 
 LaTeX Warning: Reference `transformer' on page 3 undefined on input line 5.
 
-[3]) [4] (./transformer.tex
+[3]) [4] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/transformer.tex
 Underfull \hbox (badness 1097) in paragraph at lines 2--7
 \T1/ppl/m/n/10.95 groÿer Vor-teil von Trans-for-mer-mo-del-len ist die Par-al-le-li-sier-bar-keit. Hier-durch las-
  []
@@ -704,7 +703,7 @@ Package pdftex.def Info: bilder/Transformer-Encoder-Decoder.png  used on input l
 
 LaTeX Warning: Citation 'DBLP:journals/corr/abs-1810-04805' on page 6 undefined on input line 51.
 
-[6 <./bilder/Transformer-Encoder-Decoder.png>]
+[6 </Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/bilder/Transformer-Encoder-Decoder.png>]
 
 LaTeX Warning: Citation 'radford2019language' on page 7 undefined on input line 63.
 
@@ -718,11 +717,11 @@ Underfull \hbox (badness 1038) in paragraph at lines 63--65
 \T1/ppl/m/n/10.95 ([]) ver-öf-fent-lich-tes au-to-re-gres-si-ves Sprach-mo-dell auf Ba-sis von
  []
 
-) [7] (./vae.tex
+) [7] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex
 
 LaTeX Warning: Citation 'kingma2014autoencoding' on page 8 undefined on input line 2.
 
-./vae.tex:5: Undefined control sequence.
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:5: Undefined control sequence.
 l.5 ...eine komprimierte Darstellung $c\in \mathbb
                                                   {R}^m$ fÃ¼r die Eingabedat...
 The control sequence at the end of the top line
@@ -731,7 +730,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:5: Undefined control sequence.
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:5: Undefined control sequence.
 l.5 ...b{R}^m$ fÃ¼r die Eingabedaten $x\in \mathbb
                                                   {R}^n$ im Latentspace zu f...
 The control sequence at the end of the top line
@@ -740,7 +739,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:5: Undefined control sequence.
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:5: Undefined control sequence.
 l.5 ...e Rekonstruktion zur Eingabe $x\in \mathxbb
                                                   {R}^n$ zu erzeugen.
 The control sequence at the end of the top line
@@ -749,28 +748,84 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+<bilder/vae.png, id=92, 814.04124pt x 402.50375pt>
+File: bilder/vae.png Graphic file (type png)
+<use bilder/vae.png>
+Package pdftex.def Info: bilder/vae.png  used on input line 15.
+(pdftex.def)             Requested size: 312.9803pt x 154.75253pt.
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 21.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+)
 
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-2004-04092' on page 8 undefined on input line 20.
+LaTeX Warning: Reference `elbo' on page 8 undefined on input line 26.
+
+[8 </Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/bilder/vae.png>]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 41.
 
 
-LaTeX Warning: Reference `optimus_scheme_fig' on page 8 undefined on input line 21.
+LaTeX Font Warning: Command \small invalid in math mode on input line 41.
 
-<bilder/optimus_scheme.png, id=92, 740.0448pt x 163.3302pt>
+
+Overfull \hbox (14.99933pt too wide) detected at line 41
+[]
+ []
+
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:53: Undefined control sequence.
+<argument> {} z \zim 
+                     q_\Phi (z|x) = \mathcal {N}(z;\mu ,\sigma \mathcal {I})...
+l.53 \end{align}
+                
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:53: Undefined control sequence.
+<argument> {} z \zim 
+                     q_\Phi (z|x) = \mathcal {N}(z;\mu ,\sigma \mathcal {I})...
+l.53 \end{align}
+                
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[9]
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:66: Undefined control sequence.
+l.66     L_{\beta}(\Phi,\theta,\beta) = -\mathbb
+                                                {E}_{z\sim q_\Phi(\mathbf{z\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-2004-04092' on page 10 undefined on input line 78.
+
+
+LaTeX Warning: Reference `optimus_scheme_fig' on page 10 undefined on input line 79.
+
+<bilder/optimus_scheme.png, id=115, 740.0448pt x 163.3302pt>
 File: bilder/optimus_scheme.png Graphic file (type png)
 <use bilder/optimus_scheme.png>
-Package pdftex.def Info: bilder/optimus_scheme.png  used on input line 25.
+Package pdftex.def Info: bilder/optimus_scheme.png  used on input line 83.
 (pdftex.def)             Requested size: 426.79134pt x 94.19325pt.
 
-Underfull \hbox (badness 5504) in paragraph at lines 20--31
+Underfull \hbox (badness 5504) in paragraph at lines 78--89
 \T1/ppl/m/n/10.95 Optimus (\T1/ppl/b/n/10.95 O\T1/ppl/m/n/10.95 rganizing \T1/ppl/b/n/10.95 S\T1/ppl/m/n/10.95 entences via \T1/ppl/b/n/10.95 P\T1/ppl/m/n/10.95 re-trained \T1/ppl/b/n/10.95 M\T1/ppl/m/n/10.95 odeling of a \T1/ppl/b/n/10.95 L\T1/ppl/m/n/10.95 atent \T1/ppl/b/n/10.95 S\T1/ppl/m/n/10.95 pace)
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8]
-./vae.tex:36: Undefined control sequence.
-l.36 Als Latentvektor $z \in \mathbb
+[10]
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:94: Undefined control sequence.
+l.94 Als Latentvektor $z \in \mathbb
                                     {R}^P$ wird die gepoolte Ausgabe des let...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -778,8 +833,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:36: Undefined control sequence.
-l.36 ...etzten Hiddenlayers $h_{[CLS]} \in \mathbb
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:94: Undefined control sequence.
+l.94 ...etzten Hiddenlayers $h_{[CLS]} \in \mathbb
                                                   {R}^H$ von BERT multiplizi...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -787,8 +842,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:36: Undefined control sequence.
-l.36 ...it einer Gewichtsmatrix $W_{E} \in \mathbb
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:94: Undefined control sequence.
+l.94 ...it einer Gewichtsmatrix $W_{E} \in \mathbb
                                                   {R}^{P\times H}$ gewÃ¤hlt....
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -796,13 +851,13 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<bilder/latent_optimus.png, id=104, 1631.09375pt x 703.62875pt>
+<bilder/latent_optimus.png, id=123, 1631.09375pt x 703.62875pt>
 File: bilder/latent_optimus.png Graphic file (type png)
 <use bilder/latent_optimus.png>
-Package pdftex.def Info: bilder/latent_optimus.png  used on input line 40.
+Package pdftex.def Info: bilder/latent_optimus.png  used on input line 98.
 (pdftex.def)             Requested size: 227.62204pt x 98.18526pt.
-./vae.tex:47: Undefined control sequence.
-l.47 ...z$ mit der Gewichtsmatrix $W_D \in \mathbb
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:105: Undefined control sequence.
+l.105 ...$ mit der Gewichtsmatrix $W_D \in \mathbb
                                                   {R}^{H \times P}$.
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -810,8 +865,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:50: Undefined control sequence.
-l.50 ... $z$ als Memoryvektor $h_{Mem} \in \mathbb
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:108: Undefined control sequence.
+l.108 ...$z$ als Memoryvektor $h_{Mem} \in \mathbb
                                                   {R}^{L\times H}$ wird der ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -819,8 +874,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./vae.tex:51: Undefined control sequence.
-l.51 ...rch $h_{Mem} = W_M z$ mit $W_M \in \mathbb
+/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/vae.tex:109: Undefined control sequence.
+l.109 ...ch $h_{Mem} = W_M z$ mit $W_M \in \mathbb
                                                   {R}^{LH \times P}$ ersetzt...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -829,19 +884,19 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-1903-10145' on page 9 undefined on input line 53.
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1903-10145' on page 11 undefined on input line 111.
 
 
-LaTeX Warning: Reference `cyc_anneal' on page 9 undefined on input line 54.
+LaTeX Warning: Reference `cyc_anneal' on page 11 undefined on input line 112.
 
-[9 <./bilder/optimus_scheme.png> <./bilder/latent_optimus.png>]) [10] (./datensatze.tex
+[11 </Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/bilder/optimus_scheme.png> </Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/bilder/latent_optimus.png>]) [12] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/datensatze.tex
 
-LaTeX Warning: Citation 'brazinskas2020-unsupervised' on page 11 undefined on input line 11.
+LaTeX Warning: Citation 'brazinskas2020-unsupervised' on page 13 undefined on input line 11.
 
 
-LaTeX Warning: Citation 'pmlr-v97-chu19b' on page 11 undefined on input line 19.
+LaTeX Warning: Citation 'pmlr-v97-chu19b' on page 13 undefined on input line 19.
 
-) (./training.tex [11]) [12] (./pplm.tex) [13] (./eval.tex) [14] (./recap.tex) [15]
+) (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/training.tex [13]) [14] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/pplm.tex) [15] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/eval.tex) [16] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/recap.tex) [17]
 
 LaTeX Warning: Empty bibliography on input line 110.
 
@@ -851,10 +906,10 @@ LaTeX Warning: Empty bibliography on input line 110.
 \tf@lot=\write8
 \openout8 = `ma.lot'.
 
-[16
+[18
 
 
-] (./ma.aux)
+] (/Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -868,7 +923,7 @@ Package rerunfilecheck Warning: File `ma.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `ma.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  AFCF927DD6BF4FCA84804E88D33AE7CD;5129.
+(rerunfilecheck)             After:  512008F8EF03FF871F7FBA6098A6EEF2;5215.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ma
@@ -879,18 +934,18 @@ Package logreq Info: Writing requests to 'ma.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18759 strings out of 478994
- 311875 string characters out of 5858183
- 1088219 words of memory out of 5000000
- 35899 multiletter control sequences out of 15000+600000
- 421927 words of font info for 58 fonts, out of 8000000 for 9000
+ 18809 strings out of 478994
+ 314601 string characters out of 5858183
+ 1092219 words of memory out of 5000000
+ 35932 multiletter control sequences out of 15000+600000
+ 423410 words of font info for 63 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 76i,17n,77p,801b,2239s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on ma.pdf (21 pages, 578617 bytes).
+ 76i,17n,77p,805b,2239s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on /Users/lionel/Documents/HHU/Informatik/MA/review_aggregation/ma_latex/ma.pdf (23 pages, 733356 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 161 compressed objects within 2 object streams
- 60 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 186 compressed objects within 2 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

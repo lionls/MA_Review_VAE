@@ -27,6 +27,19 @@ Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann approxim
 
 Um mittels Variational Autoencoder neue Datenobjekte zu samplen wird zunächst mit der Prior-Verteilung $p_\theta (z)$ ein neuer Latentvektor $\hat{z}$ gezogen. Anschließend lässt sich ein neues Datenobjekt $\hat{x}$ mit der Verteilung $p_\theta (x|z=\hat{z})$ generieren.
 \subsection{Evidence Lower Bound}
+%https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html#contractive-autoencoder
+%https://openreview.net/forum?id=Sy2fzU9gl
+%https://arxiv.org/pdf/1312.6114.pdf
+%http://mediatum.ub.tum.de/doc/1547089/1547089.pdf
+%https://pub.tik.ee.ethz.ch/students/2018-FS/MA-2018-22.pdf
+%https://mediatum.ub.tum.de/doc/1547089/file.pdf
+%https://www.jeremyjordan.me/variational-autoencoders/
+%https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73
+%https://arxiv.org/pdf/1906.02691.pdf
+%https://arxiv.org/pdf/1903.10145.pdf
+%https://ichi.pro/de/generative-modellierung-mit-variational-auto-encoder-vae-277371603749134
+%https://xyang35.github.io/2017/04/14/variational-lower-bound/
+
 \label{elbo}
 Bei Variational Autoencodern ist das Optimierungsziel die Minimierung des Rekonstruktionsfehlers zwischen Eingabe- und Ausgabedaten und die Approximation von $p_\theta (z|x)$ durch Minimierung der Kullback-Leibler-Divergenz $D_{KL}(q_\phi (z|x) \parallel p_\theta (z|x) )$.
 \begin{align*}
@@ -46,7 +59,7 @@ der \textbf{E}vidence \textbf{L}ower \textbf{B}ound (ELBO).
 \subsubsection{Reparametisierung} %kingma welling
 Zum Training des Variational Autoencoder wird mittels Backpropagation der Fehler des Netzwerkes propagiert. Da das Samplen von $z /sim q_\Phi(z|x)$ nicht deterministisch ist, kann hier keine Backpropagation durchgeführt werden.
 Um dennoch Backpropagation verwenden zu können wird durch Reparametisierung $z$ durch eine deterministische Funktion $z=f_\Phi(x,\epsilon)$ dargestellt mit $\epsilon$ als externe unabhängig zufällige Hilfsvariable. 
-Bei einer multivariaten Gaussverteilung für $q_\Phi (z|x)$ wäre die Reparametisierung wie folgt, wobei $\times$ Elementweise Multiplikation denotiert:
+Bei einer multivariaten Gaussverteilung für $q_\Phi (z|x)$ wäre die Reparametisierung wie folgt, wobei $\times$ die elementweise Multiplikation denotiert:
 \begin{align}{}
     z \zim q_\Phi(z|x) = \mathcal{N}(z;\mu,\sigma \mathcal{I}) \\
     z = \mu + \sigma \times \epsilon \text{ , mit } \epsilon \sim \mathcal{N}(0,\mathcal{I}) 
@@ -69,7 +82,7 @@ Falls $\beta = 0$ ist wird das Modell wie ein normaler Autoencoder trainiert, be
 
 Beim Zyklischen Erhöhen wird der $\beta$-Wert des VAE geplant während des Trainings monoton von $\beta=0$ auf zum Ende des Trainings $\beta=1$ in kleinen Abständen erhöht.
 So kann beim Training des VAE bei $\beta<1$ zunächst der Fokus darauf gelegt werden mehr Information für die Rekonstruktion zu erlernen. 
-Abschließend enthalten bei $\beta=1$ die bereits vorher trainierten $z$ Vektoren bereits mehr Informationen, die zu einer besseren Anpassung als eine zufällige Initialisierung führen.
+Abschließend enthalten bei $\beta=1$ die bereits vorher trainierten $z$ Vektoren bereits mehr Informationen die zu einer besseren Anpassung als eine zufällige Initialisierung führen.
 
 
 

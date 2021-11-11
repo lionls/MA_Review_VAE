@@ -1,0 +1,24 @@
+\section{Multi-Document Summarization}
+In den letzten Jahren erzielten unterschiedliche Verfahren große Fortschritte beim automatisierten Zusammenfassen von mehreren Dokumenten zu einem repräsentativen Dokument.
+Im Gegensatz zum Zusammenfassen von einzelnen Dokumenten enthalten mehrere Dokumente über ein Thema viele redundante Informationen, die so gefiltert werden müssen, dass diese Information nur einmal im Ausgabedokument dargestellt wird.
+Wiedersprüchliche Informationen sind ebenfalls eine Herausforderung bei der Zusammenfassung.
+Das Ziel von Multi-Document Summarization ist das Repräsentieren der wichtigen Aspekte aller Dokumente in einem einzelnen Dokument, um einen guten Überblick zu schaffen.
+
+Insbesondere im Bereich der Multi-Review Summarization existieren viele unterschiedliche Ansätze.
+Zum einen existieren extraktive Ansätze, wie zum Beispiel LexRank, ein unüberwachter Algorithmus der repräsentative Sätze für eine Bewertung basierend auf Ihrer Zentralität in einem TF-IDF gewichteten Graphen selektiert.
+Zum anderen existieren abstraktive Ansätze wie zum Beispiel MeanSum, CopyCat oder COOP, die generative Ansätze verwenden um neuartige Sätze in den Bewertungen zu erzeugen.
+
+MeanSum ist ein Autoencoder Modell mit LSTM Encoder und Decoder und errechnet zur Zusammenfassung von Bewertungen den Durchschnitt von den einzelnen Latentvektoren der Bewertungen.
+
+CopyCat basiert auf einem Variational Autoencoder Modell, welches GRU Encoder und Decoder verwendet. 
+Für jede Gruppe von Bewertungen berechnet CopyCat einen Latentvektor $c$ der die gesamte Semantik der Gruppe beschreibt. 
+Weiterhin wird jede einzelne Bewertung einer Gruppe mit einem einzelnen Latentvektor $z$ beschrieben.
+Bei der Generation von Durchschnittsbewertungen ermöglicht es CopyCat dem Decoder, die einzelnen Latentvektoren für die Bewertungen $z_i$, den allgemeinen Gruppenvektor $c$ und die Bewertungen $r_i$ an sich zu betrachten.
+Durch den Zugriff auf die anderen Bewertungen $r_i$ kann der Decoder spezifische Worte von diesen \glqq kopieren\grqq{}  und somit übernehmen.
+
+
+
+\subsection{Convex Aggregation for Opinion Summarization}\raggedbottom
+
+
+\pagebreak

@@ -2,7 +2,7 @@
 Variational Autoencoder \citep{kingma2014autoencoding} gehören zu den probabilistischen generativen Modelarchitekturen. In den letzten Jahren haben generative Modelle, insbesondere auch Variational Autoencoder, beeindruckende Möglichkeiten aufgezeigt, um hochrealistische Daten wie zum Beispiel Bilder, Text oder Audios zu generieren.
 Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu verstehen und anschließend neuartige Datenbeispiele, die ähnlich zum Trainingsdatensatz sind zu generieren.
 
-Normale Autoencoder bestehen aus einem Encoder und einem Decoder, wobei der Encoder versucht eine komprimierte Darstellung $c\in \mathbb{R}^m$ für die Eingabedaten $x\in \mathbb{R}^n$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel eine möglichst identische Rekonstruktion zur Eingabe $x\in \mathxbb{R}^n$ zu erzeugen.
+Normale Autoencoder bestehen aus einem Encoder und einem Decoder, wobei der Encoder versucht eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
 Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum um neue Ausgaben zu rekonstruieren kaum möglich ist, da im Latentraum viele leere Stellen existieren. Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentspaces legt. Somit entsteht für die einzelnen Datenpunkte ohne Regularisierung oft Overfitting.
 
 Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz um Datenpunkte $x$ im Latentspace $Z$ zu repräsentieren. 
@@ -60,8 +60,8 @@ der \textbf{E}vidence \textbf{L}ower \textbf{B}ound (ELBO).
 Zum Training des Variational Autoencoder wird mittels Backpropagation der Fehler des Netzwerkes propagiert. Da das Samplen von $z /sim q_\Phi(z|x)$ nicht deterministisch ist, kann hier keine Backpropagation durchgeführt werden.
 Um dennoch Backpropagation verwenden zu können wird durch Reparametisierung $z$ durch eine deterministische Funktion $z=f_\Phi(x,\epsilon)$ dargestellt mit $\epsilon$ als externe unabhängig zufällige Hilfsvariable. 
 Bei einer multivariaten Gaussverteilung für $q_\Phi (z|x)$ wäre die Reparametisierung wie folgt, wobei $\times$ die elementweise Multiplikation denotiert:
-\begin{align}{}
-    z \zim q_\Phi(z|x) = \mathcal{N}(z;\mu,\sigma \mathcal{I}) \\
+\begin{align}
+    z \sim q_\Phi(z|x) = \mathcal{N}(z;\mu,\sigma \mathcal{I}) \\
     z = \mu + \sigma \times \epsilon \text{ , mit } \epsilon \sim \mathcal{N}(0,\mathcal{I}) 
 \end{align}
 

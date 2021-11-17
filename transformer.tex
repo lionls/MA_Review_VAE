@@ -12,11 +12,11 @@ Die vortrainierten Sprachmodelle BERT und GPT-2 lassen sich auf spezielle Aufgab
 \subsection{Self-Attention-Layer}
 Durch die Self-Attention-Layer von Transformermodellen lassen sich relevante Informationen erkennen und das Modell sich auf diese fokussieren. 
 Der Self-Attention-Layer innerhalb des Transformers berechnet die Relevanz von Values zu bestimmten Keys und Queries. 
-Die Query- $(Q)$, Key- $(K)$ und Value- $(V)$ Vektoren werden aus dem Eingabevektor $(X)$ durch Multiplikation mit erlernten Gewichtsmatrizen $(W)$ generiert \cite{AttentionIALYN}. 
+Die Query- $(Q)$, Key- $(K)$ und Value- $(V)$ Vektoren werden aus dem Eingabevektor $(X)$ durch Multiplikation mit erlernten Gewichtsmatrizen $(W)$ generiert \citep{AttentionIALYN}. 
 \begin{equation}
     Q = X \times W^{Q}, K = X \times W^{K}, V = X \times W^{V}
 \end{equation}
-Durch ein Dot-Product zwischen Query- und Key-Vektoren der entsprechenden Eingabewörtern mit anschließender Softmax Normalisierung lässt sich ein Score errechnen, der den Fokus im Valuevektor auf das jeweilige Wort angibt \cite{AttentionIALYN}.
+Durch ein Dot-Product zwischen Query- und Key-Vektoren der entsprechenden Eingabewörtern mit anschließender Softmax Normalisierung lässt sich ein Score errechnen, der den Fokus im Valuevektor auf das jeweilige Wort angibt \citep{AttentionIALYN}.
 \begin{equation}
     \label{attentioneq}
     Attention(Q,K,V) = Softmax(\frac{Q\times K^T}{\sqrt{d_k}})\times V

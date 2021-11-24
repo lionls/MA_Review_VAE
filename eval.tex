@@ -1,3 +1,26 @@
 \section{Evaluierung der Modelle}\raggedbottom
 
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}lllllll@{}}
+    \toprule
+                               & \multicolumn{3}{c}{Amazon} & \multicolumn{3}{c}{Yelp} \\ 
+    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
+    \textit{Our Method}        &         &         &        &        &        &        \\
+    $\quad$ Optimus            &     \textbf{36.75}    &   \textbf{7.37}      &     \underline{20.60}   &   \textbf{35.91}   &   \textbf{7.79}       & \underline{19.43}       \\ \midrule
+    \textit{COOP}              &         &         &        &        &        &        \\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & \underline{36.57}    & \underline{7.23}   & \textbf{21.24}  & \underline{35.37}  & \underline{7.35}  & \textbf{19.94}  \\
+    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84  & 33.60  & 7.00   & 18.95  \\ \midrule
+    \textit{SimpleAvg}         &         &         &        &        &        &        \\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87  & 32.87  & 6.93   & 19.89  \\
+    $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34  & 31.23  & 6.48   & 18.27  \\
+    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15  & 28.46  & 3.66   & 15.57  \\
+    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16  & 29.47  & 5.26   & 18.09  \\ \midrule
+    \textit{Extractive}        &         &         &        &        &        &        \\
+    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75  & 25.01  & 3.62   & 14.67  \\ \bottomrule
+    \end{tabular}
+    \caption{ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+    $^{\star}$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep{coop} übernommen wurden.}
+\end{table}
+
 \pagebreak

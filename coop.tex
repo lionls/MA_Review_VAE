@@ -30,6 +30,7 @@ Durch den Zugriff auf die anderen Bewertungen $r_i$ kann der Decoder spezifische
 
 
 \subsection{Convex Aggregation for Opinion Summarization}
+\label{coop}
 Convex Aggregation for Opinion Summarization kurz COOP, ist eine Methode, die unterschiedliche Kombinationenen von einzelnen Latentvektoren zum Berechnen einer Durchschnittsbewertung untersucht.
 Bei der Verwendung von Variational Autoencodern werden die einzelnen Eingabebewertungen durch einen Latentvektor repräsentiert. 
 Häufig wird im nächsten Schritt zur Berechnung einer Durchschnittsbewertung, der normale Durchschnitt aller verwendeten Latentvektoren bestimmt und von diesem eine neue Durchschnittsbewertung generiert.
@@ -58,6 +59,9 @@ Der Zusammenfassunslatentvektor $z_p$ wird anschließend aus dem Durchschnitt de
 \begin{align}
 z_p = \frac{1}{|R_p^{'}|} \sum_{i=1}^{R_p^{'}}z_i \text{ ,mit } R_p^{'} \in 2^{R_p} \setminus  \{ \emptyset\}
 \end{align}
-
+Die COOP Methode zur Kombination von den einzelnen Latentvektoren, um ausdrucksstarke Bewertungen zu erhalten, erreicht State-of-the-Art Ergebnisse im Vergleich zu anderen Methoden, die den normalen Durchschnittslatentvektor verwenden.
+Die erzeugten Bewertungen sind gut repräsentativ für eine Gruppe von Bewertungen und erhalten ein hohes Maß an Informationen. 
+Trotzdem stellt sich die Frage, ob und inwiefern sich diese Ergebnisse noch weiter optimieren lassen.
+Im weiteren Verlauf wurde ein Verfahren entwickelt, welches entsprechende Latentvektoren weiterhin adaptiert, um ein noch höheres \textit{Input-Output-Overlapping} zu erhalten und somit präzisere Informationen in den Durchschnittsbewertungen zu generieren.
 
 \pagebreak

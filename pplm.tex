@@ -1,6 +1,40 @@
-\section{Controllable Generation mittels Gradientenverschiebung}\raggedbottom
+\section{Kontrollierbare Textgeneration von Sprachmodellen}\raggedbottom
+Die in Abschnitt \ref{coop} vorgestellte COOP Methode zur Suche der optimalen Kombination von Latentvektoren zur Maximierung des \textit{Input-Output-Overlaps} erzielt beeindruckende Resultate.
+COOP basiert auf dem VAE Modell Optimus, welches zur Generation den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruiert.
 
-\subsection{Gradientenverschiebung nach Bag of Words Klassifizierer}
+Es stellt sich die Frage ob diese Latentvektoren als Grundlage verwendet werden können, um durch weitere Optimierungen bessere Ergebnisse erzielen zu können.
+
+Unkontrollierte Sprachmodelle modellieren Texte über die Wahrscheinlichkeit $p(X)$ für eine Sequenz $X=\{x_0,...,x_n\}$.
+In Kapitel \ref{transformer} wurde die Funktionsweise von Transformer-Sprachmodellen erklärt. 
+Bei der Generation werden die vorherigen Key-Value Paare der Attention-Layer in einer Vergangenheitsmatrix $H_t = [(K_t^{(1)},V_t^{(1)}), \ldots , (K_t^{(n)},V_t^{(n)})]$ gespeichert, wobei $K$ und $V$ die einzelnen Key-, Value-Vektoren im Layer $n$ zum Zeitpunkt $t$ repräsentieren. %history matrix
+Diese Vergangenheitsmatrizen werden verwendet, um bei der Generation auf bereits vorher berechnete Key-, Value-Werte zurückgreifen zu können und somit effizienter Text generieren zu können.
+
+
+Uber hat mit der Einführung von Plug and Play Language Models \citep{DBLP:journals/corr/abs-1912-02164} es ermöglicht, die Textgeneration bei großen Sprachmodellen wie zum Beispiel GPT-2 kontrolliert zu beeinflussen.
+Kontrollierbare Generation von Texten mittels Sprachmodellen entspricht dem Modellieren von $p(x|a)$, wobei hier $a$ für ein kontrollierbares Attribut in Bezug auf den generierten Text $x$ ist. 
+Mit dem Satz von Bayes lässt sich das kontrollierbare Sprachmodell zu $p(x|a)\propto p(a|x)p(x)$ umformulieren. 
+Das Attribut Modell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attributs $a$ mit einer Wahrscheinlichkeit.
+
+
+Zur kontrollierbaren Generation werden bei PPLM-Modellen Gradienten für die generierten Sequenzen über die Log-Likelihood des normalen Sprachmodells $log(p(x))$ und der Log-Likelihood des Attribut-Modells $log(p(a|x))$ in Bezug auf die Vergangenheitsmatrix errechnet. 
+Durch Veränderung der Vergangenheitsmatrix $H_t = (H_t+\Delta H_t)$ wird die Wahrscheinlichkeit das nächste Token mit den gewünschten Attributen zu erhalten erhöht. Hierbei wird $\Delta H_t$ Schrittweise durch den Gradienten des Attribut-Modells errechnet und mit Null initialisiert.
+Um den Gradienten des Attribut-Modells bestimmen können wird dieses zu $p(a|H_t+\Delta H_t)$ umformuliert.
+\begin{align*}
+\Delta H_t \leftarrow \Delta H_t + \alpha \frac{\nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)}{\| \nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)\|^\gamma}
+\end{align*}
+In der Gleichung gibt $\alpha$ die Schrittgröße und $\gamma$ die Skalierung der Normalisierung an. Die Iteration kann merhmalig ausgeführt werden.
+
+\subsection{Verbessern der Textgeneration von Optimus}
+Den Variational Autoencoder Optimus mit einem Attributions-Modell zu kombinieren ist aufgrund der Injektion des Latentvektors schwierig.
+Optimus kann bereits unter Einbezug des Latentvektors Texte kontrolliert generieren $p(x|z)$.
+Die Berücksichtigung eines Attribut-Models bei der Generierung des Textes entspricht $p(x|a,z) \propto p(a|x,z)p(x|z)$.%)= \frac{p(a|x,z)p(x|z)}{p(a|z)}$. %MATH WRONG
+Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird der Latentvektor direkt optimiert und $\Delta z$ ergibt sich durch folgende Iteration:
+\begin{align*}
+    \Delta z \leftarrow \Delta z + \alpha \frac{\nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)}{\| \nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)\|^\gamma}
+\end{align*}
+
+
+\subsection{Bag of Words Attribut Modell}
 
 \subsection{Kombiniert mit Beam Search}
 

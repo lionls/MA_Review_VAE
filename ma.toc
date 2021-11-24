@@ -57,18 +57,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.1}Convex Aggregation for Opinion Summarization}{15}{subsection.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Training von Optimus für Control Code Generation}{17}{section.7}%
+\contentsline {section}{\numberline {7}Kontrollierbare Textgeneration von Sprachmodellen}{17}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Controllable Generation mittels Gradientenverschiebung}{18}{section.8}%
+\contentsline {subsection}{\numberline {7.1}Verbessern der Textgeneration von Optimus}{17}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Gradientenverschiebung nach Bag of Words Klassifizierer}{18}{subsection.8.1}%
+\contentsline {subsection}{\numberline {7.2}Bag of Words Attribut Modell}{18}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Kombiniert mit Beam Search}{18}{subsection.8.2}%
+\contentsline {subsection}{\numberline {7.3}Kombiniert mit Beam Search}{18}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Evaluierung der Modelle}{19}{section.9}%
+\contentsline {section}{\numberline {8}Evaluierung der Modelle}{19}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {10}Zusammenfassung und Ausblick}{20}{section.10}%
+\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{20}{section.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Abbildungsverzeichnis}{21}{section*.4}%
+\contentsline {section}{Literatur}{21}{section*.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Tabellenverzeichnis}{21}{section*.5}%
+\contentsline {section}{Abbildungsverzeichnis}{22}{section*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Tabellenverzeichnis}{22}{section*.6}%

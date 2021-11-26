@@ -1,23 +1,103 @@
 \section{Evaluierung der Modelle}\raggedbottom
+Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell werden auf dem Amazon und dem Yelp Datensatz verglichen und mit aktuellen State-of-the-Art Modellen in Relation gesetzt.
+Es existieren im Dev-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum evaluieren der generierten Ausgabebewertungen.
+Die Eingabebewertungen werden durch ein Optimus VAE Modell in Latentvektoren umgewandelt, welche anschließend mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise kombiniert werden, um den \textit{Input-Output-Overlap} zu maximieren. 
+Weiterhin wird der Latentvektor mittels Attribut-Modell optimiert, um detailreichere Bewertungen zu erhalten.
 
-\begin{table}[]
+
+\subsection{Evaluationsmetrik}
+Die generierten Textbewertungen werden mit den drei Gold-Summaries verglichen.
+Zum Vergleich der Bewertungen wird die \textbf{R}ecall-\textbf{O}riented \textbf{U}nderstudy for \textbf{G}isting \textbf{E}valuation (ROUGE) -Metrik verwendet.
+Die ROUGE-N Metrik misst die Anzahl der übereinstimmenden N-Grams zwischen dem generierten Text und den Referenztexten. 
+Ein "N-Gram" ist eine N-lange sequentielle Folge von Wörtern innerhalb der Texte. 
+
+Zur Bewertung der generierten Bewertungen werden die vorhergesagten Ergebnisse mit den korrekten Ergebnissen verglichen. 
+Die Konfusionsmatrix in Abbildung \ref{confusionmatrix} ist eine Wahrheitsmatrix, welche die Einteilung der vorhergesagten Ergebnisse ermöglicht. 
+True Positive (TP) und True Negative (TN) sind von dem Modell korrekt vorhergesagte Ergebnisse, False Positive (FP) und False Negative (FN) ist eine Klasse von falsch vorhergesagten Ergebnissen.
+
+
+\begin{figure}[h!]
     \centering
-    \begin{tabular}{@{}lllllll@{}}
+\begin{tikzpicture}[
+    box/.style={draw,rectangle,minimum size=2cm,text width=1.5cm,align=left}]
+    \matrix (conmat) [row sep=.1cm,column sep=.1cm] {
+    \node (tpos) [box,
+        label=left:Positive,
+        label=above:Positive,
+        ] {True \\ positive};
+    &
+    \node (fneg) [box,
+        label=above:Negative] {False \\ negative};
+    \\
+    \node (fpos) [box,
+        label=left:Negative] {False \\ positive};
+    &
+    \node (tneg) [box] {True \\ negative};
+    \\
+    };
+    \node [left=.05cm of conmat,text width=1.5cm,align=right] {\textbf{Referenz}};
+    \node [above=.05cm of conmat] {\textbf{Vorhersage}};
+\end{tikzpicture}
+\caption{Konfusionsmatrix}
+\label{confusionmatrix}
+\end{figure}
+Zur Berechnung des ROUGE-N Scores werden die einzelnen Textabschnitte in eine Menge aus N-Grams zerlegt.
+Mittels der Konfusionsmatrix in Abbildung \ref{confusionmatrix} lassen sich Precision (P) und Recall (R) definieren:
+\begin{addmargin}[30pt]{30pt}
+    \textbf{Precision}: 
+    Der Precision Wert ergibt sich aus dem Verhältnis der korrekt vorhergesagten N-Grams und der Anzahl der insgesamt vorhergesagten N-Grams.
+    \begin{align*}
+    \text{P} = \frac{\text{TP}}{\text{TP}+\text{FP}}
+    \end{align*}
+
+    \textbf{Recall}:
+    Recall ist als Verhältnis zwischen den korrekt vorhergesagten N-Grams und den N-Grams aus der Referenz definiert.
+    \begin{align*}
+    \text{R} = \frac{\text{TP}}{\text{TP}+\text{FN}}
+    \end{align*}
+
+    $\textbf{F}_1$:
+    Das F1-Maß beschreibt das harmonische Mittel zwischen Precision und Recall.
+    \begin{align*}
+    \text{F}_{1} = \frac{2\text{PR}}{\text{P}+\text{R}}
+    \end{align*}
+\end{addmargin}
+
+In der Evaluation werden die ROUGE-1, ROUGE-2 und ROUGE-L Werte miteinander verglichen.
+ROUGE-1 verwendet als N-Gram Unigrams, ROUGE-2 Bigramme und ROUGE-L misst die längste gleiche Subsequenz zwischen Vorhersage und Referenz.
+
+Da ROUGE-Scores lediglich die einzelnen Wortsequenzen miteinander vergleicht, findet die semantische Bedeutung und Ähnlichkeit der Bewertungen mit der Referenz keinen Einfluss.
+Um trotzdem die semantische Ähnlichkeit zwischen Bewertungen und Referenz zu messen wird als weitere Metrik der Moverscore aus Abschnitt \ref{moverscore} verwendet.
+Moverscore basiert auf BERT und vergleicht Context Embeddings mittels Earth-Mover-Distance. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
+
+
+\subsection{Bewertung der Datensätze}
+
+\subsubsection{Amazon-Datensatz}
+
+\subsubsection{Yelp-Datensatz}
+
+\subsection{Ergebnisse}
+
+\begin{table}[!h]
+    \label{eval_results}
+    \centering
+    \begin{tabular}{@{}lllllllll@{}}
     \toprule
-                               & \multicolumn{3}{c}{Amazon} & \multicolumn{3}{c}{Yelp} \\ 
-    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
-    \textit{Our Method}        &         &         &        &        &        &        \\
-    $\quad$ Optimus            &     \textbf{36.75}    &   \textbf{7.37}      &     \underline{20.60}   &   \textbf{35.91}   &   \textbf{7.79}       & \underline{19.43}       \\ \midrule
-    \textit{COOP}              &         &         &        &        &        &        \\
-    $\quad$ \textsc{BiMeanVae}$^{\star}$ & \underline{36.57}    & \underline{7.23}   & \textbf{21.24}  & \underline{35.37}  & \underline{7.35}  & \textbf{19.94}  \\
-    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84  & 33.60  & 7.00   & 18.95  \\ \midrule
-    \textit{SimpleAvg}         &         &         &        &        &        &        \\
-    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87  & 32.87  & 6.93   & 19.89  \\
-    $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34  & 31.23  & 6.48   & 18.27  \\
-    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15  & 28.46  & 3.66   & 15.57  \\
-    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16  & 29.47  & 5.26   & 18.09  \\ \midrule
-    \textit{Extractive}        &         &         &        &        &        &        \\
-    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75  & 25.01  & 3.62   & 14.67  \\ \bottomrule
+                               & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
+    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
+    \textit{Our Method}        &         &         &        &        &        &   & &     \\
+    $\quad$ Optimus            &     \textbf{36.75}    &   \textbf{7.37}      &     \underline{20.60}  & &   \textbf{35.91}   &   \textbf{7.79}       & \underline{19.43}   &    \\ \midrule
+    \textit{COOP}              &         &         &        &        &        & &   &    \\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & \underline{36.57}    & \underline{7.23}   & \textbf{21.24} & & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & \\
+    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & & 33.60  & 7.00   & 18.95 & \\ \midrule
+    \textit{SimpleAvg}         &         &         &        &      &  &        &        \\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & & 32.87  & 6.93   & 19.89 & \\
+    $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34 & & 31.23  & 6.48   & 18.27 & \\
+    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & & 28.46  & 3.66   & 15.57 & \\
+    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 & & 29.47  & 5.26   & 18.09 & \\ \midrule
+    \textit{Extractive}        &         &         &        &      &  &        &  &      \\
+    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & & 25.01  & 3.62   & 14.67 & \\ \bottomrule
     \end{tabular}
     \caption{ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
     $^{\star}$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep{coop} übernommen wurden.}

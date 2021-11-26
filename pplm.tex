@@ -33,9 +33,33 @@ Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird d
     \Delta z \leftarrow \Delta z + \alpha \frac{\nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)}{\| \nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)\|^\gamma}
 \end{align*}
 
+%KL_LOSS
+\subsection{Bag of Words Attribut-Modell}
+Als Attribut Modell wird ein Bag of Words Modell verwendet, welches einen Loss über die Summe der Wahrscheinlichkeiten der einzelnen vorhergesagten Wörter bildet.
+Sei $\{w_0, \ldots, w_n\}$ eine Gruppe von Tokens die ein bestimmtes Thema repräsentieren und $p_{t+1}$ die Ausgabeverteilung über die Tokens des Sprachmodells.
+Dann ist die Log-Likelihood des Attribut-Modells: 
+\begin{align*}
+    \text{log }p(a|x) = \text{log }(\sum_{i=0}^n p_{t+1}[w_i])
+\end{align*}
 
-\subsection{Bag of Words Attribut Modell}
+Um den \textit{Input-Output-Overlap} zwischen den Eingabereviews und den generierten Reviews zu maximieren wird das Bag of Words Modell erzeugt indem die $k$ am häufigsten vorkommenden Wörter über alle Reviews eines Produktes gewählt werden.
+Vor dem auswählen der häufigsten vorkommenden Wörter werden von dieser Menge Stopwörter entfernt.
+Die besten Ergebnisse werden mit $k=150$ erzielt. %ÜBERPRÜUFEN 
 
-\subsection{Kombiniert mit Beam Search}
+Des Weiteren können die Bag of Words Tokens gewichtet werden, indem die $k$ häufigsten Wörter nach ihrer Anzahl über eine Softmax-Funktion in eine Wahrscheinlichkeitsverteilung transformiert werden.
+Hierdurch erhalten besonders häufig vorkommende Wörter ein höheres Gewicht als weniger häufig vorkommende Wörter.
+
+Die Bag of Words Menge kann auch durch anderweitige Keyword-Extraktion wie zum Beispiel durch YAKE \citep{CAMPOS2020257} generiert werden.
+
+
+Weiterhin kann die Bag of Words Menge bei der Generierung optimiert werden. 
+So können bereits generierte Tokens nach einem Durchlauf aus der Bag of Words Menge entfernt werden, um zum Beispiel bei der Reviewgeneration einen Faktor nicht mehrmalig zu forcieren.
+
+
+\subsection{Latentvektoroptimisierung mit Beam Search}
+
+
+\subsection{Moverscore}
+\label{moverscore}
 
 \pagebreak

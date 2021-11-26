@@ -61,16 +61,26 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1}Verbessern der Textgeneration von Optimus}{17}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Bag of Words Attribut Modell}{18}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Bag of Words Attribut-Modell}{18}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Kombiniert mit Beam Search}{18}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Latentvektoroptimisierung mit Beam Search}{18}{subsection.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4}Moverscore}{18}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8}Evaluierung der Modelle}{19}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{20}{section.9}%
+\contentsline {subsection}{\numberline {8.1}Evaluationsmetrik}{19}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Literatur}{21}{section*.4}%
+\contentsline {subsection}{\numberline {8.2}Bewertung der Datensätze}{20}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Abbildungsverzeichnis}{22}{section*.5}%
+\contentsline {subsubsection}{\numberline {8.2.1}Amazon-Datensatz}{20}{subsubsection.8.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Tabellenverzeichnis}{22}{section*.6}%
+\contentsline {subsubsection}{\numberline {8.2.2}Yelp-Datensatz}{20}{subsubsection.8.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3}Ergebnisse}{20}{subsection.8.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{21}{section.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Abbildungsverzeichnis}{22}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Tabellenverzeichnis}{22}{section*.5}%

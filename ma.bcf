@@ -2352,12 +2352,14 @@
     <bcf:citekey order="5">kingma2014autoencoding</bcf:citekey>
     <bcf:citekey order="6">DBLP:journals/corr/abs-2004-04092</bcf:citekey>
     <bcf:citekey order="7">DBLP:journals/corr/abs-1903-10145</bcf:citekey>
-    <bcf:citekey order="8">brazinskas2020-unsupervised</bcf:citekey>
-    <bcf:citekey order="9">pmlr-v97-chu19b</bcf:citekey>
-    <bcf:citekey order="10">DBLP:journals/corr/abs-1912-02164</bcf:citekey>
-    <bcf:citekey order="11">CAMPOS2020257</bcf:citekey>
-    <bcf:citekey order="12">coop</bcf:citekey>
-    <bcf:citekey order="13">coop</bcf:citekey>
+    <bcf:citekey order="8">coop</bcf:citekey>
+    <bcf:citekey order="9">brazinskas2020-unsupervised</bcf:citekey>
+    <bcf:citekey order="10">pmlr-v97-chu19b</bcf:citekey>
+    <bcf:citekey order="11">DBLP:journals/corr/abs-1912-02164</bcf:citekey>
+    <bcf:citekey order="12">CAMPOS2020257</bcf:citekey>
+    <bcf:citekey order="13">moverscore_paper</bcf:citekey>
+    <bcf:citekey order="14">coop</bcf:citekey>
+    <bcf:citekey order="15">coop</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

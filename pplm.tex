@@ -1,6 +1,7 @@
 \section{Kontrollierbare Textgeneration von Sprachmodellen}\raggedbottom
 Die in Abschnitt \ref{coop} vorgestellte COOP Methode zur Suche der optimalen Kombination von Latentvektoren zur Maximierung des \textit{Input-Output-Overlaps} erzielt beeindruckende Resultate.
-COOP basiert auf dem VAE Modell Optimus, welches zur Generation den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruiert.
+COOP verwendet unter anderem das VAE Modell Optimus, welches zur Generation den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruiert.
+Als alternatives Modell wird BiMeanVAE vorgestellt, welches ein auf LSTM basierender Variational Autoencoder ist.
 
 Es stellt sich die Frage ob diese Latentvektoren als Grundlage verwendet werden können, um durch weitere Optimierungen bessere Ergebnisse erzielen zu können.
 
@@ -34,6 +35,46 @@ Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird d
 \end{align*}
 
 %KL_LOSS
+
+
+\subsection{Verbessern der Textgeneration von BiMeanVAE}
+\textsc{BiMeanVAE} ist ein Variational Autoencoder bestehend aus einem bidirektionalem LSTM Encoder gepaart mit einem LSTM Decoder.
+Der LSTM Decoder erhält als Eingabe den Latentvektor $z$ und den berechneten Hiddenstate $h_t$ und Cellstate $c_t$.
+Um diesen LSTM Decoder mit einem Attributmodel zu optimieren bieten sich 3 unterschiedliche Ansätze:
+\begin{enumerate}
+    \item Optimieren über den Latentvektor $z$
+    \item Optimieren des vorherigen Hiddenstates $h_t$ vor der nächsten Berechnung
+    \item Optimieren des vorherigen Cellstates $c_t$ vor der nächsten Berechnung
+\end{enumerate}
+
+Es ist möglich zu allen drei Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen.
+Nachfolgend wurden alle drei Optionen auf dem Amazon Datensatz evauliert, um die zu optimierende Variabel mit der bestmöglichen Performance zu finden.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+                       & \multicolumn{3}{c}{Amazon}              \\ \midrule
+    \textbf{Method}    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
+    \textsc{BiMeanVAE} &             &             &             \\
+    $\quad$ Baseline        & 39.50       & 8.62      &  22.79     \\
+    $\quad$ optimze $z$        &        &       &       \\
+    $\quad$ optimze $h_t$      &     &      &    \\
+    $\quad$ optimze $c_t$      &  40.81   &     8.91  &   23.49    \\ \bottomrule
+    \end{tabular}
+    \caption{Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}
+    \label{opt_bimeanvae}
+\end{table}
+
+In Tabelle \ref{opt_bimeanvae} sind die ROUGE-Scores, welche in Abschnitt \ref{evalmetric} genauer erklärt werden, für die separiert optimierten Variablen $z, h_t, c_t$ aufgelistet.
+Beim Evaluieren der unterschiedlichen Optimierungsversuche hat sich ergeben, dass eine Optimierung der Variabel INSERT die größte Leistungssteigerung ergibt.
+Somit beschreibt folgende Gleichung den Optimierungsschritt $\Delta c_t$ bei \textsc{BiMeanVAE}.
+CHANGE
+\begin{align*}
+    \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,c_t)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,c_t )\|^\gamma}
+\end{align*}
+
+
 \subsection{Bag of Words Attribut-Modell}
 Als Attribut Modell wird ein Bag of Words Modell verwendet, welches einen Loss über die Summe der Wahrscheinlichkeiten der einzelnen vorhergesagten Wörter bildet.
 Sei $\{w_0, \ldots, w_n\}$ eine Gruppe von Tokens die ein bestimmtes Thema repräsentieren und $p_{t+1}$ die Ausgabeverteilung über die Tokens des Sprachmodells.
@@ -57,9 +98,23 @@ So können bereits generierte Tokens nach einem Durchlauf aus der Bag of Words M
 
 
 \subsection{Latentvektoroptimisierung mit Beam Search}
+Beam Search ist ein Suchalgorithmus zur Auswahl des Ausgabesatzes mit der höchsten Wahrscheinlichkeit. 
+Im Gegensatz zur normalen Greedy Search wird beim Beam Search Algorithmus die Gruppe mit den N bestmöglichen Tokens für eine Position ausgewählt. 
+Über die Maximierung der bedingten Wahrscheinlichkeit wird final entschieden welche der zuvor ausgewählten Tokens 
 
+\subsection{Moverscore Ranking}
+\label{moverscore_ranking}
+Der in Abschnitt \ref{moverscore} vorgestellte Moverscore ermöglicht einen semantischen Vergleich von Textsequenzen. 
+So kann insbesondere Bewertungen mit anders formulierten Meinungen, die die gleiche Aussage treffen ein hoher Ähnlichkeitswert zugewiesen werden.
+Da dem Modell nur die Eingabebewertungen zur Verfügung stehen, ist eine Berechnung des \textit{Input-Output-Overlap} lediglich über den ROUGE-1 Score nicht ausreichend.
+Zwischen den Eingabebewertungen und den Gold-Summaries besteht eine hohe semantische Ähnlichkeit, weshalb der Moverscore miteinbezogen wird um ein besseres Ranking der Ausgabewertungen zu erzeugen.
+Des Weiteren wird die \textit{Input-Output-Overlap} Funktion dahingehend abgeändert, dass sie ebenfalls die ROUGE-2 und ROUGE-L Scores miteinbezieht.
+Somit ergibt sich eine neue Rankingfunktion für die generierten Ausgabebewertungen:
+\begin{align*}
+    \text{SCORE}(\hat{x_i}) = Input\text{-}Output\text{-}Overlap(\hat{x_i}, \text{InputReviews}) + 1.5 \cdot Moverscore(\hat{x_i}, \text{InputReviews})
+\end{align*}
 
-\subsection{Moverscore}
-\label{moverscore}
+Mit dieser Rankingfunktion wird bei den einzelnen generierten Reviews nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 
+Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Gramms, aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.
 
 \pagebreak

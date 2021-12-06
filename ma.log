@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  26 NOV 2021 17:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  6 DEC 2021 14:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -628,4 +628,548 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \c@abbrvpenalty=\count332
 \c@highnamepenalty=\count333
 \c@lownamepenalty=\count334
-\c@maxparens=
+\c@maxparens=\count335
+\c@parenlevel=\count336
+\blx@tempcnta=\count337
+\blx@tempcntb=\count338
+\blx@tempcntc=\count339
+\blx@maxsection=\count340
+\blx@maxsegment@0=\count341
+\blx@notetype=\count342
+\blx@parenlevel@text=\count343
+\blx@parenlevel@foot=\count344
+\blx@sectionciteorder@0=\count345
+\blx@entrysetcounter=\count346
+\blx@biblioinstance=\count347
+\labelnumberwidth=\skip57
+\labelalphawidth=\skip58
+\biblabelsep=\skip59
+\bibitemsep=\skip60
+\bibnamesep=\skip61
+\bibinitsep=\skip62
+\bibparsep=\skip63
+\bibhang=\skip64
+\blx@bcfin=\read4
+\blx@bcfout=\write5
+\blx@langwohyphens=\language87
+\c@mincomprange=\count348
+\c@maxcomprange=\count349
+\c@mincompwidth=\count350
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'authoryear.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count351
+\c@savedafterword=\count352
+\c@annotator=\count353
+\c@savedannotator=\count354
+\c@author=\count355
+\c@savedauthor=\count356
+\c@bookauthor=\count357
+\c@savedbookauthor=\count358
+\c@commentator=\count359
+\c@savedcommentator=\count360
+\c@editor=\count361
+\c@savededitor=\count362
+\c@editora=\count363
+\c@savededitora=\count364
+\c@editorb=\count365
+\c@savededitorb=\count366
+\c@editorc=\count367
+\c@savededitorc=\count368
+\c@foreword=\count369
+\c@savedforeword=\count370
+\c@holder=\count371
+\c@savedholder=\count372
+\c@introduction=\count373
+\c@savedintroduction=\count374
+\c@namea=\count375
+\c@savednamea=\count376
+\c@nameb=\count377
+\c@savednameb=\count378
+\c@namec=\count379
+\c@savednamec=\count380
+\c@translator=\count381
+\c@savedtranslator=\count382
+\c@shortauthor=\count383
+\c@savedshortauthor=\count384
+\c@shorteditor=\count385
+\c@savedshorteditor=\count386
+\c@labelname=\count387
+\c@savedlabelname=\count388
+\c@institution=\count389
+\c@savedinstitution=\count390
+\c@lista=\count391
+\c@savedlista=\count392
+\c@listb=\count393
+\c@savedlistb=\count394
+\c@listc=\count395
+\c@savedlistc=\count396
+\c@listd=\count397
+\c@savedlistd=\count398
+\c@liste=\count399
+\c@savedliste=\count400
+\c@listf=\count401
+\c@savedlistf=\count402
+\c@location=\count403
+\c@savedlocation=\count404
+\c@organization=\count405
+\c@savedorganization=\count406
+\c@origlocation=\count407
+\c@savedoriglocation=\count408
+\c@origpublisher=\count409
+\c@savedorigpublisher=\count410
+\c@publisher=\count411
+\c@savedpublisher=\count412
+\c@language=\count413
+\c@savedlanguage=\count414
+\c@origlanguage=\count415
+\c@savedoriglanguage=\count416
+\c@pageref=\count417
+\c@savedpageref=\count418
+\shorthandwidth=\skip65
+\shortjournalwidth=\skip66
+\shortserieswidth=\skip67
+\shorttitlewidth=\skip68
+\shortauthorwidth=\skip69
+\shorteditorwidth=\skip70
+\locallabelnumberwidth=\skip71
+\locallabelalphawidth=\skip72
+\localshorthandwidth=\skip73
+\localshortjournalwidth=\skip74
+\localshortserieswidth=\skip75
+\localshorttitlewidth=\skip76
+\localshortauthorwidth=\skip77
+\localshorteditorwidth=\skip78
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+\c@textcitecount=\count419
+\c@textcitetotal=\count420
+\c@textcitemaxnames=\count421
+\c@biburlbigbreakpenalty=\count422
+\c@biburlbreakpenalty=\count423
+\c@biburlnumpenalty=\count424
+\c@biburlucpenalty=\count425
+\c@biburllcpenalty=\count426
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count427
+)
+Package biblatex Info: Trying to load natbib compatibility...
+Package biblatex Info: ... file 'blx-natbib.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-natbib.def
+File: blx-natbib.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting.
+)
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+File: authoryear.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count428
+\c@bbx:relatedtotal=\count429
+))
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+File: authoryear.cbx 2020/12/31 v3.16 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/24 3.56 The Babel package
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/24 3.56 Babel common definitions
+\babel@savecnt=\count430
+\U@D=\dimen284
+\l@babelnohyphens=\language88
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read5
+)
+\bbl@dirlevel=\count431
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngerman.ldf
+Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthography)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthography)
+Package babel Info: Making " an active character on input line 122.
+))) (/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
+\csq@reset=\count432
+\csq@gtype=\count433
+\csq@glevel=\count434
+\csq@qlevel=\count435
+\csq@maxlvl=\count436
+\csq@tshold=\count437
+\csq@ltx@everypar=\toks39
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2021-02-22 v5.2l csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Enabling multilingual quotes.
+Package csquotes Info: Redefining alias 'german' -> 'german/quotes'.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/a4wide/a4wide.sty
+Package: a4wide 1994/08/30
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/ntgclass/a4.sty
+Package: a4 2020/02/18 v1.2g A4 based page layout
+)))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count438
+\l__pdf_internal_box=\box63
+) (./ma.aux)
+\openout1 = `ma.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+ (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count439
+\scratchdimen=\dimen285
+\scratchbox=\box64
+\nofMPsegments=\count440
+\nofMParguments=\count441
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count442
+\MPscratchDim=\dimen286
+\MPnumerator=\count443
+\makeMPintoPDFobject=\count444
+\everyMPtoPDFconversion=\toks41
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package hyperref Info: Link coloring ON on input line 71.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count445
+)
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
+ (./ma.out) (./ma.out)
+\@outlinefile=\write6
+\openout6 = `ma.out'.
+
+Package biblatex Info: Trying to load language 'ngerman'...
+Package biblatex Info: ... file 'ngerman.lbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
+File: ngerman.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'german'...
+Package biblatex Info: ... file 'german.lbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'german'...
+Package biblatex Info: ... file 'german.lbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+))
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-02-18 L3 programming layer (loader) 
+)
+Package biblatex Info: ... and expl3
+(biblatex)             2021-02-18 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex)))
+Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
+)
+\openout5 = `ma.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'ma.bbl' not found.
+
+No file ma.bbl.
+Package biblatex Info: Reference section=0 on input line 71.
+Package biblatex Info: Reference segment=0 on input line 71.
+(./titelmakros.tex
+<bilder/HHU_Logo.pdf, id=163, 896.34875pt x 218.8175pt>
+File: bilder/HHU_Logo.pdf Graphic file (type pdf)
+<use bilder/HHU_Logo.pdf>
+Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
+(pdftex.def)             Requested size: 130.0pt x 31.73273pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 93.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 93.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./bilder/HHU_Logo.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.105 \end{titlepage}
+                      [1
+
+]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.130 \end{titlepage}
+                      [1
+
+] (./zusammenfassung.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.151 \end{titlepage}
+                      [1
+
+] (./ma.toc [1
+
+])
+\tf@toc=\write7
+\openout7 = `ma.toc'.
+
+ [2]) (./einleitung.texpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.33 \subsection
+                {Terminologie} [1
+
+
+]) [2] (./grundlagen.tex [3]) [4] (./transformer.tex
+Underfull \hbox (badness 1097) in paragraph at lines 2--7
+\T1/ppl/m/n/10.95 groÿer Vor-teil von Trans-for-mer-mo-del-len ist die Par-al-le-li-sier-bar-keit. Hier-durch las-
+ []
+
+
+LaTeX Warning: Citation 'AttentionIALYN' on page 5 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'AttentionIALYN' on page 5 undefined on input line 19.
+
+<bilder/Transformer-Encoder-Decoder.png, id=261, 853.1875pt x 1048.91875pt>
+File: bilder/Transformer-Encoder-Decoder.png Graphic file (type png)
+<use bilder/Transformer-Encoder-Decoder.png>
+Package pdftex.def Info: bilder/Transformer-Encoder-Decoder.png  used on input line 42.
+(pdftex.def)             Requested size: 227.62204pt x 279.83475pt.
+[5]
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1810-04805' on page 6 undefined on input line 51.
+
+[6 <./bilder/Transformer-Encoder-Decoder.png>]
+
+LaTeX Warning: Citation 'radford2019language' on page 7 undefined on input line 63.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+\T1/ppl/m/n/10.95 GPT-2 (\T1/ppl/b/n/10.95 G\T1/ppl/m/n/10.95 enerative \T1/ppl/b/n/10.95 P\T1/ppl/m/n/10.95 re-trained \T1/ppl/b/n/10.95 T\T1/ppl/m/n/10.95 ransformer-2) ist ein von Ope-nAI
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 63--65
+\T1/ppl/m/n/10.95 ([]) ver-öf-fent-lich-tes au-to-re-gres-si-ves Sprach-mo-dell auf Ba-sis von
+ []
+
+) [7] (./vae.tex
+
+LaTeX Warning: Citation 'kingma2014autoencoding' on page 8 undefined on input line 2.
+
+<bilder/vae.png, id=284, 814.04124pt x 402.50375pt>
+File: bilder/vae.png Graphic file (type png)
+<use bilder/vae.png>
+Package pdftex.def Info: bilder/vae.png  used on input line 15.
+(pdftex.def)             Requested size: 312.9803pt x 154.75253pt.
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 21.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+) [8 <./bilder/vae.png>]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 54.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 54.
+
+
+Overfull \hbox (14.99933pt too wide) detected at line 54
+[]
+ []
+
+[9]
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-2004-04092' on page 10 undefined on input line 91.
+
+<bilder/optimus_scheme.png, id=307, 740.0448pt x 163.3302pt>
+File: bilder/optimus_scheme.png Graphic file (type png)
+<use bilder/optimus_scheme.png>
+Package pdftex.def Info: bilder/optimus_scheme.png  used on input line 96.
+(pdftex.def)             Requested size: 426.79134pt x 94.19325pt.
+
+Underfull \hbox (badness 5504) in paragraph at lines 91--102
+\T1/ppl/m/n/10.95 Optimus (\T1/ppl/b/n/10.95 O\T1/ppl/m/n/10.95 rganizing \T1/ppl/b/n/10.95 S\T1/ppl/m/n/10.95 entences via \T1/ppl/b/n/10.95 P\T1/ppl/m/n/10.95 re-trained \T1/ppl/b/n/10.95 M\T1/ppl/m/n/10.95 odeling of a \T1/ppl/b/n/10.95 L\T1/ppl/m/n/10.95 atent \T1/ppl/b/n/10.95 S\T1/ppl/m/n/10.95 pace)
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[10]
+<bilder/latent_optimus.png, id=315, 1631.09375pt x 703.62875pt>
+File: bilder/latent_optimus.png Graphic file (type png)
+<use bilder/latent_optimus.png>
+Package pdftex.def Info: bilder/latent_optimus.png  used on input line 111.
+(pdftex.def)             Requested size: 227.62204pt x 98.18526pt.
+
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1903-10145' on page 11 undefined on input line 124.
+
+[11 <./bilder/optimus_scheme.png> <./bilder/latent_optimus.png>]
+
+LaTeX Warning: Citation 'coop' on page 12 undefined on input line 135.
+
+) [12] (./datensatze.tex
+
+LaTeX Warning: Citation 'brazinskas2020-unsupervised' on page 13 undefined on input line 13.
+
+
+LaTeX Warning: Citation 'pmlr-v97-chu19b' on page 13 undefined on input line 21.
+
+) (./coop.tex [13] [14]
+<bilder/coop.png, id=340, 3352.525pt x 1009.7725pt>
+File: bilder/coop.png Graphic file (type png)
+<use bilder/coop.png>
+Package pdftex.def Info: bilder/coop.png  used on input line 40.
+(pdftex.def)             Requested size: 426.79134pt x 128.54784pt.
+ [15 <./bilder/coop.png>]) [16] (./pplm.tex
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1912-02164' on page 17 undefined on input line 14.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--18
+[]\T1/ppl/m/n/10.95 Uber hat mit der Ein-füh-rung von Plug and Play Lan-gua-ge Mo-dels
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 14--18
+\T1/ppl/m/n/10.95 ([]) es er-mög-licht, die Text-ge-ne-ra-ti-on bei groÿen
+ []
+
+[17] [18]
+
+LaTeX Warning: Citation 'CAMPOS2020257' on page 19 undefined on input line 93.
+
+[19]
+Overfull \hbox (27.04358pt too wide) detected at line 115
+[]
+ []
+
+) [20] (./eval.tex
+Overfull \hbox (2.33598pt too wide) in paragraph at lines 39--39
+ [][]\T1/ppl/b/n/10.95 Referenz
+ []
+
+[21]
+
+LaTeX Warning: Citation 'moverscore_paper' on page 22 undefined on input line 77.
+
+
+LaTeX Warning: Citation 'coop' on page 22 undefined on input line 117.
+
+
+LaTeX Warning: Citation 'coop' on page 22 undefined on input line 117.
+
+[22]) [23] (./recap.tex) [24]
+
+LaTeX Warning: Empty bibliography on input line 114.
+
+(./ma.lof)
+\tf@lof=\write8
+\openout8 = `ma.lof'.
+
+ (./ma.lot)
+\tf@lot=\write9
+\openout9 = `ma.lot'.
+
+ [25
+
+
+] (./ma.aux)
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `ma.out' has not changed.
+(rerunfilecheck)             Checksum: C8A6FED4C56F6650AB4E147511CD0745;6666.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                ma
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'ma.run.xml'.
+\openout1 = `ma.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 30221 strings out of 478994
+ 553349 string characters out of 5858183
+ 1320835 words of memory out of 5000000
+ 47050 multiletter control sequences out of 15000+600000
+ 430128 words of font info for 75 fonts, out of 8000000 for 9000
+ 1143 hyphenation exceptions out of 8191
+ 118i,17n,119p,731b,2977s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on ma.pdf (31 pages, 1011612 bytes).
+PDF statistics:
+ 505 PDF objects out of 1000 (max. 8388607)
+ 438 compressed objects within 5 object streams
+ 97 named destinations out of 1000 (max. 500000)
+ 355 words of extra memory for PDF output out of 10000 (max. 10000000)
+

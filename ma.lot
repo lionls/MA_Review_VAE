@@ -1,4 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {ngerman}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen. $^{\star }$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep {coop} übernommen wurden.}}{21}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}}{18}{table.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {2}{\ignorespaces ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen. $^{\star }$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep {coop} übernommen wurden.}}{23}{table.2}%

@@ -131,6 +131,14 @@ Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, 
 %%%%PAST KEY VEKTOR MATRIX == Vergangenheitsmatrix
 
 
+\subsection{BiMeanVAE}
+BiMeanVAE ist ein von \citep{coop} vorgestelltes Model bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
+Die Hiddensize der einzelnen LSTMs beträgt 512. Nach dem BiLSTM Encoder wird ein mean pooling verwendet, um einen Latentvektor $z$ zu erhalten.
+BiMeanVAE verwendet die Standard Variational Autoencoder Ziele, dass minimieren des Rekonstruktionsfehlers mit KL-Regularisierung verwendet.
+Die verwendete Prior Verteilung $p_\theta(z)$ ist die Gausssche Normalverteilung $\mathcal{N}(0,\mathcal{I})$. 
+Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cyclical Annealing Verfahren verwendet, um graduell vom Autoencoder zum Variational Autoencoder Trainingsziel zu wechseln.
+
+
 \subsection{Latent Space Operations}
 
 \pagebreak

@@ -7,7 +7,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2}Ziel und Aufbau der Arbeit}{1}{subsection.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}Terminologie}{1}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.3}Terminologie}{2}{subsection.1.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Grundlagen}{3}{section.2}%
 \defcounter {refsection}{0}\relax 
@@ -45,7 +45,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}Optimus}{10}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Latent Space Operations}{12}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.4}BiMeanVAE}{12}{subsection.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5}Latent Space Operations}{12}{subsection.4.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}Datensätze}{13}{section.5}%
 \defcounter {refsection}{0}\relax 
@@ -61,26 +63,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.1}Verbessern der Textgeneration von Optimus}{17}{subsection.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Bag of Words Attribut-Modell}{18}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.2}Verbessern der Textgeneration von BiMeanVAE}{18}{subsection.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Latentvektoroptimisierung mit Beam Search}{18}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.3}Bag of Words Attribut-Modell}{19}{subsection.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.4}Moverscore}{18}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.4}Latentvektoroptimisierung mit Beam Search}{19}{subsection.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Evaluierung der Modelle}{19}{section.8}%
+\contentsline {subsection}{\numberline {7.5}Moverscore Ranking}{19}{subsection.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Evaluationsmetrik}{19}{subsection.8.1}%
+\contentsline {section}{\numberline {8}Evaluierung der Modelle}{21}{section.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Bewertung der Datensätze}{20}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.1}Evaluationsmetriken}{21}{subsection.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.1}Amazon-Datensatz}{20}{subsubsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2}Moverscore}{22}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.2}Yelp-Datensatz}{20}{subsubsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.3}Bewertung der Datensätze}{23}{subsection.8.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3}Ergebnisse}{20}{subsection.8.3}%
+\contentsline {subsubsection}{\numberline {8.3.1}Amazon-Datensatz}{23}{subsubsection.8.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{21}{section.9}%
+\contentsline {subsubsection}{\numberline {8.3.2}Yelp-Datensatz}{23}{subsubsection.8.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Abbildungsverzeichnis}{22}{section*.4}%
+\contentsline {subsection}{\numberline {8.4}Ergebnisse}{23}{subsection.8.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Tabellenverzeichnis}{22}{section*.5}%
+\contentsline {section}{\numberline {9}Zusammenfassung und Ausblick}{24}{section.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Abbildungsverzeichnis}{25}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Tabellenverzeichnis}{25}{section*.5}%

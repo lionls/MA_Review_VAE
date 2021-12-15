@@ -1,6 +1,6 @@
 \section{Evaluierung der Modelle}\raggedbottom
 \label{evalmetric}
-Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell werden auf dem Amazon und dem Yelp Datensatz verglichen und mit aktuellen State-of-the-Art Modellen in Relation gesetzt.
+Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit aktuellen State-of-the-Art Modellen in Relation gesetzt.
 Es existieren im Dev-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum evaluieren der generierten Ausgabebewertungen.
 Die Eingabebewertungen werden durch ein Optimus VAE Modell in Latentvektoren umgewandelt, welche anschließend mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise kombiniert werden, um den \textit{Input-Output-Overlap} zu maximieren. 
 Weiterhin wird der Latentvektor mittels Attribut-Modell optimiert, um detailreichere Bewertungen zu erhalten.
@@ -92,29 +92,52 @@ Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise au
 \subsubsection{Yelp-Datensatz}
 
 \subsection{Ergebnisse}
+In Tabelle \ref{eval_results} ist die Performance der unterschiedlichen untersuchten und erstellten Modelle dargestellt.
+Das in dieser Arbeit entwickelte Modell ist das \glqq COOP+Attribute Model\grqq{} Modell.
+Es basiert auf dem COOP Modell und verbessert die Generation von neuen Bewertungen durch die Verwendung eines Attribute Models.
+Unterschieden werden die COOP Modelle durch ihre grundlegend verwendete Variational Autoencoder Architektur in Optimus und \textsc{BiMeanVAE}.
+Das Optimus Modell kombiniert BERT und GPT-2 in ein Variational Autoencoder Model. \textsc{BiMeanVAE} hingegen besteht aus einem simplen BiLSTM Variational Autoencoder.
+
+Verglichen wird die Performance der unterschieldichen Modelle mit den zuvor beschriebenen Evaluationsmetriken, dem ROUGE-1, ROUGE-2, ROUGE-L Score und dem Moverscore.
+Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance der Modelle und einer Leistungssteigerung zwischen den COOP Basismodellen und den modifizierten COOP Attributionsmodellen zu.
 
 \begin{table}[!h]
     \label{eval_results}
     \centering
-    \begin{tabular}{@{}lllllllll@{}}
+    \begin{tabular}{@{}lcccccccc@{}}
     \toprule
                                & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
-    \textit{Our Method}        &         &         &        &        &        &   & &     \\
-    $\quad$ Optimus            &     \textbf{36.75}    &   \textbf{7.37}      &     \underline{20.60}  & &   \textbf{35.91}   &   \textbf{7.79}       & \underline{19.43}   &    \\ \midrule
+    \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
+    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
+    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    
     \textit{COOP}              &         &         &        &        &        & &   &    \\
-    $\quad$ \textsc{BiMeanVae}$^{\star}$ & \underline{36.57}    & \underline{7.23}   & \textbf{21.24} & & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & \\
-    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & & 33.60  & 7.00   & 18.95 & \\ \midrule
+    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
+    $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+    
     \textit{SimpleAvg}         &         &         &        &      &  &        &        \\
-    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & & 32.87  & 6.93   & 19.89 & \\
-    $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34 & & 31.23  & 6.48   & 18.27 & \\
-    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & & 28.46  & 3.66   & 15.57 & \\
-    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 & & 29.47  & 5.26   & 18.09 & \\ \midrule
+    $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34 & 22.35& 31.23  & 6.48   & 18.27 & 23.05\\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & 18.18& 32.87  & 6.93   & 19.89 & 22.41\\
+    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 &- & 29.47  & 5.26   & 18.09 & -\\ 
+    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & -& 28.46  & 3.66   & 15.57 & -\\ \midrule
     \textit{Extractive}        &         &         &        &      &  &        &  &      \\
-    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & & 25.01  & 3.62   & 14.67 & \\ \bottomrule
+    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & -& 25.01  & 3.62   & 14.67 & -\\ \bottomrule
     \end{tabular}
-    \caption{ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep{coop} übernommen wurden.}
+    \caption{ROUGE und Moverscore Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+    $^{\star}$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep{coop} übernommen wurden.
+    $^{\dagger}$ Evaluierte Performance unterscheidet sich vom \citep{coop} Paper. Performance wurde nach SourceCode des Papers bestimmt.
+    }
 \end{table}
+
+Grundsätzlich lassen sich die Ergebnisse in Tabelle \ref{eval_results} in die Kategorien abstraktive und extraktive Zusammenfassung unterteilen.
+Hier ist eindeutig zu erkennen, dass LexRank in allen Bereichen den abstraktiven Methoden bei weitem unterliegt.
+
+Die \textit{SimpleAvg} Gruppe umfasst abstraktive Textzusammenfassungsmethoden. 
+Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschnittsvektor errechnet von dem anschließend gesamplet wird.
+Es ist erkennbar, dass die beiden Methoden Optimus und \textsc{BiMeanVAE} den Methoden CopyCat und MeanSum überlegen sind, da diese in allen Messwerten bessere Ergebnisse erzielen.
+Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als \textsc{BiMeanVAE} erzielt, allerdings in den ROUGE Werten minimal schlechter abschneidet.
+
+Eine große Leistungssteigerung ergibt sich durch die COOP Methode 
 
 \pagebreak

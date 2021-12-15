@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  6 DEC 2021 14:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.10.14)  15 DEC 2021 11:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -942,7 +942,7 @@ No file ma.bbl.
 Package biblatex Info: Reference section=0 on input line 71.
 Package biblatex Info: Reference segment=0 on input line 71.
 (./titelmakros.tex
-<bilder/HHU_Logo.pdf, id=163, 896.34875pt x 218.8175pt>
+<bilder/HHU_Logo.pdf, id=167, 896.34875pt x 218.8175pt>
 File: bilder/HHU_Logo.pdf Graphic file (type pdf)
 <use bilder/HHU_Logo.pdf>
 Package pdftex.def Info: bilder/HHU_Logo.pdf  used on input line 47.
@@ -987,45 +987,79 @@ l.33 \subsection
                 {Terminologie} [1
 
 
-]) [2] (./grundlagen.tex [3]) [4] (./transformer.tex
+]) [2] (./grundlagen.tex [3]
+
+LaTeX Warning: Citation 'word2vec' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation 'glove' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation 'word2vec' on page 4 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'glove' on page 4 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'elmo' on page 4 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1810-04805' on page 4 undefined on input line 55.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+[]\T1/ppl/m/n/10.95 Kontextabhängige Ver-fah-ren, wie zum Bei-spiel EL-MO ([]) oder BERT
+ []
+
+[4]
+
+LaTeX Warning: Citation 'wordpiece' on page 5 undefined on input line 59.
+
+
+LaTeX Warning: Citation 'bytepairencoding' on page 5 undefined on input line 59.
+
+
+LaTeX Warning: Citation 'lstm' on page 5 undefined on input line 67.
+
+) [5] (./transformer.tex
 Underfull \hbox (badness 1097) in paragraph at lines 2--7
 \T1/ppl/m/n/10.95 groÿer Vor-teil von Trans-for-mer-mo-del-len ist die Par-al-le-li-sier-bar-keit. Hier-durch las-
  []
 
-
-LaTeX Warning: Citation 'AttentionIALYN' on page 5 undefined on input line 15.
-
-
-LaTeX Warning: Citation 'AttentionIALYN' on page 5 undefined on input line 19.
-
-<bilder/Transformer-Encoder-Decoder.png, id=261, 853.1875pt x 1048.91875pt>
+<bilder/Transformer-Encoder-Decoder.png, id=270, 853.1875pt x 1048.91875pt>
 File: bilder/Transformer-Encoder-Decoder.png Graphic file (type png)
 <use bilder/Transformer-Encoder-Decoder.png>
-Package pdftex.def Info: bilder/Transformer-Encoder-Decoder.png  used on input line 42.
+Package pdftex.def Info: bilder/Transformer-Encoder-Decoder.png  used on input line 21.
 (pdftex.def)             Requested size: 227.62204pt x 279.83475pt.
-[5]
-
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-1810-04805' on page 6 undefined on input line 51.
-
 [6 <./bilder/Transformer-Encoder-Decoder.png>]
 
-LaTeX Warning: Citation 'radford2019language' on page 7 undefined on input line 63.
+LaTeX Warning: Citation 'AttentionIALYN' on page 7 undefined on input line 49.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
+LaTeX Warning: Citation 'AttentionIALYN' on page 7 undefined on input line 53.
+
+[7]
+
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1810-04805' on page 8 undefined on input line 77.
+
+
+LaTeX Warning: Citation 'radford2019language' on page 8 undefined on input line 89.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 \T1/ppl/m/n/10.95 GPT-2 (\T1/ppl/b/n/10.95 G\T1/ppl/m/n/10.95 enerative \T1/ppl/b/n/10.95 P\T1/ppl/m/n/10.95 re-trained \T1/ppl/b/n/10.95 T\T1/ppl/m/n/10.95 ransformer-2) ist ein von Ope-nAI
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 63--65
+Underfull \hbox (badness 1038) in paragraph at lines 89--91
 \T1/ppl/m/n/10.95 ([]) ver-öf-fent-lich-tes au-to-re-gres-si-ves Sprach-mo-dell auf Ba-sis von
  []
 
-) [7] (./vae.tex
+) [8] (./vae.tex
 
-LaTeX Warning: Citation 'kingma2014autoencoding' on page 8 undefined on input line 2.
+LaTeX Warning: Citation 'kingma2014autoencoding' on page 9 undefined on input line 2.
 
-<bilder/vae.png, id=284, 814.04124pt x 402.50375pt>
+<bilder/vae.png, id=294, 814.04124pt x 402.50375pt>
 File: bilder/vae.png Graphic file (type png)
 <use bilder/vae.png>
 Package pdftex.def Info: bilder/vae.png  used on input line 15.
@@ -1033,7 +1067,7 @@ Package pdftex.def Info: bilder/vae.png  used on input line 15.
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 21.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-) [8 <./bilder/vae.png>]
+) [9 <./bilder/vae.png>]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 54.
 
@@ -1045,11 +1079,11 @@ Overfull \hbox (14.99933pt too wide) detected at line 54
 []
  []
 
-[9]
+[10]
 
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-2004-04092' on page 10 undefined on input line 91.
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-2004-04092' on page 11 undefined on input line 91.
 
-<bilder/optimus_scheme.png, id=307, 740.0448pt x 163.3302pt>
+<bilder/optimus_scheme.png, id=318, 740.0448pt x 163.3302pt>
 File: bilder/optimus_scheme.png Graphic file (type png)
 <use bilder/optimus_scheme.png>
 Package pdftex.def Info: bilder/optimus_scheme.png  used on input line 96.
@@ -1062,36 +1096,36 @@ Underfull \hbox (badness 5504) in paragraph at lines 91--102
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10]
-<bilder/latent_optimus.png, id=315, 1631.09375pt x 703.62875pt>
+[11]
+<bilder/latent_optimus.png, id=325, 1631.09375pt x 703.62875pt>
 File: bilder/latent_optimus.png Graphic file (type png)
 <use bilder/latent_optimus.png>
 Package pdftex.def Info: bilder/latent_optimus.png  used on input line 111.
 (pdftex.def)             Requested size: 227.62204pt x 98.18526pt.
 
 
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-1903-10145' on page 11 undefined on input line 124.
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1903-10145' on page 12 undefined on input line 124.
 
-[11 <./bilder/optimus_scheme.png> <./bilder/latent_optimus.png>]
+[12 <./bilder/optimus_scheme.png> <./bilder/latent_optimus.png>]
 
-LaTeX Warning: Citation 'coop' on page 12 undefined on input line 135.
+LaTeX Warning: Citation 'coop' on page 13 undefined on input line 135.
 
-) [12] (./datensatze.tex
+) (./datensatze.tex [13]
 
-LaTeX Warning: Citation 'brazinskas2020-unsupervised' on page 13 undefined on input line 13.
+LaTeX Warning: Citation 'brazinskas2020-unsupervised' on page 14 undefined on input line 13.
 
 
-LaTeX Warning: Citation 'pmlr-v97-chu19b' on page 13 undefined on input line 21.
+LaTeX Warning: Citation 'pmlr-v97-chu19b' on page 14 undefined on input line 21.
 
-) (./coop.tex [13] [14]
-<bilder/coop.png, id=340, 3352.525pt x 1009.7725pt>
+) (./coop.tex [14] [15]
+<bilder/coop.png, id=351, 3352.525pt x 1009.7725pt>
 File: bilder/coop.png Graphic file (type png)
 <use bilder/coop.png>
 Package pdftex.def Info: bilder/coop.png  used on input line 40.
 (pdftex.def)             Requested size: 426.79134pt x 128.54784pt.
- [15 <./bilder/coop.png>]) [16] (./pplm.tex
+ [16 <./bilder/coop.png>]) [17] (./pplm.tex
 
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-1912-02164' on page 17 undefined on input line 14.
+LaTeX Warning: Citation 'DBLP:journals/corr/abs-1912-02164' on page 18 undefined on input line 14.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 14--18
@@ -1103,31 +1137,42 @@ Underfull \hbox (badness 2538) in paragraph at lines 14--18
 \T1/ppl/m/n/10.95 ([]) es er-mög-licht, die Text-ge-ne-ra-ti-on bei groÿen
  []
 
-[17] [18]
+[18]
 
-LaTeX Warning: Citation 'CAMPOS2020257' on page 19 undefined on input line 93.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [19]
-Overfull \hbox (27.04358pt too wide) detected at line 115
+
+LaTeX Warning: Citation 'CAMPOS2020257' on page 20 undefined on input line 99.
+
+[20]
+Overfull \hbox (18.5269pt too wide) detected at line 121
 []
  []
 
-) [20] (./eval.tex
+) [21] (./eval.tex
 Overfull \hbox (2.33598pt too wide) in paragraph at lines 39--39
  [][]\T1/ppl/b/n/10.95 Referenz
  []
 
-[21]
+[22]
 
-LaTeX Warning: Citation 'moverscore_paper' on page 22 undefined on input line 77.
+LaTeX Warning: Citation 'moverscore_paper' on page 23 undefined on input line 77.
+
+[23]
+
+LaTeX Warning: Citation 'coop' on page 24 undefined on input line 130.
 
 
-LaTeX Warning: Citation 'coop' on page 22 undefined on input line 117.
+LaTeX Warning: Citation 'coop' on page 24 undefined on input line 130.
 
 
-LaTeX Warning: Citation 'coop' on page 22 undefined on input line 117.
+LaTeX Warning: Citation 'coop' on page 24 undefined on input line 130.
 
-[22]) [23] (./recap.tex) [24]
+
+LaTeX Warning: Citation 'coop' on page 24 undefined on input line 130.
+
+[24]) [25] (./recap.tex) [26]
 
 LaTeX Warning: Empty bibliography on input line 114.
 
@@ -1139,7 +1184,7 @@ LaTeX Warning: Empty bibliography on input line 114.
 \tf@lot=\write9
 \openout9 = `ma.lot'.
 
- [25
+ [27
 
 
 ] (./ma.aux)
@@ -1147,7 +1192,7 @@ LaTeX Warning: Empty bibliography on input line 114.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `ma.out' has not changed.
-(rerunfilecheck)             Checksum: C8A6FED4C56F6650AB4E147511CD0745;6666.
+(rerunfilecheck)             Checksum: 1645696A65C0793FC1D171D78071741D;6772.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                ma
@@ -1158,18 +1203,18 @@ Package logreq Info: Writing requests to 'ma.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30221 strings out of 478994
- 553349 string characters out of 5858183
- 1320835 words of memory out of 5000000
- 47050 multiletter control sequences out of 15000+600000
- 430128 words of font info for 75 fonts, out of 8000000 for 9000
+ 30228 strings out of 478994
+ 553423 string characters out of 5858183
+ 1322930 words of memory out of 5000000
+ 47052 multiletter control sequences out of 15000+600000
+ 432156 words of font info for 77 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 118i,17n,119p,731b,2977s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 118i,17n,119p,731b,2979s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ma.pdf (31 pages, 1011612 bytes).
+Output written on ma.pdf (33 pages, 1022017 bytes).
 PDF statistics:
- 505 PDF objects out of 1000 (max. 8388607)
- 438 compressed objects within 5 object streams
- 97 named destinations out of 1000 (max. 500000)
- 355 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 524 PDF objects out of 1000 (max. 8388607)
+ 455 compressed objects within 5 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 363 words of extra memory for PDF output out of 10000 (max. 10000000)
 

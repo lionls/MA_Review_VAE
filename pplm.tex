@@ -18,13 +18,17 @@ Das Attribut Modell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attrib
 
 
 Zur kontrollierbaren Generation werden bei PPLM-Modellen Gradienten für die generierten Sequenzen über die Log-Likelihood des normalen Sprachmodells $log(p(x))$ und der Log-Likelihood des Attribut-Modells $log(p(a|x))$ in Bezug auf die Vergangenheitsmatrix errechnet. 
-Durch Veränderung der Vergangenheitsmatrix $H_t = (H_t+\Delta H_t)$ wird die Wahrscheinlichkeit das nächste Token mit den gewünschten Attributen zu erhalten erhöht. Hierbei wird $\Delta H_t$ Schrittweise durch den Gradienten des Attribut-Modells errechnet und mit Null initialisiert.
+Durch Veränderung der Vergangenheitsmatrix $\tilde{H}_t = (H_t+\Delta H_t)$ wird die Wahrscheinlichkeit das nächste Token mit den gewünschten Attributen zu erhalten erhöht. Hierbei wird $\Delta H_t$ Schrittweise durch den Gradienten des Attribut-Modells errechnet und mit Null initialisiert.
 Um den Gradienten des Attribut-Modells bestimmen können wird dieses zu $p(a|H_t+\Delta H_t)$ umformuliert.
 \begin{align*}
 \Delta H_t \leftarrow \Delta H_t + \alpha \frac{\nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)}{\| \nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)\|^\gamma}
 \end{align*}
-In der Gleichung gibt $\alpha$ die Schrittgröße und $\gamma$ die Skalierung der Normalisierung an. Die Iteration kann merhmalig ausgeführt werden.
+In der Gleichung gibt $\alpha$ die Schrittgröße und $\gamma$ die Skalierung der Normalisierung an. 
+Die Iteration kann mehrmals hintereinander ausgeführt werden.
 
+Die so durch die modifizierte Vergangenheitsmatrix $\tilde{H}_t$ berechnete Ausgangsverteilung $\tilde{p}_{t+1}$ wird mit der nicht modifizierten Ausgangsverteilung $p_{t+1}$ kombiniert, um den generierten Text ebenfalls durch die Sprachmodell-Verteilung zu beeinflussen.
+Somit wird der nächste Token wie folgt gesamplet: $\hat{x}_{t+1} \sim \frac{1}{\beta} (\tilde{p}_{t+1}^{\text{ }\gamma} \cdot p_{t+1}^{1-\gamma})$.
+Durch Veränderung von $\gamma$ lässt sich der Einfluss des unmodifizierten Sprachmodells auf die Ausgabe festlegen. Hier konvergiert bei $\gamma \rightarrow 1$ die Ausgabe zur Verteilung des modifizierten Sprachmodells und $\gamma \rightarrow 0$ gegen die Ausgabe des unmodifizierten Sprachmodells.
 \subsection{Verbessern der Textgeneration von Optimus}
 Den Variational Autoencoder Optimus mit einem Attributions-Modell zu kombinieren ist aufgrund der Injektion des Latentvektors schwierig.
 Optimus kann bereits unter Einbezug des Latentvektors Texte kontrolliert generieren $p(x|z)$.
@@ -47,29 +51,31 @@ Um diesen LSTM Decoder mit einem Attributmodel zu optimieren bieten sich 3 unter
     \item Optimieren des vorherigen Cellstates $c_t$ vor der nächsten Berechnung
 \end{enumerate}
 
-Es ist möglich zu allen drei Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen.
-Nachfolgend wurden alle drei Optionen auf dem Amazon Datensatz evauliert, um die zu optimierende Variabel mit der bestmöglichen Performance zu finden.
+Es ist möglich zu allen drei Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen. Die gewählte Schrittgröße ist $\alpha = 0.1$.
+Nachfolgend wurden alle drei Optionen auf dem Amazon Datensatz evaluiert, um die zu optimierende Variabel mit der bestmöglichen Performance zu finden.
+Bei der Selektion der Ausgabebewertung wurde die Bewertung ausgewählt, die die höchste ROUGE-1 Übereinstimmung mit den Zusammenfassungsbewertungen hat.
+Somit wird stets die bestmögliche generierte Bewertung ausgewählt.
 
 \begin{table}[h!]
     \centering
     \begin{tabular}{@{}llll@{}}
     \toprule
-                       & \multicolumn{3}{c}{Amazon}              \\ \midrule
-    \textbf{Method}    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
-    \textsc{BiMeanVAE} &             &             &             \\
-    $\quad$ Baseline        & 39.50       & 8.62      &  22.79     \\
-    $\quad$ optimze $z$        &        &       &       \\
-    $\quad$ optimze $h_t$      &     &      &    \\
-    $\quad$ optimze $c_t$      &  40.81   &     8.91  &   23.49    \\ \bottomrule
+                    Modell   & \multicolumn{3}{c}{Amazon}              \\ \midrule
+    \textbf{\textsc{BiMeanVAE}}    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
+  %  \textsc{BiMeanVAE} &             &             &             \\
+    Baseline        & 39.50       & \underline{8.62}     &  22.79     \\
+    $\quad$ optimze $z$        &   \underline{40.04}     &   8.35    &    \textbf{23.64}   \\
+    $\quad$ optimze $h_t$      &  39.96   &    8.34  &  22.94  \\
+    $\quad$ optimze $c_t$      &  \textbf{40.81}   &     \textbf{8.91}  &   \underline{23.49}    \\ \bottomrule
     \end{tabular}
     \caption{Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}
     \label{opt_bimeanvae}
 \end{table}
 
 In Tabelle \ref{opt_bimeanvae} sind die ROUGE-Scores, welche in Abschnitt \ref{evalmetric} genauer erklärt werden, für die separiert optimierten Variablen $z, h_t, c_t$ aufgelistet.
-Beim Evaluieren der unterschiedlichen Optimierungsversuche hat sich ergeben, dass eine Optimierung der Variabel INSERT die größte Leistungssteigerung ergibt.
+Beim Evaluieren der unterschiedlichen Optimierungsversuche zeigt sich, dass jede Optimierung bessere Ergebnisse als die unoptimierte Baseline auf den Gold-Summaries erzielt.
+Die größte Leistungssteigerung erzielt eine Optimierung der Variabel $c_t$.
 Somit beschreibt folgende Gleichung den Optimierungsschritt $\Delta c_t$ bei \textsc{BiMeanVAE}.
-CHANGE
 \begin{align*}
     \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,c_t)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,c_t )\|^\gamma}
 \end{align*}
@@ -111,7 +117,7 @@ Zwischen den Eingabebewertungen und den Gold-Summaries besteht eine hohe semanti
 Des Weiteren wird die \textit{Input-Output-Overlap} Funktion dahingehend abgeändert, dass sie ebenfalls die ROUGE-2 und ROUGE-L Scores miteinbezieht.
 Somit ergibt sich eine neue Rankingfunktion für die generierten Ausgabebewertungen:
 \begin{align*}
-    \text{SCORE}(\hat{x_i}) = Input\text{-}Output\text{-}Overlap(\hat{x_i}, \text{InputReviews}) + 1.5 \cdot Moverscore(\hat{x_i}, \text{InputReviews})
+    \text{SCORE}(\hat{x_i}) = Input\text{-}Output\text{-}Overlap(\hat{x_i}, \text{InputReviews}) + 2 \cdot Moverscore(\hat{x_i}, \text{InputReviews})
 \end{align*}
 
 Mit dieser Rankingfunktion wird bei den einzelnen generierten Reviews nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 

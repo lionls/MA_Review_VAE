@@ -35,8 +35,41 @@ In dieser Masterarbeit werden unterschiedliche Bewertungen zu Produkten oder Res
 Es ist eine große Herausforderung aus einer Menge aus Produktbewertungen eine allgemeingültige zusammenfassende Bewertung zu produzieren, die klar strukturiert, kongruent und gut lesbar die entsprechenden Inhalte wiedergibt.
 
 \subsection{Deep Learning}
+Deep Learning ist ein Teilbereich des Machine Learning, bei dem nach dem Vorbild für das menschliche Gehirn neuronale Netze verwendet werden. 
+Neuronale Netze werden unter anderem beim Natural Language Processing eingesetzt. 
+Die neuronalen Netze bestehen aus mehreren Layern, die sequentiell den Output des vorherigen Layers weiterverarbeiten. 
+Das Ziel von Deep Learning ist, durch Training der neuronalen Netze, Repräsentationen beziehungsweise Approximationen für Funktionen in den Daten zu finden.
+Zum Trainieren dieser Netze wird oft Backpropagation, ein Verfahren zur Berechnung der Gradienten in neuronalen Netzen und entsprechender Anpassung der Gewichte verwendet.
 
 \subsection{Word Embeddings}
+Word Embeddings werden im Natural Language Processing verwendet, um Wörter mit aussagekräftigen Vektoren zu repräsentieren. 
+Hochdimensionale Objekte wie Wörter lassen sich mittels Word Embeddings in einen niedrigerdimensionalen Raum einbetten und behalten dabei ihre semantischen Relationen bei. 
+Auf diesen Vektoren lassen sich unterschiedliche Operationen ausführen.
+
+
+Bekannte Word Embedding Verfahren sind zum Beispiel word2vec \citep{word2vec} und GloVe (Global Vectors for Word Representation) \citep{glove}. 
+Diese Verfahren berechnen einen universellen Vektor je Wort, der alle unterschiedlichen Features dieses Wortes enthält.
+Die errechneten Vektoren sind kontextunabhängig und für ein Wort wird stets der gleiche Vektor verwendet. 
+Word2vec erlernt die entsprechenden Vektorrepräsentationen mittels eines SkipGram neuronalen Netzes \citep{word2vec} GloVe hingegen über die nicht Nulleinträgen einer Co-occurrence Matrix von Wörtern untereinander \citep{glove}. 
+
+Kontextabhängige Verfahren, wie zum Beispiel ELMO \citep{elmo} oder BERT \citep{DBLP:journals/corr/abs-1810-04805}, generieren kontextabhängige Vektoren für Wörter und Berücksichtugen dabei das Umfeld in dem das einzelne Wort auftritt.
+Bei diesen Verfahren wird zur Bestimmung eines Word Embeddings der gesamte Satz benötigt, um die erlernten kontextspezifischen Eigenarten für die Einbettung zu berücksichtigen. 
+
+Verfahren wie zum Beispiel BERT nutzen besondere Tokenisierungsmethoden die es erlauben einzelne Wörter durch mehrere Tokens zu repräsentieren.
+Dieses Splittingverfahren von Wörtern in Subtokens ist als WordPiece Verfahren \citep{wordpiece} für BERT und als BytePairEncoding \citep{bytepairencoding} für GPT-2 bekannt. 
+Durch das Splitten in Subtokens und Erlernen von Einbettungen für diese lässt sich ein kleineres Wörterbuch erstellen. 
+Da sich die Wörter stets in Subtokens zerlegen lassen können Out-of-Vocabulary-Fehler vermieden werden.
+
+\subsection{Sequence-To-Sequence Modelle}
+
+
+\subsection{LSTM}
+Long Short Term Memory (LSTM) Netze sind eine Untergruppe der Rekurrenten neuronalen Netze, die es ermöglichen Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
+Rekurrente neuronale Netze zeichnen sich durch ihre rekurrenten Verbindungen innerhalb desselben Layers aus, wodurch die nächste RNN-Zelle die vorherigen Informationen weiterverarbeiten kann.
+Ein häufiges Problem ist das modellieren von Langzeitbeziehungen mittels RNNs. 
+LSTMs sind speziell darauf ausgelegt diese Langzeitbeziehungen abzubilden, indem sie stets einen Zellzustand $c_t$ mit übergeben.
+Eine LSTM-Zelle hat nun die Möglichkeit diesen Zellstatus zu manipulieren, indem Informationen hinzugefügt oder gelöscht werden können.
+
 
 
 \pagebreak

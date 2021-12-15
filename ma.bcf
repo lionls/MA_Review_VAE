@@ -2345,21 +2345,32 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">AttentionIALYN</bcf:citekey>
-    <bcf:citekey order="2">AttentionIALYN</bcf:citekey>
-    <bcf:citekey order="3">DBLP:journals/corr/abs-1810-04805</bcf:citekey>
-    <bcf:citekey order="4">radford2019language</bcf:citekey>
-    <bcf:citekey order="5">kingma2014autoencoding</bcf:citekey>
-    <bcf:citekey order="6">DBLP:journals/corr/abs-2004-04092</bcf:citekey>
-    <bcf:citekey order="7">DBLP:journals/corr/abs-1903-10145</bcf:citekey>
-    <bcf:citekey order="8">coop</bcf:citekey>
-    <bcf:citekey order="9">brazinskas2020-unsupervised</bcf:citekey>
-    <bcf:citekey order="10">pmlr-v97-chu19b</bcf:citekey>
-    <bcf:citekey order="11">DBLP:journals/corr/abs-1912-02164</bcf:citekey>
-    <bcf:citekey order="12">CAMPOS2020257</bcf:citekey>
-    <bcf:citekey order="13">moverscore_paper</bcf:citekey>
-    <bcf:citekey order="14">coop</bcf:citekey>
-    <bcf:citekey order="15">coop</bcf:citekey>
+    <bcf:citekey order="1">word2vec</bcf:citekey>
+    <bcf:citekey order="2">glove</bcf:citekey>
+    <bcf:citekey order="3">word2vec</bcf:citekey>
+    <bcf:citekey order="4">glove</bcf:citekey>
+    <bcf:citekey order="5">elmo</bcf:citekey>
+    <bcf:citekey order="6">DBLP:journals/corr/abs-1810-04805</bcf:citekey>
+    <bcf:citekey order="7">wordpiece</bcf:citekey>
+    <bcf:citekey order="8">bytepairencoding</bcf:citekey>
+    <bcf:citekey order="9">lstm</bcf:citekey>
+    <bcf:citekey order="10">AttentionIALYN</bcf:citekey>
+    <bcf:citekey order="11">AttentionIALYN</bcf:citekey>
+    <bcf:citekey order="12">DBLP:journals/corr/abs-1810-04805</bcf:citekey>
+    <bcf:citekey order="13">radford2019language</bcf:citekey>
+    <bcf:citekey order="14">kingma2014autoencoding</bcf:citekey>
+    <bcf:citekey order="15">DBLP:journals/corr/abs-2004-04092</bcf:citekey>
+    <bcf:citekey order="16">DBLP:journals/corr/abs-1903-10145</bcf:citekey>
+    <bcf:citekey order="17">coop</bcf:citekey>
+    <bcf:citekey order="18">brazinskas2020-unsupervised</bcf:citekey>
+    <bcf:citekey order="19">pmlr-v97-chu19b</bcf:citekey>
+    <bcf:citekey order="20">DBLP:journals/corr/abs-1912-02164</bcf:citekey>
+    <bcf:citekey order="21">CAMPOS2020257</bcf:citekey>
+    <bcf:citekey order="22">moverscore_paper</bcf:citekey>
+    <bcf:citekey order="23">coop</bcf:citekey>
+    <bcf:citekey order="24">coop</bcf:citekey>
+    <bcf:citekey order="25">coop</bcf:citekey>
+    <bcf:citekey order="26">coop</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

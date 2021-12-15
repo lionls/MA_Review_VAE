@@ -1,6 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {ngerman}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}}{18}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}}{20}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {2}{\ignorespaces ROUGE Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen. $^{\star }$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep {coop} übernommen wurden.}}{23}{table.2}%
+\contentsline {table}{\numberline {2}{\ignorespaces ROUGE und Moverscore Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen. $^{\star }$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep {coop} übernommen wurden. $^{\dagger }$ Evaluierte Performance unterscheidet sich vom \citep {coop} Paper. Performance wurde nach SourceCode des Papers bestimmt. }}{24}{table.2}%

@@ -139,6 +139,18 @@ Die verwendete Prior Verteilung $p_\theta(z)$ ist die Gausssche Normalverteilung
 Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cyclical Annealing Verfahren verwendet, um graduell vom Autoencoder zum Variational Autoencoder Trainingsziel zu wechseln.
 
 
-\subsection{Latent Space Operations}
+\subsection{Latent Space Operationen}
+VAEs erlernen bidirektionale Abbildungen zwischen dem Datenraum und ihrem Latentspace. 
+Im Latentspace werden Eingabesequenzen von Optimus und BiMeanVAE jeweils durch einen Latentvektor dargestellt.
+Die zur Generation verwendeten Latentvektoren können durch arithmetische Operationen verändert werden, wodurch sich die gesampelte Ausgabe des VAEs präzise verändern und steuern lässt.
 
+Durch die KL-Regularisierung beim Training von VAEs entsteht ein kontinuierlicher Latentspace, wodurch semantisch ähnliche Inhalte im Latentspace nah beieinander organisiert werden.
+Somit kann zwischen mehreren Datenobjekten im Latentspace interpoliert werden.
+
+Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent Space Operationen die VAEs ermöglichen elementar.
+So kann zum Beispiel zwischen mehreren Bewertungen interpoliert werden, um eine durchschnittliche Meinung zu generieren.
+
+Sei zum Beispiel $\mathcal{Z}$ die Menge der encodierten Bewertungen zu einer Produktgruppe.
+So lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch geschicktes kombinieren eine Durchschnittsrepräsentation im Latentvektorraum finden.
+Das genaue vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop} beschrieben
 \pagebreak

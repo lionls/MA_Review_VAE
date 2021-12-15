@@ -6,13 +6,47 @@ Hierdurch lassen sich extrem große Sprachmodelle, wie zum Beispiel BERT (\textb
 Beide Modelle erzielen auf den unterschiedlichsten Benchmarks hervorragende Ergebnisse.
 
 Transformermodelle sind Sequence-To-Sequence Modelle, die aus einem Encoder und einem Decoder bestehen.
-Die vortrainierten Sprachmodelle BERT und GPT-2 lassen sich auf spezielle Aufgabenbereiche finetunen.
+Die vortrainierten Sprachmodelle BERT und GPT-2 lassen sich auf spezielle Aufgabenbereiche Finetunen.
 
 
-\subsection{Self-Attention-Layer}
-Durch die Self-Attention-Layer von Transformermodellen lassen sich relevante Informationen erkennen und das Modell sich auf diese fokussieren. 
-Der Self-Attention-Layer innerhalb des Transformers berechnet die Relevanz von Values zu bestimmten Keys und Queries. 
-Die Query- $(Q)$, Key- $(K)$ und Value- $(V)$ Vektoren werden aus dem Eingabevektor $(X)$ durch Multiplikation mit erlernten Gewichtsmatrizen $(W)$ generiert \citep{AttentionIALYN}. 
+\subsection{Transformer Encoder / Decoder}
+Transformer verwenden eine Encoder - Decoder Struktur. Der Encoder wandelt eine Eingabesequenz $(x_1,\ldots,x_n)$ in eine kontinuierliche Übergangsrepräsentation $(z_1, \ldots, z_n)$ um. 
+Mit dieser Übergangsrepräsentation $z$ kann anschließlich vom Decoder eine Ausgabesequenz $(y_1, \ldots, y_n)$ generiert werden.
+Der Transformer Decoder generiert Textsequenzen autoregressiv und bezieht also für die Berechnung des nächsten Ausgabetokens alle vorherigen Tokens als Eingabe mit ein.
+
+
+\begin{figure}[h]
+    \label{transformerfig}
+    \centering
+    \includegraphics[width=8cm]{bilder/Transformer-Encoder-Decoder}
+    \caption{Transformer Encoder (links) und Transformer Decoder (rechts)}
+\end{figure}
+
+
+Abbildung \ref{transformerfig} stellt die Architektur und den Datenfluss durch die verschiedenen Layer von Transformer Encodern und Decodern dar. 
+Grundsätzlich bestehen sowohl der Encoder sowie auch der Decoder aus aufeinanderfolgenden Multi-Head Attention-Layern gefolgt von Fully-Connected Feed-Forward-Netzen.
+
+
+Die Transformer Encoder Blöcke verwenden Self-Attention-Layer und beziehen damit ihre Eingabe vollständig aus der Ausgabe des vorherigen Layers. 
+Die meisten Modelle verwenden mehrere Transformer Encoder Blöcke und Decoder Blöcke sequentiell hintereinander.
+
+Nach Encodierung der Eingabesequenzen durch den Transformer Encoder wird die Ausgabe in Attention Key- und Value-Vektoren umgewandelt.
+Diese Attentionvektoren werden vom Transformer Decoder in den Encoder-Decoder Attention Layern verwendet.
+Im Gegensatz zu den Self-Attention-Layern der Encoder, verwendet der Decoder hier die Ausgabe des Encoders im Attention-Layer in den Berechnungen mit, um sich auf die korrekten Stellen im Input bei der Generierung der finalen Ausgabesequenz zu fokussieren.
+
+
+%Stack
+%encoder-decoder attention
+
+
+
+
+\subsection{Attention-Layer} %Attnetnion nicht self attention
+Durch die Attention-Layer von Transformermodellen lassen sich relevante Informationen erkennen und das Modell sich auf diese fokussieren. 
+Der Attention-Layer innerhalb des Transformers berechnet die Relevanz von Values zu bestimmten Keys und Queries. 
+
+Falls Attention-Layer ihre gesamte Eingabe wie bei Transformer Encodern aus einer Datenquelle beziehen sind diese Self-Attention-Layer.
+Bei Self-Attention-Layern werden die Query- $(Q)$, Key- $(K)$ und Value- $(V)$ Vektoren aus dem Eingabevektor $(X)$ durch Multiplikation mit erlernten Gewichtsmatrizen $(W)$ generiert \citep{AttentionIALYN}. 
 \begin{equation}
     Q = X \times W^{Q}, K = X \times W^{K}, V = X \times W^{V}
 \end{equation}
@@ -23,7 +57,7 @@ Durch ein Dot-Product zwischen Query- und Key-Vektoren der entsprechenden Eingab
 \end{equation}
 In Gleichung \ref{attentioneq} werden die Berechnungen an den Matrizen $Q$ für die Queries, $K$ für die Keys und $V$ für die entsprechenden Values durchgeführt. Als Skalierungsfaktor wird $\sqrt{dk}$ , die Dimension der Key Vektoren verwendet, um einen stabilen Gradienten zu erhalten. 
 
-Self-Attention Funktionen lassen sich parallel ausführen. Diese Eigenschaft nutzen Transformermodelle aus und verwenden Multi-Head Attention Layer, die mehrere Attention Funktionen parallel ausführen.
+Attention Funktionen lassen sich parallel ausführen. Diese Eigenschaft nutzen Transformermodelle aus und verwenden Multi-Head Attention Layer, die mehrere Attention Funktionen parallel ausführen.
 Es werden parallel $h$ voneinander unabhängige Attention Layer ausgeführt, die Ihre einzelnen Ergebnisse für die Weiterverarbeitung aneinanderfügen und linear in die gewünschte Dimension transformieren. 
 \begin{equation}
     \label{multiatteq}
@@ -35,16 +69,8 @@ Es werden parallel $h$ voneinander unabhängige Attention Layer ausgeführt, die
 In Gleichung \ref{multiatteq} wird deutlich, dass die unterschiedlichen Attention-Heads voneinander unabhängig sind. Hierdurch können sich die einzelnen Attention-Heads auf unterschiedliche Merkmale in den Daten fokussieren.
 
 
-\subsection{Transformer Encoder / Decoder}
-\begin{figure}[h]
-    \label{transformerfig}
-    \centering
-    \includegraphics[width=8cm]{bilder/Transformer-Encoder-Decoder}
-    \caption{Transformer Encoder (links) und Transformer Decoder (rechts)}
-\end{figure}
-    
-\subsection{Transformer-Decoder}
 
+    
 
 
 \subsection{\textbf{B}idirectional \textbf{E}ncoder \textbf{R}epresentations from \textbf{T}ransformers}

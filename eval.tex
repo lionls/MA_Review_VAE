@@ -138,6 +138,16 @@ Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschn
 Es ist erkennbar, dass die beiden Methoden Optimus und \textsc{BiMeanVAE} den Methoden CopyCat und MeanSum überlegen sind, da diese in allen Messwerten bessere Ergebnisse erzielen.
 Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als \textsc{BiMeanVAE} erzielt, allerdings in den ROUGE Werten minimal schlechter abschneidet.
 
-Eine große Leistungssteigerung ergibt sich durch die COOP Methode 
+Eine große Leistungssteigerung ergibt sich durch die COOP Methode um eine optimale Kombination der einzelnen Latentvektoren zu finden.
+Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
+Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
+Insbesondere der Rouge-1 Score übertrifft die \textit{SimpleAVG} Scores signifikant im Durchschnitt um 2,18\%.
+Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt BiMeanVAE.
+Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramteren und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
+Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.
+
+%Vergleich Optimus vs BiMeanVAE an Texten
+
+
 
 \pagebreak

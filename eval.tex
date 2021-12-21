@@ -42,6 +42,7 @@ True Positive (TP) und True Negative (TN) sind von dem Modell korrekt vorhergesa
 \caption{Konfusionsmatrix}
 \label{confusionmatrix}
 \end{figure}
+
 Zur Berechnung des ROUGE-N Scores werden die einzelnen Textabschnitte in eine Menge aus N-Grams zerlegt.
 Mittels der Konfusionsmatrix in Abbildung \ref{confusionmatrix} lassen sich Precision (P) und Recall (R) definieren:
 \begin{addmargin}[30pt]{30pt}
@@ -108,17 +109,27 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     \toprule
                                & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
+    \textit{COOP + Attribute Model - DEV Scores}        &         &         &        &        &        &   & &     \\
+    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
+    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    
     \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
     $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
     $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
     
+
     \textit{COOP}              &         &         &        &        &        & &   &    \\
+    $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 23.33\\ 
+    $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 22.87 & 35.37  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+    
+    \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
     $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
     $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
     
+
     \textit{SimpleAvg}         &         &         &        &      &  &        &        \\
     $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34 & 22.35& 31.23  & 6.48   & 18.27 & 23.05\\
-    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & 18.18& 32.87  & 6.93   & 19.89 & 22.41\\
+    $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & 20.85& 32.87  & 6.93   & 19.89 & 22.41\\
     $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 &- & 29.47  & 5.26   & 18.09 & -\\ 
     $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & -& 28.46  & 3.66   & 15.57 & -\\ \midrule
     \textit{Extractive}        &         &         &        &      &  &        &  &      \\
@@ -141,12 +152,15 @@ Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als 
 Eine große Leistungssteigerung ergibt sich durch die COOP Methode um eine optimale Kombination der einzelnen Latentvektoren zu finden.
 Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
 Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
-Insbesondere der Rouge-1 Score übertrifft die \textit{SimpleAVG} Scores signifikant im Durchschnitt um 2,18\%.
-Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt BiMeanVAE.
+Insbesondere der Rouge-1 Score übertrifft die \textit{SimpleAVG} Scores signifikant im Durchschnitt um PROZENT\%.
+Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
 Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramteren und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
 Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.
 
 %Vergleich Optimus vs BiMeanVAE an Texten
+
+Um die 
+
 
 
 

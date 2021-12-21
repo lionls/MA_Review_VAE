@@ -8,15 +8,36 @@ GPT-2 erzielte unter Verwendung von Transformern großartige Ergebnisse bei der 
 Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen Text. 
 
 \subsection{Motivation}
-Im NLP (\textbf{N}atural \textbf{L}anguage \textbf{P}rocessing) Bereich gibt es viele unterschiedliche Ansätze zur Textzusammenfassung von einzelnen Dokumenten.
-Da des Öfteren unterschiedliche Dokumente mit diversen Inhalten zu identischen Themen existieren, stellt sich die Frage wie diese unterschiedlichen Dokumente zu einem umfassenden Dokument zusammengefasst werden können.
-
-Als Datengrundlage gelten hier der Amazon Review und Yelp Review Datensatz, der zu Produkten oder Restaurants mehrere unterschiedliche Bewertungen liefert.
-Ziel dieser Masterarbeit ist es einen Variational Auto Encoder unter Verwendung von Transformern zu entwickeln, der die entsprechend unterschiedlichen Bewertungen zu einem Produkt beziehungsweise Restaurant abstraktiv zusammenfasst.
-In der Zusammenfassung sollen sich möglichst viele Aspekte der ursprünglichen Bewertungen wiederfinden.
+Im Bereich des E-Commerce und von Online-Vergleichsportalen entstehen eine große Anzahl an Rezensionen zu unterschiedlichen Produkten, Dienstleistungen und Anbietern.
+Es ist für den Anwender eine Herausforderung sich einen repräsentativen Überblick über die einzelnen Rezensionen zu verschaffen. 
+Ein gängiges Bewertungssystem ist das Berechnen des arithmetischen Mittels über die einzelnen Scores aller Bewertungen. 
+Ein zusammengefasster Bewertungsscore ist nicht ausreichend repräsentativ für viele Produkte und beleuchtet nicht spezifische Funktionen der einzelnen Produkte.
+Hier bietet es sich an ein Produkt durch eine generierte Rezension zu repräsentieren, die die anderen Rezensionen repräsentativ zusammenfasst und auf die verschiedenen wichtigen Aspekte der Produkte eingeht.
+So kann ein Anwender sich zeitsparend einen allumfassenden Überblick über bestimmte Produkte verschaffen.
 
 \subsection{Ziel und Aufbau der Arbeit}
-Das Ziel dieser Arbeit ist mehrere Dokumente abstraktiv zu einem Dokument zusammenzufassen. Hierzu wird der Variational Auto Encoder OPTIMUS, der auf BERT und GPT-2 basiert verwendet. 
+Ziel dieser Masterarbeit ist das unbeaufsichtigte abstraktive Zusammenfassen von mehreren Produktrezensionen mittels Variational Autoencodern zu einer repräsentativen Rezension.
+Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Restaurant geben.
+Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die zu Produkten und Restaurants mehrere unterschiedliche diverse Rezensionen liefern.
+
+Mittels zwei unterschiedlichen Variational Autoencodern Optimus und \textsc{BiMeanVAE} werden die Zusammenfassungen generiert.
+Optimus basiert auf den beiden bekannten Sprachmodellen BERT und GPT-2. 
+\textsc{BiMeanVAE} besteht aus einem bidirektionalem LSTM-Encoder und einem LSTM-Decoder.
+Des Weiteren werden die verwendeten Variational Autoencoder durch ein Attribut-Modell optimiert, um präzisere Rezensionen zu generieren.
+
+Abschließend werden die vorgestellten Variational Autoencoder mit den entsprechenden Optimierungen auf den beiden Datensätzen evaluiert und untereinander verglichen.
+
+
+
+%Im NLP (\textbf{N}atural \textbf{L}anguage \textbf{P}rocessing) Bereich gibt es viele unterschiedliche Ansätze zur Textzusammenfassung von einzelnen Dokumenten.
+%Da des Öfteren unterschiedliche Dokumente mit diversen Inhalten zu identischen Themen existieren, stellt sich die Frage wie diese unterschiedlichen Dokumente zu einem umfassenden Dokument zusammengefasst werden können.
+
+%Ziel dieser Masterarbeit ist es mittels Variational Auto Encodern unterschiedliche Bewertungen zu Produkten und Restaurants abstraktiv zu einer allgemeingültigen Bewertung zusammenzufassen.
+
+
+
+
+%Das Ziel dieser Arbeit ist mehrere Dokumente abstraktiv zu einem Dokument zusammenzufassen. Hierzu wird der Variational Auto Encoder OPTIMUS, der auf BERT und GPT-2 basiert verwendet. 
 
 % Zunächst werden in Kapitel 2 die verwendeten Grundlagen zu Summarization, neuronalen Netzen, Deep Learning und den zugehörigen Subthemen erläutert. Ebenfalls wird auf die Einbettung von Wörtern eingegangen. Zur späteren Generierung von Question Answering Datensätzen werden in diesem Kapitel Abfragen mittels der Abfragesprache SPARQL an Knowledge Bases erklärt.
 

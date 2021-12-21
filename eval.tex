@@ -1,16 +1,17 @@
 \section{Evaluierung der Modelle}\raggedbottom
 \label{evalmetric}
-Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit aktuellen State-of-the-Art Modellen in Relation gesetzt.
-Es existieren im Dev-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum evaluieren der generierten Ausgabebewertungen.
-Die Eingabebewertungen werden durch ein Optimus VAE Modell in Latentvektoren umgewandelt, welche anschließend mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise kombiniert werden, um den \textit{Input-Output-Overlap} zu maximieren. 
-Weiterhin wird der Latentvektor mittels Attribut-Modell optimiert, um detailreichere Bewertungen zu erhalten.
+Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit dem aktuellem State-of-the-Art Model COOP in Relation gesetzt.
+Es existieren im Dev-Datensatz und Test-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum Evaluieren der generierten Ausgabebewertungen.
+Die Eingabebewertungen werden durch ein Optimus VAE Modell und ein \textsc{BiMeanVAE} Modell in Latentvektoren umgewandelt.
+Anschließend werden mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise die Latentvektoren kombiniert, um den \textit{Input-Output-Overlap} zu maximieren. 
+Weiterhin werden die Latentvektoren mittels in dieser Arbeit eingeführtem Attribut-Modell optimiert, um detailreichere und präzisere Durchschnittsrezensionen zu erhalten.
 
 
 \subsection{Evaluationsmetriken}
 Die generierten Textbewertungen werden mit den drei Gold-Summaries verglichen.
-Zum Vergleich der Bewertungen wird die \textbf{R}ecall-\textbf{O}riented \textbf{U}nderstudy for \textbf{G}isting \textbf{E}valuation (ROUGE) -Metrik verwendet.
+Zum Vergleich der generierten Rezensionen wird die ROUGE (\textbf{R}ecall-\textbf{O}riented \textbf{U}nderstudy for \textbf{G}isting \textbf{E}valuation)-Metrik verwendet.
 Die ROUGE-N Metrik misst die Anzahl der übereinstimmenden N-Grams zwischen dem generierten Text und den Referenztexten. 
-Ein "N-Gram" ist eine N-lange sequentielle Folge von Wörtern innerhalb der Texte. 
+Ein N-Gram ist eine N-lange sequentielle Folge von Wörtern innerhalb der Texte. 
 
 Zur Bewertung der generierten Bewertungen werden die vorhergesagten Ergebnisse mit den korrekten Ergebnissen verglichen. 
 Die Konfusionsmatrix in Abbildung \ref{confusionmatrix} ist eine Wahrheitsmatrix, welche die Einteilung der vorhergesagten Ergebnisse ermöglicht. 
@@ -39,7 +40,7 @@ True Positive (TP) und True Negative (TN) sind von dem Modell korrekt vorhergesa
     \node [left=.05cm of conmat,text width=1.5cm,align=right] {\textbf{Referenz}};
     \node [above=.05cm of conmat] {\textbf{Vorhersage}};
 \end{tikzpicture}
-\caption{Konfusionsmatrix}
+\caption{Konfusionsmatrix zur Berechnung des ROUGE-N Scores}
 \label{confusionmatrix}
 \end{figure}
 
@@ -58,31 +59,32 @@ Mittels der Konfusionsmatrix in Abbildung \ref{confusionmatrix} lassen sich Prec
     \text{R} = \frac{\text{TP}}{\text{TP}+\text{FN}}
     \end{align*}
 
-    $\textbf{F}_1$:
+    $\textbf{F}_\textbf{1}$:
     Das F1-Maß beschreibt das harmonische Mittel zwischen Precision und Recall.
     \begin{align*}
-    \text{F}_{1} = \frac{2\text{PR}}{\text{P}+\text{R}}
+    \text{F}_\text{1} = \frac{2\text{PR}}{\text{P}+\text{R}}
     \end{align*}
 \end{addmargin}
 
 In der Evaluation werden die ROUGE-1, ROUGE-2 und ROUGE-L Werte miteinander verglichen.
-ROUGE-1 verwendet als N-Gram Unigrams, ROUGE-2 Bigramme und ROUGE-L misst die längste gleiche Subsequenz zwischen Vorhersage und Referenz.
+ROUGE-1 verwendet als N-Gram Unigramme, ROUGE-2 Bigramme und ROUGE-L misst die längste gleiche Subsequenz zwischen Vorhersage und Referenz.
 
-Da ROUGE-Scores lediglich die einzelnen Wortsequenzen miteinander vergleicht, findet die semantische Bedeutung und Ähnlichkeit der Bewertungen mit der Referenz keinen Einfluss.
+Da die ROUGE-Scores lediglich die einzelnen Wortsequenzen miteinander vergleichen, findet die semantische Bedeutung und Ähnlichkeit der Bewertungen mit der Referenz keinen Einfluss.
+Hier erzielen zum Beispiel Synonyme keine guten ROUGE-Scores, obwohl sie eine semantische Übereinstimmung haben.
 Um trotzdem die semantische Ähnlichkeit zwischen Bewertungen und Referenz zu messen wird als weitere Metrik der Moverscore aus Abschnitt \ref{moverscore} verwendet.
-Moverscore basiert auf BERT und vergleicht Context Embeddings mittels Earth-Mover-Distance. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
+Der Moverscore basiert auf BERT und vergleicht Context-Embeddings mittels Earth-Mover-Distance. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
 
 
 \subsection{Moverscore}
 \label{moverscore}
 Der Moverscore \citep{moverscore_paper} ist eine Evaluationsmetrik, die semantische Inhalte zwischen zwei Textsequenzen vergleicht und diesen einen Ähnlichkeitswert zuweist.
-Das Ziel vom Moverscore ist es eine Metrik abzubilden, die einer menschlichen Bewertung der Ähnlichkeit von zwei Sequenzen am nähsten ist. 
+Das Ziel vom Moverscore ist es eine Metrik abzubilden, die einer menschlichen Bewertung der Ähnlichkeit von zwei Sequenzen am nähesten ist. 
 Im Gegensatz zu anderen Textähnlichkeitsmetriken die lediglich die Überlappungen von Tokens innerhalb der Sequenzen messen, ohne die Semantik der Wörter zu bewerten, 
 bildet sich der Moverscore aus einer Kombination bestehend aus einer im Kontext eingebetteten Repräsentation der einzelnen Textsequenzen, die eine semantische Distanz untereinander abbilden.
-Die semantische Distanz wird über die Word Mover Distance, einer Metrik basierend auf der Earth Mover Distance, bestimmt. Es wird ein minimaler Transportfluss zwischen den einzelnen Sequenzen errechnet.
+Die semantische Distanz wird über die Word Mover Distance \citep{wordmoverdistance}, einer Metrik basierend auf der Earth Mover Distance, bestimmt. Es wird ein minimaler Transportfluss zwischen den einzelnen Sequenzen errechnet.
 Die Worteinbettungen werden durch ein BERT Modell erzeugt.
 
-Insgesamt ist der Moverscore für die Bewertungegenerierung ein wichtiger Score, da nicht nur übereinstimmende N-Gramme an Wörtern gemessen werden, sondern die Semantik der einzeln Wörter miteinbezogen wird. 
+Insgesamt ist der Moverscore für die Bewertungsgenerierung ein wichtiger Leistungsindikator, da nicht nur übereinstimmende N-Gramme an Wörtern gemessen werden, sondern die Semantik der einzeln Wörter miteinbezogen wird. 
 Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise ausgedrückt werden können, bietet sich der Moverscore hier gut als Metrik an um diese Übereinstimmungen zu finden.
 
 
@@ -95,12 +97,12 @@ Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise au
 \subsection{Ergebnisse}
 In Tabelle \ref{eval_results} ist die Performance der unterschiedlichen untersuchten und erstellten Modelle dargestellt.
 Das in dieser Arbeit entwickelte Modell ist das \glqq COOP+Attribute Model\grqq{} Modell.
-Es basiert auf dem COOP Modell und verbessert die Generation von neuen Bewertungen durch die Verwendung eines Attribute Models.
+Es basiert auf dem COOP Modell und verbessert die Generation von neuen Bewertungen durch die Verwendung eines Attribut-Modells.
 Unterschieden werden die COOP Modelle durch ihre grundlegend verwendete Variational Autoencoder Architektur in Optimus und \textsc{BiMeanVAE}.
-Das Optimus Modell kombiniert BERT und GPT-2 in ein Variational Autoencoder Model. \textsc{BiMeanVAE} hingegen besteht aus einem simplen BiLSTM Variational Autoencoder.
+Das Optimus Modell kombiniert BERT und GPT-2 in ein Variational Autoencoder Modell. \textsc{BiMeanVAE} hingegen besteht aus einem BiLSTM Encoder mit einem LSTM Decoder trainiert als Variational Autoencoder Modell.
 
 Verglichen wird die Performance der unterschieldichen Modelle mit den zuvor beschriebenen Evaluationsmetriken, dem ROUGE-1, ROUGE-2, ROUGE-L Score und dem Moverscore.
-Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance der Modelle und einer Leistungssteigerung zwischen den COOP Basismodellen und den modifizierten COOP Attributionsmodellen zu.
+Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance der Modelle und einer Leistungssteigerung zwischen den COOP Basismodellen und den modifizierten COOP mit Attributionsmodellen zu.
 
 \begin{table}[!h]
     \label{eval_results}
@@ -142,7 +144,7 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
 \end{table}
 
 Grundsätzlich lassen sich die Ergebnisse in Tabelle \ref{eval_results} in die Kategorien abstraktive und extraktive Zusammenfassung unterteilen.
-Hier ist eindeutig zu erkennen, dass LexRank in allen Bereichen den abstraktiven Methoden bei weitem unterliegt.
+Hier ist eindeutig zu erkennen, dass LexRank als extraktive Methode in allen Bereichen den abstraktiven Methoden unterliegt.
 
 Die \textit{SimpleAvg} Gruppe umfasst abstraktive Textzusammenfassungsmethoden. 
 Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschnittsvektor errechnet von dem anschließend gesamplet wird.
@@ -152,7 +154,7 @@ Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als 
 Eine große Leistungssteigerung ergibt sich durch die COOP Methode um eine optimale Kombination der einzelnen Latentvektoren zu finden.
 Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
 Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
-Insbesondere der Rouge-1 Score übertrifft die \textit{SimpleAVG} Scores signifikant im Durchschnitt um PROZENT\%.
+Insbesondere der ROUGE-1 Score übertrifft die \textit{SimpleAVG} Scores bei Optimus und \textsc{BiMeanVAE} signifikant im Durchschnitt um PROZENT\%.
 Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
 Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramteren und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
 Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.

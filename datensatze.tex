@@ -1,13 +1,15 @@
 \section{Datensätze}\raggedbottom
 
 %Datensätze mit Gruppentheorie erklären
-Zum Training und zur Evaluation von neuronalen Netzen sind große Datensätze erforderlich. Für die Aufgabenstellung Durchschnittsrepräsentation aus Textbewertungen zu erzeugen, werden Datensätze mit mehreren Bewertungen und Zusammenfassungen zu einem Produkt benötigt.
+Zum Training und zur Evaluation von neuronalen Netzen sind große Datensätze erforderlich. 
+Für die Aufgabenstellung Durchschnittsrezensionen aus Textbewertungen zu erzeugen, werden Datensätze mit mehreren Bewertungen und Zusammenfassungen zu einem Produkt benötigt.
 
 Es bietet sich an Bewertungen von großen Webportalen wie Amazon oder Yelp zu verwenden. 
 Diese Portale haben zu den unterschiedlichsten Produkten und Restaurants zahlreiche Bewertungen.
 
 Es existieren bereits bestehende Amazon und Yelp Datensätze mit menschlich erstellten Gold-Standard Zusammenfassungen. 
-Das Variational Autoencoder Modell lässt sich somit mit den Review Daten auf Rekonstruktion trainieren.
+Die Variational Autoencoder Modelle lassen sich somit mit den Review Daten mit dem Trainingsziel der Rekonstruktion trainieren, um einen aussagekräftigen Latentraum mit Bewertungen und deren spezifischen Eigenschaften zu erlernen.
+Anschließend können die trainierten Modelle auf den respektiven Testdatensätzen evaluiert werden, da jeweils Gold-Standard Zusamenfassungen vorliegen mit denen sich mittels in Abschnitt \ref{evalmetric} erklärten Metriken die generierten Rezensionen bewerten lassen.
 
 \subsection{Amazon Datensatz}
 Der Amazon Review Datensatz \citep{brazinskas2020-unsupervised} umfasst nach dem Vorverarbeiten 4.807.338 Bewertungen zu 192.742 Produkten. 

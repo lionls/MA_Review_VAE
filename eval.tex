@@ -1,6 +1,6 @@
 \section{Evaluierung der Modelle}\raggedbottom
 \label{evalmetric}
-Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit dem aktuellem State-of-the-Art Model COOP in Relation gesetzt.
+Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit dem aktuellem State-of-the-Art Modell COOP in Relation gesetzt.
 Es existieren im Dev-Datensatz und Test-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum Evaluieren der generierten Ausgabebewertungen.
 Die Eingabebewertungen werden durch ein Optimus VAE Modell und ein \textsc{BiMeanVAE} Modell in Latentvektoren umgewandelt.
 Anschließend werden mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise die Latentvektoren kombiniert, um den \textit{Input-Output-Overlap} zu maximieren. 
@@ -137,9 +137,9 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     \textit{Extractive}        &         &         &        &      &  &        &  &      \\
     $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & -& 25.01  & 3.62   & 14.67 & -\\ \bottomrule
     \end{tabular}
-    \caption{ROUGE und Moverscore Ergebnisse auf den Benchmarkdatensätze der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die Ergebnisse aus den Eregnissen von \citep{coop} übernommen wurden.
-    $^{\dagger}$ Evaluierte Performance unterscheidet sich vom \citep{coop} Paper. Performance wurde nach SourceCode des Papers bestimmt.
+    \caption{ROUGE und Moverscore Ergebnisse auf den Test-Benchmarkdatensätzen der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+    $^{\star}$ denotiert, dass die Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+    %$^{\dagger}$ Evaluierte Performance unterscheidet sich vom \citep{coop} Paper. Performance wurde nach SourceCode des Papers bestimmt.
     }
 \end{table}
 

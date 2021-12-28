@@ -90,7 +90,7 @@ Abschließend enthalten bei $\beta=1$ die bereits vorher trainierten $z$ Vektore
 
 
 \subsection{Optimus}
-Optimus (\textbf{O}rganizing \textbf{S}entences via \textbf{P}re-trained \textbf{M}odeling of a \textbf{L}atent \textbf{S}pace) \citep{DBLP:journals/corr/abs-2004-04092} ist ein großes vortrainiertes Deep Latent Variable Model für natürliche Sprache.
+Optimus (\textbf{O}rganizing \textbf{S}entences via \textbf{P}re-trained \textbf{M}odeling of a \textbf{L}atent \textbf{S}pace) \citep{DBLP:journals/corr/abs-2004-04092} ist ein großes vortrainiertes Deep Latent Variable Modell für natürliche Sprache.
 Die Modelarchitektur von Optimus ist ein Variational Autoencoder, der als Encoder BERT und als Decoder GPT-2 verwendet wie in Abbildung \ref{optimus_scheme_fig} zu erkennen ist. 
 Verwendet wird jeweils das vortrainierte BERT Base Modell $\phi_{BERT}$ und das vortrainierte GPT-2 Base Modell $\theta_{GPT-2}$ beide mit 12 Layern, 12 Attention Heads und einer Hiddensize von 768. 
 \begin{figure}[h]
@@ -128,7 +128,7 @@ Diese Key-, Valuevektoren des Attentionlayers werden durch $h_{Mem} = W_M z$ mit
 
 Die Parameter ${\phi_{BERT}, \theta_{GPT-2}, W_E,W_M,W_D}$ des VAEs werden mittels Cyclical Annealing Schedule \citep{cyc_anneal} trainiert, um das KL Vanishing Problem beim Trainieren eines VAEs zu verhindern.
 Die $\beta$ Variable, die wie in \ref{cyc_anneal} erklärt den KL Regularisierer Anteil steuert, wird für einen Trainingsdurchlauf für die erste halbe Menge der Trainingsdaten auf $\beta = 0$ gesetzt. Somit wird zu Beginn lediglich ein Autoencoder trainiert. 
-Anschließend wird $\beta$ für das nächste Viertel der Trainingsmenge schrittweise von 0 auf 1 erhöht und für das letzte viertel der Trainingsmenge auf 1 belassen um das VAE Model zu trainieren.
+Anschließend wird $\beta$ für das nächste Viertel der Trainingsmenge schrittweise von 0 auf 1 erhöht und für das letzte viertel der Trainingsmenge auf 1 belassen um das VAE Modell zu trainieren.
 
 Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, Kontrollierte Text Generation und Language Understanding.
 
@@ -137,7 +137,7 @@ Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, 
 
 
 \subsection{\textsc{BiMeanVAE}}
-\textsc{BiMeanVAE} ist ein von \citep{coop} vorgestelltes Model bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
+\textsc{BiMeanVAE} ist ein von \citep{coop} vorgestelltes Modell bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
 Die Hiddensize der einzelnen LSTMs beträgt 512. Nach dem BiLSTM Encoder wird ein mean pooling verwendet, um einen Latentvektor $z$ zu erhalten.
 \textsc{BiMeanVAE} verwendet die Standard Variational Autoencoder Ziele, dass minimieren des Rekonstruktionsfehlers mit KL-Regularisierung verwendet.
 Die verwendete Prior Verteilung $p_\theta(z)$ ist die Gausssche Normalverteilung $\mathcal{N}(0,\mathcal{I})$. 

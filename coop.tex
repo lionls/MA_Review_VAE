@@ -21,7 +21,7 @@ MeanSum ist ein Autoencoder Modell \citep{meansum} mit LSTM Encoder und Decoder 
 Von diesem Durchschnittslatentvektor $z_p$ wird anschließend eine Bewertung generiert. 
 
 
-CopyCat basiert auf einem Variational Autoencoder Model \citep{copycat}, welches GRU Encoder und Decoder verwendet. 
+CopyCat basiert auf einem Variational Autoencoder Modell \citep{copycat}, welches GRU Encoder und Decoder verwendet. 
 Für jede Gruppe von Bewertungen berechnet CopyCat einen Latentvektor $c$ der die gesamte Semantik der Gruppe beschreibt. 
 Weiterhin wird jede einzelne Bewertung einer Gruppe mit einem einzelnen Latentvektor $z$ beschrieben.
 Bei der Generation von Durchschnittsbewertungen ermöglicht es CopyCat dem Decoder, die einzelnen Latentvektoren für die Bewertungen $z_i$, den allgemeinen Gruppenvektor $c$ und die Bewertungen $r_i$ an sich zu betrachten.

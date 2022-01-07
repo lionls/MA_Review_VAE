@@ -71,7 +71,7 @@ ROUGE-1 verwendet als N-Gram Unigramme, ROUGE-2 Bigramme und ROUGE-L misst die l
 
 Da die ROUGE-Scores lediglich die einzelnen Wortsequenzen miteinander vergleichen, findet die semantische Bedeutung und Ähnlichkeit der Bewertungen mit der Referenz keinen Einfluss.
 Hier erzielen zum Beispiel Synonyme keine guten ROUGE-Scores, obwohl sie eine semantische Übereinstimmung haben.
-Um trotzdem die semantische Ähnlichkeit zwischen Bewertungen und Referenz zu messen wird als weitere Metrik der Moverscore aus Abschnitt \ref{moverscore} verwendet.
+Um trotzdem die semantische Ähnlichkeit zwischen Bewertungen und Referenz zu messen, wird als weitere Metrik der Moverscore aus Abschnitt \ref{moverscore} verwendet.
 Der Moverscore basiert auf BERT und vergleicht Context-Embeddings mittels Earth-Mover-Distance. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
 
 
@@ -79,7 +79,7 @@ Der Moverscore basiert auf BERT und vergleicht Context-Embeddings mittels Earth-
 \label{moverscore}
 Der Moverscore \citep{moverscore_paper} ist eine Evaluationsmetrik, die semantische Inhalte zwischen zwei Textsequenzen vergleicht und diesen einen Ähnlichkeitswert zuweist.
 Das Ziel vom Moverscore ist es eine Metrik abzubilden, die einer menschlichen Bewertung der Ähnlichkeit von zwei Sequenzen am nähesten ist. 
-Im Gegensatz zu anderen Textähnlichkeitsmetriken die lediglich die Überlappungen von Tokens innerhalb der Sequenzen messen, ohne die Semantik der Wörter zu bewerten, 
+Im Gegensatz zu anderen Textähnlichkeitsmetriken, die lediglich die Überlappungen von Tokens innerhalb der Sequenzen messen ohne die Semantik der Wörter zu bewerten, 
 bildet sich der Moverscore aus einer Kombination bestehend aus einer im Kontext eingebetteten Repräsentation der einzelnen Textsequenzen, die eine semantische Distanz untereinander abbilden.
 Die semantische Distanz wird über die Word Mover Distance \citep{wordmoverdistance}, einer Metrik basierend auf der Earth Mover Distance, bestimmt. Es wird ein minimaler Transportfluss zwischen den einzelnen Sequenzen errechnet.
 Die Worteinbettungen werden durch ein BERT Modell erzeugt.
@@ -147,16 +147,16 @@ Grundsätzlich lassen sich die Ergebnisse in Tabelle \ref{eval_results} in die K
 Hier ist eindeutig zu erkennen, dass LexRank als extraktive Methode in allen Bereichen den abstraktiven Methoden unterliegt.
 
 Die \textit{SimpleAvg} Gruppe umfasst abstraktive Textzusammenfassungsmethoden. 
-Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschnittsvektor errechnet von dem anschließend gesamplet wird.
+Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschnittsvektor errechnet, von dem anschließend gesamplet wird.
 Es ist erkennbar, dass die beiden Methoden Optimus und \textsc{BiMeanVAE} den Methoden CopyCat und MeanSum überlegen sind, da diese in allen Messwerten bessere Ergebnisse erzielen.
 Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als \textsc{BiMeanVAE} erzielt, allerdings in den ROUGE Werten minimal schlechter abschneidet.
 
-Eine große Leistungssteigerung ergibt sich durch die COOP Methode um eine optimale Kombination der einzelnen Latentvektoren zu finden.
+Eine große Leistungssteigerung ergibt sich durch die COOP Methode, um eine optimale Kombination der einzelnen Latentvektoren zu finden.
 Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
 Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
 Insbesondere der ROUGE-1 Score übertrifft die \textit{SimpleAVG} Scores bei Optimus und \textsc{BiMeanVAE} signifikant im Durchschnitt um PROZENT\%.
 Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
-Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramteren und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
+Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramtern und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
 Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.
 
 %Vergleich Optimus vs BiMeanVAE an Texten

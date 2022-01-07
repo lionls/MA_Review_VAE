@@ -7,7 +7,7 @@ Optimus verwendet zur Decodierung ein GPT-2 Modell. \textsc{BiMeanVAE} decodiert
 Obwohl durch die Kombination mehrerer Latentvektoren bereits gute Ergebnisse erzielt werden, stellt sich die Frage, ob diese kombinierten Latentvektoren durch weitere Optimierungen bessere Ergebnisse erzielen.
 
 Unkontrollierte Sprachmodelle modellieren Texte über die Wahrscheinlichkeit $p(X)$ für eine Sequenz $X=(x_0,...,x_{\| x \|})$.
-In Kapitel \ref{transformer} wurde die Funktionsweise von Transformer-Sprachmodellen und die Autoregressive Generation von Textsequenzen erklärt. 
+In Kapitel \ref{transformer} wurde die Funktionsweise von Transformer-Sprachmodellen und die autoregressive Generation von Textsequenzen erklärt. 
 Bei der Generation werden die vorherigen Key-Value Paare der Attention-Layer in einer Vergangenheitsmatrix $H_t = [(K_t^{(1)},V_t^{(1)}), \ldots , (K_t^{(n)},V_t^{(n)})]$ gespeichert, wobei $K$ und $V$ die einzelnen Key-, Value-Vektoren im Layer $n$ zum Zeitpunkt $t$ repräsentieren. %history matrix
 Diese Vergangenheitsmatrizen werden verwendet, um bei der Generation auf bereits vorher berechnete Key-, Value-Werte zurückgreifen zu können und somit effizienter Text zu generieren.
 
@@ -20,8 +20,8 @@ Das Attribut Modell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attrib
 
 Zur kontrollierbaren Generation werden bei PPLM-Modellen Gradienten für die generierten Sequenzen über die Log-Likelihood des normalen Sprachmodells $log(p(x))$ und der Log-Likelihood des Attribut-Modells $log(p(a|x))$ in Bezug auf die Vergangenheitsmatrix errechnet. 
 Durch Veränderung der Vergangenheitsmatrix $\tilde{H}_t = (H_t+\Delta H_t)$ wird die Wahrscheinlichkeit das nächste Token mit den gewünschten Attributen zu erhalten erhöht. 
-Hierbei wird $\Delta H_t$ Schrittweise durch den Gradienten des Attribut-Modells bestimmt und mit einer Null-Matrix initialisiert.
-Um den Gradienten des Attribut-Modells zu bestimmen wird dieses zu $p(a|H_t+\Delta H_t)$ umformuliert mit folgendem Iterationsschritt \ref{gradient_pplm} zur Berechnung:
+Hierbei wird $\Delta H_t$ schrittweise durch den Gradienten des Attribut-Modells bestimmt und mit einer Null-Matrix initialisiert.
+Um den Gradienten des Attribut-Modells zu bestimmen, wird dieses zu $p(a|H_t+\Delta H_t)$ umformuliert mit folgendem Iterationsschritt \ref{gradient_pplm} zur Berechnung:
 \begin{align}
     \label{gradient_pplm}
 \Delta H_t \leftarrow \Delta H_t + \alpha \frac{\nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)}{\| \nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)\|^\gamma}
@@ -40,16 +40,16 @@ Durch Veränderung von $\gamma$ bei der Kombinierung lässt sich der Einfluss de
 
 \subsection{Bag of Words Attribut-Modell}
 Als Attribut Modell wird ein Bag of Words Modell verwendet, welches einen Loss über die Summe der Wahrscheinlichkeiten der einzelnen vorhergesagten Wörter bildet.
-Sei $\{w_0, \ldots, w_n\}$ eine Gruppe von Tokens die ein bestimmtes Thema repräsentieren und $p_{t+1}$ die Ausgabeverteilung über die Tokens des Sprachmodells.
+Sei $\{w_0, \ldots, w_n\}$ eine Gruppe von Tokens, die ein bestimmtes Thema repräsentieren und $p_{t+1}$ die Ausgabeverteilung über die Tokens des Sprachmodells.
 Dann wird die Log-Likelihood des Attributmodells durch Gleichung \ref{attribute_loss} beschrieben: 
 \begin{align}
     \label{attribute_loss}
     \text{log }p(a|x) = \text{log }(\sum_{i=0}^n p_{t+1}[w_i])
 \end{align}
 
-Um den \textit{Input-Output-Overlap} zwischen den Eingabebewertungen und den generierten Bewertungen zu maximieren kann das Bag of Words Modell auf unterschiedliche Weise erzeugt werden. 
-Eine Methode ist es die $k$ am häufigsten vorkommenden Wörter über alle Eingabebewertungen eines Produktes zu wählen.
-Vor dem auswählen der häufigsten vorkommenden Wörter werden Stopwörter entfernt.
+Um den \textit{Input-Output-Overlap} zwischen den Eingabebewertungen und den generierten Bewertungen zu maximieren, kann das Bag of Words Modell auf unterschiedliche Weise erzeugt werden. 
+Eine Methode ist es, die $k$ am häufigsten vorkommenden Wörter über alle Eingabebewertungen eines Produktes zu wählen.
+Vor dem Auswählen der häufigsten vorkommenden Wörter werden Stoppwörter entfernt.
 %Die besten Ergebnisse werden mit $k=150$ erzielt. %ÜBERPRÜUFEN 
 
 Des Weiteren können die ausgewählten Bag of Words Tokens gewichtet werden, indem die $k$ häufigsten Wörter nach ihrer Anzahl der Vorkommnisse über eine Softmax-Funktion in eine Wahrscheinlichkeitsverteilung transformiert werden.
@@ -57,9 +57,10 @@ Hierdurch erhalten besonders häufig vorkommende Wörter ein höheres Gewicht al
 
 Die Bag of Words Menge kann auch durch anderweitige Keyword-Extraktionsmethoden wie zum Beispiel durch YAKE \citep{CAMPOS2020257} generiert werden.
 
-Weiterhin kann die Bag of Words Menge bei der Generierung durch Pruning optimiert werden. 
-So können bereits generierte Tokens nach einem Durchlauf aus der Bag of Words Menge entfernt werden, um zum Beispiel bei der Generation von Rezensionen einen bereits inkludierten Faktor nicht erneut zu forcieren.
+%Weiterhin kann die Bag of Words Menge bei der Generierung durch Pruning optimiert werden. 
+%So können bereits generierte Tokens nach einem Durchlauf aus der Bag of Words Menge entfernt werden, um zum Beispiel bei der Generation von Rezensionen einen bereits inkludierten Faktor nicht erneut zu forcieren.
 
+%PRUNING !!!
 \begin{table}[h!]
     \centering
     \begin{tabular}{@{}llll@{}}
@@ -74,20 +75,20 @@ So können bereits generierte Tokens nach einem Durchlauf aus der Bag of Words M
     $\quad$ k = 50 + Softmax    &  40.72    &   9.06    &    23.40   \\
     $\quad$ k = 150 + Softmax  &  40.75   &    9.03  &  23.40  \\
     $\quad$ k = 500 + Softmax   &  40.75   &    9.03  &  23.40  \\
-    $\quad$ PRUNING??   &  40.75   &    9.03  &  23.40  \\
+    %$\quad$ PRUNING??   &  40.75   &    9.03  &  23.40  \\
     $\quad$ YAKE - delete&  \textbf{40.81}   &     \textbf{8.91}  &   \underline{23.49}    \\ \bottomrule
     \end{tabular}
     \caption{Ergebnisse für die unterschiedlichen Attributionsmodelle mit \textsc{BiMeanVAE} auf dem Amazon Dev-Datensatz}
     \label{bow_opti}
 \end{table}
 
-In Tabelle \ref{bow_opti} wurden auf dem Amazon Dev-Datensatz die unterschiedlichen Verfahren um Bag of Words Mengen zu Erzeugen evaluiert.
-Es zeigt sich das bei dem Bag of Words Attributmodell eine Wortanzahl von 150 optimal ist um, gute Ergebnisse zu erzielen. 
+In Tabelle \ref{bow_opti} wurden auf dem Amazon Dev-Datensatz die unterschiedlichen Verfahren, um Bag of Words Mengen zu erzeugen, evaluiert.
+Es zeigt sich, dass bei dem Bag of Words Attributmodell eine Wortanzahl von 150 optimal ist, um gute Ergebnisse zu erzielen. 
 Eine höhere Wörteranzahl ergibt keine weitere Leistungssteigerung. Dies lässt sich darauf zurückführen, dass gar nicht mehr Wörter ausgewählt werden können und diese bereits den gesamten Text umfassen würden.
 
 Des Weiteren fällt auf, dass entgegen der Erwartung eine leichte Gewichtung mittels Softmax Funktion nach der Anzahl der Vorkommnisse entsprechender Wörter keine Leistungssteigerung bietet.
 
-Demnach wird im folgenden für die weitere Evaluierung auf dem Testdatensatz, das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
+Demnach wird im folgenden für die weitere Evaluierung auf dem Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
 
 \subsection{Verbessern der Textgeneration von Optimus}
 Den Variational Autoencoder Optimus mit einem Attributions-Modell zu kombinieren ist aufgrund der Injektion des Latentvektors nicht ohne weiteres möglich.
@@ -103,7 +104,7 @@ In Abschnitt \ref*{eval_pplm} wird die vorgeschlagene Optimierung der Latentvekt
 
 
 \subsection{Verbessern der Textgeneration von \textsc{BiMeanVAE}}
-\textsc{BiMeanVAE} ist ein Variational Autoencoder bestehend aus einem bidirektionalem LSTM Encoder gepaart mit einem LSTM Decoder.
+\textsc{BiMeanVAE} ist ein Variational Autoencoder ,bestehend aus einem bidirektionalem LSTM Encoder, gepaart mit einem LSTM Decoder.
 Der LSTM Decoder erhält als Eingabe den Latentvektor $z$. Der Hiddenstate $h_t$ und Cellstate $c_t$ wird aus dem Embedding des Latentvektor $z$ initialisiert und anschließend autoregressiv über die LSTM Architektur aktualisiert.
 Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei unterschiedliche Ansätze:
 \begin{enumerate}
@@ -112,7 +113,7 @@ Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei 
     \item Optimieren des vorherigen Cellstates $c_t$ vor der nächsten Berechnung
 \end{enumerate}
 
-Es ist möglich zu allen drei aufgezählten Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen. 
+Es ist möglich, zu allen drei aufgezählten Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen. 
 
 Nachfolgend wurden alle drei Optionen auf dem Amazon-Testdatensatz evaluiert, um die zu optimierende Variabel mit der bestmöglichen Performance zu finden.
 Die gewählte Schrittgröße ist $\alpha = 0.1$.
@@ -151,15 +152,15 @@ MEHR
 
 Beam Search ist ein Suchalgorithmus zur Auswahl des Ausgabesatzes mit der höchsten Wahrscheinlichkeit. 
 Im Gegensatz zur normalen Greedy Search wird beim Beam Search Algorithmus die Gruppe mit den N bestmöglichen Tokens für eine Position ausgewählt. 
-Über die Maximierung der bedingten Wahrscheinlichkeit wird final entschieden welche der zuvor ausgewählten Tokens 
+Über die Maximierung der bedingten Wahrscheinlichkeit wird final entschieden, welche der zuvor ausgewählten Tokens 
 
 \subsection{Moverscore Ranking}
 \label{moverscore_ranking}
 Da dem Modell zur Bestimmung des \textit{Input-Output-Overlaps} mittels ROUGE-1 nur die Eingabebewertungen zur Verfügung stehen, erhalten teilweise generierte Rezensionen mit gleicher Semantik aber anderen Formulierungen schlechte  \textit{Input-Output-Overlap}-Scores.
 Der in Abschnitt \ref{moverscore} vorgestellte Moverscore ermöglicht einen semantischen Vergleich von Textsequenzen. 
-So können insbesondere Rezensionen mit unterschiedlich formulierten Meinungen, die die gleiche Aussage treffen ein hoher Ähnlichkeitswert zugewiesen werden.
+So können insbesondere Rezensionen mit unterschiedlich formulierten Meinungen, die die gleiche Aussage treffen, ein hoher Ähnlichkeitswert zugewiesen werden.
 
-Zwischen den Eingabebewertungen und den Gold-Summaries besteht eine hohe semantische Ähnlichkeit, weshalb der Moverscore miteinbezogen wird um ein besseres Ranking der Ausgabewertungen zu erzeugen.
+Zwischen den Eingabebewertungen und den Gold-Summaries besteht eine hohe semantische Ähnlichkeit, weshalb der Moverscore miteinbezogen wird, um ein besseres Ranking der Ausgabewertungen zu erzeugen.
 Des Weiteren wird die \textit{Input-Output-Overlap} Funktion dahingehend abgeändert, dass sie ebenfalls die ROUGE-2 und ROUGE-L Scores miteinbezieht.
 Somit ergibt sich eine neue Rankingfunktion \ref{ranking} zwischen den generierten Ausgabebewertungen $\hat{x_i}$ und den Eingabereviews $R$:
 \begin{align}
@@ -187,7 +188,7 @@ Die Variablen $x,y,z,v$ geben die Gewichtung der einzelnen Metriken an. Folgende
 \end{table}
 
 Mit dieser neuen Rankingfunktion wird bei den einzelnen generierten Rezensionen nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 
-Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Grammen, aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.
+Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Grammen aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.
 
 
 \subsection{Test}

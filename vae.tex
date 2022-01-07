@@ -1,13 +1,13 @@
 \section{Variational Autoencoder}\raggedbottom
-Variational Autoencoder \citep{kingma2014autoencoding} gehören zu den probabilistischen generativen Modelarchitekturen. In den letzten Jahren haben generative Modelle, insbesondere auch Variational Autoencoder, beeindruckende Möglichkeiten aufgezeigt, um hochrealistische Daten wie zum Beispiel Bilder, Text oder Audios zu generieren.
+Variational Autoencoder \citep{kingma2014autoencoding} gehören zu den probabilistischen generativen Modellarchitekturen. In den letzten Jahren haben generative Modelle, insbesondere auch Variational Autoencoder, beeindruckende Möglichkeiten aufgezeigt, um hochrealistische Daten wie zum Beispiel Bilder, Texte oder Audios zu generieren.
 Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu verstehen und anschließend neuartige Datenbeispiele, die ähnlich zum Trainingsdatensatz sind zu generieren.
 
-Normale Autoencoder bestehen aus einem Encoder und einem Decoder, wobei der Encoder versucht eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
+Normale Autoencoder bestehen aus einem Encoder und einem Decoder, wobei der Encoder versucht, eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel, eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
 Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist, da im Latentraum viele leere Stellen existieren. 
 Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentspaces legt. 
 Somit führt keine Regularisierung der einzelnen Datenpunkte oft zu Overfitting.
 
-Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz um Datenpunkte $x$ im Latentspace $Z$ zu repräsentieren. 
+Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz, um Datenpunkte $x$ im Latentspace $Z$ zu repräsentieren. 
 Der Encoder des Variational Autoencoder encodiert die Eingabe in eine multivariate Verteilung von der die Latentvektoren gesamplet werden. 
 Die Latentvektoren werden anschließend vom Decoder decodiert und der Rekonstruktionserror zurückgegeben.
 %Normalerweise werden für die Encodierteverteilung 
@@ -26,7 +26,7 @@ Die Beziehungen zwischen den Eingabedaten $x$ und den Latentvektoren $z$ sind wi
 \item Posterior $p_\theta (z|x)  \approx q_\phi (z|x)$
 \end{itemize}
 
-Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann approximieren wir diese mit $q_\phi (z|x)$ unter Verwendung der Variationsinferenzmethode zur Minimierung der Kullback-Leibler-Divergenz, wie in Abschnitt \ref{elbo} beschrieben.
+Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann, approximieren wir diese mit $q_\phi (z|x)$ unter Verwendung der Variationsinferenzmethode zur Minimierung der Kullback-Leibler-Divergenz, wie in Abschnitt \ref{elbo} beschrieben.
 
 Um mittels Variational Autoencoder neue Datenobjekte zu samplen wird zunächst mit der Prior-Verteilung $p_\theta (z)$ ein neuer Latentvektor $\hat{z}$ gezogen. Anschließend lässt sich ein neues Datenobjekt $\hat{x}$ mit der Verteilung $p_\theta (x|z=\hat{z})$ generieren.
 \subsection{Evidence Lower Bound}
@@ -74,18 +74,18 @@ Trainieren von Variational Autoencodern als Sprachmodell im Bereich des Natural 
 VAE Sprachmodelle sollen bei der Textgeneration den lokalen Kontext, allerdings auch globale Eigenschaften wie zum Beispiel Thema, Sprachstil oder Stimmung beachten. 
 Trotzdem werden von VAE Modellen bei der Generation oft die globalen Eigenschaften vernachlässigt. 
 Dieses Problem ist als KL-Vanishing bekannt, da die KL-Regularisierung des Loss-Terms beim Trainieren von autoregressiven Decodern innerhalb von VAE Sprachmodellen sehr klein wird.
-Somit sind die erlernten Features nahezu identisch zu der vorher angenommenen Normalverteilung und der Decoder nutzt keine Latentfeatures. %https://www.microsoft.com/en-us/research/blog/less-pain-more-gain-a-simple-method-for-vae-training-with-less-of-that-kl-vanishing-agony/ nochmal checken
+Somit sind die erlernten Features nahezu identisch zu der vorher angenommenen Normalverteilung und der Decoder nutzt keine Latentfeatures bei der Generation. %https://www.microsoft.com/en-us/research/blog/less-pain-more-gain-a-simple-method-for-vae-training-with-less-of-that-kl-vanishing-agony/ nochmal checken
 
-Abhilfe schafft die Verwendung eines $\beta$-Variational Autoencoder \citep{cyc_anneal} mit zyklischem erhöhen des $\beta$ Wertes.
-$\beta$-Variational Autoencoder sind Variational Autoencoder die mit einen Lagrangemultiplikator $\beta$ die KL-Divergenz der Loss-Funktion gewichten um besser separierte Latentfaktoren zu finden.
+Abhilfe schafft die Verwendung eines $\beta$-Variational Autoencoder \citep{cyc_anneal} mit zyklischem Erhöhen des $\beta$ Wertes.
+$\beta$-Variational Autoencoder sind Variational Autoencoder, die mit einen Lagrangemultiplikator $\beta$ die KL-Divergenz der Loss-Funktion gewichten, um besser separierte Latentfaktoren zu finden.
 \begin{equation}
     L_{\beta}(\Phi,\theta,\beta) = -\mathbb{E}_{z\sim q_\Phi(\mathbf{z\mid x})}[log p_\theta (\mathbf{x\mid z})]- \beta D_{KL}(q_\Phi(\mathbf{z\mid x}) \parallel p_\theta(\mathbf{z})) 
 \end{equation}
 Falls $\beta = 0$ ist wird das Modell wie ein normaler Autoencoder trainiert, bei $\beta = 1$ wie ein normaler Varitional Autoencoder.
 
-Beim Zyklischen Erhöhen wird der $\beta$-Wert des VAE während des Trainings monoton von $\beta=0$ auf zum Ende des Trainings $\beta=1$ in kleinen Abständen erhöht.
-So kann beim Training des VAE bei $\beta<1$ zunächst der Fokus darauf gelegt werden mehr Information für die Rekonstruktion zu erlernen. 
-Abschließend enthalten bei $\beta=1$ die bereits vorher trainierten $z$ Vektoren bereits mehr Informationen die zu einer besseren Anpassung als eine zufällige Initialisierung führen.
+Beim zyklischen Erhöhen wird der $\beta$-Wert des VAE während des Trainings monoton von $\beta=0$ auf zum Ende des Trainings $\beta=1$ in kleinen Abständen erhöht.
+So kann beim Training des VAE bei $\beta<1$ zunächst der Fokus darauf gelegt werden, mehr Information für die Rekonstruktion zu erlernen. 
+Abschließend enthalten bei $\beta=1$ die vorher trainierten $z$ Vektoren bereits mehr Informationen, die zu einer besseren Anpassung als eine zufällige Initialisierung führen.
 
 
 
@@ -99,13 +99,13 @@ Verwendet wird jeweils das vortrainierte BERT Base Modell $\phi_{BERT}$ und das 
     \caption{VAE Modellarchitektur von Optimus mit BERT als Encoder und GPT-2 als Decoder \citep{DBLP:journals/corr/abs-2004-04092}}
     \label{optimus_scheme_fig}
 \end{figure}
-Trainiert wird Optimus mit dem Ziel Sätze in einem universellen Latentspace zu organisieren und somit übergreifende semantische Muster für die einzelnen Sätze zu finden.
-Somit kann durch gezieltes Verändern des Latentvektors $z$ kontrolliert Text generiert werden. ÜBERARBEITEN
+Trainiert wird Optimus mit dem Ziel, Sätze in einem universellen Latentspace zu organisieren und somit übergreifende semantische Muster für die einzelnen Sätze zu finden.
+Somit kann durch gezieltes Verändern des Latentvektors $z$ kontrolliert Text generiert werden. %ÜBERARBEITEN
 
-BERT und GPT-2 über eine VAE Architektur miteinander zu verbinden hat die Herausforderung die unterschiedlichen Tokenisierungsschemen der einzelnen Modelle zu verwenden und den Latentvektor bei der Textgeneration von GPT-2 zu injizieren. 
+BERT und GPT-2 über eine VAE Architektur miteinander zu verbinden hat die Herausforderung, die unterschiedlichen Tokenisierungsschemen der einzelnen Modelle zu verwenden und den Latentvektor bei der Textgeneration von GPT-2 zu injizieren. 
 Die Eingabetokens von BERT verwenden das WordPiece Embeddings Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996. 
-Die Ausgabe erfolge über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260. 
-Innerhalb des Netzwerkes wird im Latentvektor ein Token durch eine Einbettung $h_{Emb}$ die das Token, die Position und das Segment Embedding wiedergibt, repräsentiert.
+Die Ausgabe erfolgt über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260. 
+Innerhalb des Netzwerkes wird im Latentvektor ein Token durch eine Einbettung $h_{Emb}$, die das Token, die Position und das Segment Embedding wiedergibt, repräsentiert.
 Um beim Training den Loss des Rekonstruktionstask zu berechnen, werden die Sätze mit beiden Tokenisierungen tokenisiert.
 
 Als Latentvektor $z \in \mathbb{R}^P$ wird die gepoolte Ausgabe des letzten Hiddenlayers $h_{[CLS]} \in \mathbb{R}^H$ von BERT mit einer Gewichtsmatrix multipliziert $W_{E} \in \mathbb{R}^{P\times H}$ gewählt. Somit kann ein Latentvektor wie folgt bestimmt werden $z = W_{E}h_{[CLS]}$.
@@ -113,11 +113,11 @@ Als Latentvektor $z \in \mathbb{R}^P$ wird die gepoolte Ausgabe des letzten Hidd
 \begin{figure}[h]
     \centering
     \includegraphics[width=8cm]{bilder/latent_optimus}
-    \caption{Methoden um den Latentvektor in GPT-2 zu injizieren \citep{DBLP:journals/corr/abs-2004-04092}}
+    \caption{Methoden, um den Latentvektor in GPT-2 zu injizieren \citep{DBLP:journals/corr/abs-2004-04092}}
     \label{latent_optimus}
 \end{figure}
 
-Um mit GPT-2 kontrolliert unter Verwendung des Latentvektors Text zu Generieren kann der Latentvektor entweder als Memoryvektor in die Past-Gewichtsmatrix injeziert oder auf die vorherigen Embeddings addiert werden \citep{DBLP:journals/corr/abs-2004-04092}.
+Um mit GPT-2 kontrolliert unter Verwendung des Latentvektors Text zu Generieren, kann der Latentvektor entweder als Memoryvektor in die Past-Gewichtsmatrix injeziert oder auf die vorherigen Embeddings addiert werden \citep{DBLP:journals/corr/abs-2004-04092}.
 
 Beim Embedding wird $z$ direkt auf den Embedding Layer addiert. Somit ergibt sich der neue Embedding Layer durch $h_{Emb}^{'} = h_{Emb} + W_D z$ mit der Gewichtsmatrix $W_D \in \mathbb{R}^{H \times P}$.
 Der Decoder kann hier die zusätzlichen Informationen des Embeddings beim Input und Output Layer verwenden.
@@ -127,19 +127,19 @@ Der Past-Key-Vektor beschleunigt normalerweise den Decodiervorgang von GPT-2, da
 Diese Key-, Valuevektoren des Attentionlayers werden durch $h_{Mem} = W_M z$ mit $W_M \in \mathbb{R}^{LH \times P}$ ersetzt. GPT-2 kann so beim Decodieren auf den injezierten Latentvektor bei jeder Attentionberechnung zugreifen.
 
 Die Parameter ${\phi_{BERT}, \theta_{GPT-2}, W_E,W_M,W_D}$ des VAEs werden mittels Cyclical Annealing Schedule \citep{cyc_anneal} trainiert, um das KL Vanishing Problem beim Trainieren eines VAEs zu verhindern.
-Die $\beta$ Variable, die wie in \ref{cyc_anneal} erklärt den KL Regularisierer Anteil steuert, wird für einen Trainingsdurchlauf für die erste halbe Menge der Trainingsdaten auf $\beta = 0$ gesetzt. Somit wird zu Beginn lediglich ein Autoencoder trainiert. 
-Anschließend wird $\beta$ für das nächste Viertel der Trainingsmenge schrittweise von 0 auf 1 erhöht und für das letzte viertel der Trainingsmenge auf 1 belassen um das VAE Modell zu trainieren.
+Die $\beta$ Variable, die wie in \ref{cyc_anneal} erklärt den KL-Regularisierer Anteil steuert, wird für einen Trainingsdurchlauf für die erste halbe Menge der Trainingsdaten auf $\beta = 0$ gesetzt. Somit wird zu Beginn lediglich ein Autoencoder trainiert. 
+Anschließend wird $\beta$ für das nächste Viertel der Trainingsmenge schrittweise von 0 auf 1 erhöht und für das letzte Viertel der Trainingsmenge auf 1 belassen, um das VAE Modell zu trainieren.
 
-Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, Kontrollierte Text Generation und Language Understanding.
+Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, der kontrollierten Text Generation und des Language Understanding.
 
 
 %%%%PAST KEY VEKTOR MATRIX == Vergangenheitsmatrix
 
 
 \subsection{\textsc{BiMeanVAE}}
-\textsc{BiMeanVAE} ist ein von \citep{coop} vorgestelltes Modell bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
+\textsc{BiMeanVAE} ist ein von \citep{coop} vorgestelltes Modell, bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
 Die Hiddensize der einzelnen LSTMs beträgt 512. Nach dem BiLSTM Encoder wird ein mean pooling verwendet, um einen Latentvektor $z$ zu erhalten.
-\textsc{BiMeanVAE} verwendet die Standard Variational Autoencoder Ziele, dass minimieren des Rekonstruktionsfehlers mit KL-Regularisierung verwendet.
+\textsc{BiMeanVAE} verwendet die Standard Variational Autoencoder Ziele, dass Minimieren des Rekonstruktionsfehlers mit KL-Regularisierung verwendet.
 Die verwendete Prior Verteilung $p_\theta(z)$ ist die Gausssche Normalverteilung $\mathcal{N}(0,\mathcal{I})$. 
 Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cyclical Annealing Verfahren verwendet, um graduell vom Autoencoder zum Variational Autoencoder Trainingsziel zu wechseln.
 
@@ -152,10 +152,10 @@ Die zur Generation verwendeten Latentvektoren können durch arithmetische Operat
 Durch die KL-Regularisierung beim Training von VAEs entsteht ein kontinuierlicher Latentspace, wodurch semantisch ähnliche Inhalte im Latentspace nah beieinander organisiert werden.
 Somit kann zwischen mehreren Datenobjekten im Latentspace interpoliert werden.
 
-Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent Space Operationen die VAEs ermöglichen elementar.
+Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent Space Operationen, die VAEs ermöglichen elementar.
 So kann zum Beispiel zwischen mehreren Bewertungen interpoliert werden, um eine durchschnittliche Meinung zu generieren.
 
 Sei zum Beispiel $\mathcal{Z}$ die Menge der encodierten Bewertungen zu einer Produktgruppe.
-So lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch geschicktes kombinieren eine gute Durchschnittsrepräsentation im Latentvektorraum finden.
-Das genaue vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop} beschrieben
+So lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch geschicktes Kombinieren eine gute Durchschnittsrepräsentation im Latentvektorraum finden.
+Das genaue Vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop} beschrieben
 \pagebreak

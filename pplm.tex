@@ -65,18 +65,18 @@ Die Bag of Words Menge kann auch durch anderweitige Keyword-Extraktionsmethoden 
     \centering
     \begin{tabular}{@{}llll@{}}
     \toprule
-                    Modell   & \multicolumn{3}{c}{Amazon}              \\ \midrule
+                    Modell   & \multicolumn{3}{c}{Amazon}              \\ 
     \textbf{\textsc{BiMeanVAE} }    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
   %  \textsc{BiMeanVAE} &             &             &             \\
     Baseline        & 39.50       & 8.62    &  22.79     \\
-    $\quad$ k = 50       &  40.72    &   9.06    &    23.40   \\
-    $\quad$ k = 150  &  40.75   &    9.03  &  23.40  \\
-    $\quad$ k = 500 &  40.75   &    9.03  &  23.40  \\
-    $\quad$ k = 50 + Softmax    &  40.72    &   9.06    &    23.40   \\
-    $\quad$ k = 150 + Softmax  &  40.75   &    9.03  &  23.40  \\
-    $\quad$ k = 500 + Softmax   &  40.75   &    9.03  &  23.40  \\
+    $\quad$ k = 50       &  40.72    &   \textbf{9.06}    &   \textbf{23.40}   \\
+    $\quad$ k = 150  &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+    $\quad$ k = 500 &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+    $\quad$ k = 50 + Softmax    &  40.72    &   \textbf{9.06}    &    \textbf{23.40}   \\
+    $\quad$ k = 150 + Softmax  &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+    $\quad$ k = 500 + Softmax   &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
     %$\quad$ PRUNING??   &  40.75   &    9.03  &  23.40  \\
-    $\quad$ YAKE - delete&  \textbf{40.81}   &     \textbf{8.91}  &   \underline{23.49}    \\ \bottomrule
+    $\quad$ YAKE &  40.72   &     9.00  &  \textbf{23.40}   \\ \bottomrule
     \end{tabular}
     \caption{Ergebnisse für die unterschiedlichen Attributionsmodelle mit \textsc{BiMeanVAE} auf dem Amazon Dev-Datensatz}
     \label{bow_opti}
@@ -87,6 +87,7 @@ Es zeigt sich, dass bei dem Bag of Words Attributmodell eine Wortanzahl von 150 
 Eine höhere Wörteranzahl ergibt keine weitere Leistungssteigerung. Dies lässt sich darauf zurückführen, dass gar nicht mehr Wörter ausgewählt werden können und diese bereits den gesamten Text umfassen würden.
 
 Des Weiteren fällt auf, dass entgegen der Erwartung eine leichte Gewichtung mittels Softmax Funktion nach der Anzahl der Vorkommnisse entsprechender Wörter keine Leistungssteigerung bietet.
+Keyword Extraction über das YAKE-Verfahren zeigt ebenfalls keine Leistungssteigerung. 
 
 Demnach wird im folgenden für die weitere Evaluierung auf dem Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
 
@@ -104,7 +105,7 @@ In Abschnitt \ref*{eval_pplm} wird die vorgeschlagene Optimierung der Latentvekt
 
 
 \subsection{Verbessern der Textgeneration von \textsc{BiMeanVAE}}
-\textsc{BiMeanVAE} ist ein Variational Autoencoder ,bestehend aus einem bidirektionalem LSTM Encoder, gepaart mit einem LSTM Decoder.
+\textsc{BiMeanVAE} ist ein Variational Autoencoder, bestehend aus einem bidirektionalem LSTM Encoder, gepaart mit einem LSTM Decoder.
 Der LSTM Decoder erhält als Eingabe den Latentvektor $z$. Der Hiddenstate $h_t$ und Cellstate $c_t$ wird aus dem Embedding des Latentvektor $z$ initialisiert und anschließend autoregressiv über die LSTM Architektur aktualisiert.
 Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei unterschiedliche Ansätze:
 \begin{enumerate}
@@ -148,11 +149,10 @@ Somit beschreibt folgende Gleichung den Optimierungsschritt $\Delta c_t$ bei \te
 
 
 \subsection{Latentvektoroptimisierung mit Beam Search}
-MEHR
-
-Beam Search ist ein Suchalgorithmus zur Auswahl des Ausgabesatzes mit der höchsten Wahrscheinlichkeit. 
-Im Gegensatz zur normalen Greedy Search wird beim Beam Search Algorithmus die Gruppe mit den N bestmöglichen Tokens für eine Position ausgewählt. 
-Über die Maximierung der bedingten Wahrscheinlichkeit wird final entschieden, welche der zuvor ausgewählten Tokens 
+Beam Search ist ein Suchalgorithmus zum Auffinden eines Ausgabesatzes mit der höchsten Wahrscheinlichkeit. 
+Im Gegensatz zur normalen Greedy Suche bei der nachfolgend das bestmögliche Token ausgewählt wird, wird beim Beam Search Algorithmus eine Gruppe von N bestmöglichen Tokens für eine Position ausgewählt. 
+Somit wird ein Suchbaum erstellt, der eine maximale Breite von N hat und die Äste mit den N höchsten Wahrscheinlichkeiten weiterführt. 
+Demnach ist Beam Search nicht optimal, da die bestmögliche Lösung möglicherweise nicht fortgeführt wird. Trotzdem lassen sich mit Beam Search erfolgreich gute Ausgabesätze finden, die einer hohen Warhscheinlichkeit entsprechen.
 
 \subsection{Moverscore Ranking}
 \label{moverscore_ranking}
@@ -174,54 +174,109 @@ Somit ergibt sich eine neue Rankingfunktion \ref{ranking} zwischen den generiert
     \text{SCORE}(\hat{x_i}) &= Input\text{-}Output\text{-}Overlap(\hat{x_i}, R) + v \cdot Moverscore(\hat{x_i}, R)
 \end{split}
 \end{align}
-Die Variablen $x,y,z,v$ geben die Gewichtung der einzelnen Metriken an. Folgende Gewichtungen erzielen auf den Dev-Datensätzen gute Ergebnisse:
-
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{@{}lllll@{}}
-    \toprule
-              & ROUGE-1 (x)  & ROUGE-2 (y)  & ROUGE-L (z) & Moverscore (v) \\ \midrule
-    Optimus   &   &   &   &   \\
-    BiMeanVAE &   &   &   &   \\ \bottomrule
-    \end{tabular}
-    \caption{Gewichtung der einzelnen Metriken zur Bestimmung des Input-Output-Overlap gesamt Scores}
-\end{table}
+Die Variablen $x,y,z,v$ geben die Gewichtung der einzelnen Metriken an. 
+Die Hyperparameter für die Gewichtung werden im folgenden Abschnitt auf dem Dev-Datensatz ermittelt.
 
 Mit dieser neuen Rankingfunktion wird bei den einzelnen generierten Rezensionen nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 
 Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Grammen aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.
 
-
-\subsection{Test}
+\pagebreak
+\subsection{Hyperparameter Optimierung mittels Dev-Datensatz}
 \label{eval_pplm}
+Die Hyperparameter $x,y,z,v$ der Rankingfunktion \ref{ranking} legen bei der Auswahl der generierten Rezensionen fest, wie stark der ROUGE-1, ROUGE-2, ROUGE-L oder Moverscore berücksichtigt werden soll.
+Ein weiterer wichtiger Hyperparameter ist die Schrittweite $\alpha$ des Attributmodells. Die Schrittweite bestimmt den Grad der Korrektur des Gradienten pro Iteration des Attributmodells. 
+Da die Datensätze jeweils unterschiedliche Eigenschaften haben, wie in Abschnitt \ref{dataset} erläutert, bietet es sich an für die jeweiligen Datensätze eigene Hyperparameter zu finden.
+
+Mit diesen adaptierten Rankingfunktionen ergeben sich bei der Auswertung auf dem Dev-Datensatz folgende in Tabelle \ref{dev_eval_results} dargestellte Ergebnisse.
+Die Gewichtungen wurden unter Verwendung eines Greedy-Search-Algorithmus bestimmt.
+Für jede Schrittweite wurden jeweils die besten bestimmten Gewichtungen ausgewählt.
 
 
 \begin{table}[!h]
-    \label{eval_results}
+    \label{dev_eval_results}
     \centering
     \begin{tabular}{@{}lcccccccc@{}}
     \toprule
-                               & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
+    DEV-Dataset                    & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
-    \textit{COOP + Attribute Model - DEV Scores}        &         &         &        &        &        &   & &     \\
-    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
-    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
     
-    \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
-    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
-    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.05$}             &        &   & &     \\
+    $\quad$ Optimus          &   & & & &     &      &   &      \\ 
+    $\quad$ \textsc{BiMeanVae}   &  37.93 & 7.19& 21.85&56.77 &     &      &   &    \\ 
     
+    \textit{COOP + Attribute Model}        &         \multicolumn{3}{l}{Stepsize $\alpha= 0.1$}            &        &   & &     \\
+    $\quad$ Optimus            &   & & & &     &      &   &   \\ 
+    $\quad$ \textsc{BiMeanVae} &  \textbf{38.16} & 7.30 & \underline{22.00} & 56.78&     &      &   &     \\ 
+
+    \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.3$}                &        &        &   & &     \\
+    $\quad$ Optimus            &   & & & &     &      &   &   \\ 
+    $\quad$ \textsc{BiMeanVae} & 37.98  & \textbf{7.56} & 21.95& \underline{56.92} &     &      &   &     \\ 
+
+    \textit{COOP + Attribute Model}        &    \multicolumn{3}{l}{Stepsize $\alpha= 0.5$}            &        &   & &     \\
+       $\quad$ Optimus            &   & & & &     &      &   &   \\ 
+    $\quad$ \textsc{BiMeanVae} &   \underline{37.99}&\underline{7.44} &\textbf{22.24} & \textbf{57.00}&     &      &   &     \\ \midrule
+
 
     \textit{COOP}              &         &         &        &        &        & &   &    \\
-    $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 23.33\\ 
-    $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 22.87 & 35.37  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+    % $\quad$ Optimus  $^{\star}$           & 35.98 & 7.17    & 20.16 & - & 35.51  & 7.84   & 19.27 & -\\ 
+    % $\quad$ \textsc{BiMeanVae} $^{\star}$  & 36.30 &  6.81 &  21.11 & - & 36.16  & 7.25  & 20.09 & -\\ 
+    $\quad$ Optimus        & - & -  & - & - & -  & -  & - & -\\ 
+    $\quad$ \textsc{BiMeanVae} &  35.67 &6.53 & 21.07 & 22.12 & 36.16	&7.25&20.09 & 23.78\\ 
     
-    \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
-    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
-    $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \bottomrule
+    	\bottomrule
+    
     \end{tabular}
-    \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+    \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse je Modellgruppe sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+    $^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
     }
 \end{table}
 
+Die in Tabelle \ref{dev_eval_results} dargestellten Ergebnisse zeigen die Performance des kombinierten COOP + Attribut Modell im Vergleich zum normalen COOP Modell auf den Dev-Datensätzen.
+Die Ergebnisse zeigen eine Leistungssteigerung durch Verwendung des Attribut-Modells. Eine genaue Auswertung und Evaluierung findet in Abschnitt \ref{eval_results} auf dem Test-Datensatz statt.
+
+Folgende in Tabelle \ref{weight_mv} dargestellte Hyperparameter erzielen auf den Dev-Datensätzen die besten Ergebnisse und werden so in der späteren Evaluierung auf dem Test-Datensatz verwendet.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}lcccccccccc@{}}
+    \toprule
+    & \multicolumn{5}{c}{Amazon} & \multicolumn{5}{c}{Yelp} \\ 
+             &$\alpha$ & R1 (x)  & R2 (y)  & RL (z) & MV(v)&$\alpha$ &  R1 (x)  & R2 (y)  & RL (z) & MV(v) \\ \midrule
+    Optimus   &-&   &   &   &  &  - &   &&   &  \\
+    BiMeanVAE &-& 3.5   & 0.0  &  1.0 & 0.5 & -&  &   &   &    \\ \bottomrule
+    \end{tabular}
+    \caption{Gewichtung der einzelnen Metriken zur Bestimmung des Input-Output-Overlap gesamt Scores}
+    \label{weight_mv}
+\end{table}
+
 \pagebreak
+
+
+% \begin{table}[!h]
+%     \label{dev_eval_results}
+%     \centering
+%     \begin{tabular}{@{}lcccccccc@{}}
+%     \toprule
+%     DEV-Dataset                    & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
+%     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
+%     \textit{COOP + Attribute Model - DEV Scores}        &         &         &        &        &        &   & &     \\
+%     $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
+%     $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    
+%     \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
+%     $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
+%     $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    
+
+%     \textit{COOP}              &         &         &        &        &        & &   &    \\
+%     $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 23.33\\ 
+%     $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 22.87 & 35.37  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+    
+%     \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
+%     $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
+%     $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \bottomrule
+%     \end{tabular}
+%     \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+%     $^{\star}$ denotiert, dass die Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+%     }
+% \end{table}

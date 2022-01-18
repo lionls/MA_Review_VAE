@@ -88,11 +88,11 @@ Insgesamt ist der Moverscore für die Bewertungsgenerierung ein wichtiger Leistu
 Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise ausgedrückt werden können, bietet sich der Moverscore hier gut als Metrik an um diese Übereinstimmungen zu finden.
 
 
-\subsection{Bewertung der Datensätze}
+% \subsection{Bewertung der Datensätze}
 
-\subsubsection{Amazon-Datensatz}
+% \subsubsection{Amazon-Datensatz}
 
-\subsubsection{Yelp-Datensatz}
+% \subsubsection{Yelp-Datensatz}
 
 \subsection{Ergebnisse}
 In Tabelle \ref{eval_results} ist die Performance der unterschiedlichen untersuchten und erstellten Modelle dargestellt.
@@ -109,11 +109,11 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     \centering
     \begin{tabular}{@{}lcccccccc@{}}
     \toprule
-                               & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
+             Test-Dataset                  & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
-    \textit{COOP + Attribute Model - DEV Scores}        &         &         &        &        &        &   & &     \\
-    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
-    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    % \textit{COOP + Attribute Model - DEV Scores}        &         &         &        &        &        &   & &     \\
+    % $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
+    % $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
     
     \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
     $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
@@ -124,9 +124,9 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 23.33\\ 
     $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 22.87 & 35.37  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
     
-    \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
-    $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
-    $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+    % \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
+    % $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
+    % $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
     
 
     \textit{SimpleAvg}         &         &         &        &      &  &        &        \\
@@ -138,7 +138,7 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & -& 25.01  & 3.62   & 14.67 & -\\ \bottomrule
     \end{tabular}
     \caption{ROUGE und Moverscore Ergebnisse auf den Test-Benchmarkdatensätzen der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+    $^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
     %$^{\dagger}$ Evaluierte Performance unterscheidet sich vom \citep{coop} Paper. Performance wurde nach SourceCode des Papers bestimmt.
     }
 \end{table}
@@ -154,16 +154,98 @@ Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als 
 Eine große Leistungssteigerung ergibt sich durch die COOP Methode, um eine optimale Kombination der einzelnen Latentvektoren zu finden.
 Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
 Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
-Insbesondere der ROUGE-1 Score übertrifft die \textit{SimpleAVG} Scores bei Optimus und \textsc{BiMeanVAE} signifikant im Durchschnitt um PROZENT\%.
+Insbesondere der ROUGE-1 Score übertrifft die \textit{SimpleAVG} Scores bei Optimus und \textsc{BiMeanVAE} signifikant im Durchschnitt um 1.93\%.  %PROZENT COOP-SIMPLEAVG
 Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
 Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramtern und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
 Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.
 
 %Vergleich Optimus vs BiMeanVAE an Texten
+Eine weitere Leistungssteigerung der verwendeten Variational Autoencoder Optimus und \textsc{BiMeanVAE} lässt sich durch die in dieser Arbeit verwendeten Attributmodelle feststellen.
+Die aus dem Latentvektoren decodierten Textsequenzen lassen sich so noch stärker in die gewünschte Richtung bei der Generation adaptieren. 
+Das verwendete Attributmodell ist ein Bag of Words Modell, welches aus den 150 am häufigsten vorkommenden Tokens besteht. 
+Somit wird der Fokus bei der Generation auf die häufig vorkommenden Tokens gelegt und die generierten Textsequenzen haben eine höhere Überlappung.
+Beispielsweise fällt auf, dass beim Generieren teilweise mehrere vorgeschlagene Tokens ein hohes Ranking erhalten, wobei am Ende durch das Attributionsmodell das am besten passende mit einer höheren Wahrscheinlichkeit ausgewählt wird.
 
-Um die 
+Die Performance des kombinierten COOP + Attributmodells zeigt in den ROUGE-1 Scores
+
+\subsection{Textgenerationsbeispiele}
+
+
+\scriptsize
+%Define a reference depth. 
+%You can choose either relative or absolute.
+%--------------------------
+\newlength{\DepthReference}
+\settodepth{\DepthReference}{g}%relative to a depth of a letter.
+%\setlength{\DepthReference}{6pt}%absolute value.
+
+%Define a reference Height. 
+%You can choose either relative or absolute.
+%--------------------------
+\newlength{\HeightReference}
+\settoheight{\HeightReference}{T}
+%\setlength{\HeightReference}{6pt}
+
+
+%--------------------------
+\newlength{\Width}%
+
+\newcommand{\ccolorbox}[2][red]%
+{%
+    \settowidth{\Width}{#2}%
+    \setlength{\fboxsep}{1pt}%
+    \colorbox{#1}%
+    {%      
+        \raisebox{-\DepthReference}%
+        {%
+                \parbox[b][\HeightReference+\DepthReference][c]{\Width}{\centering#2}%
+        }%
+    }%
+}
 
 
 
+\definecolor{HighlightColor}{HTML}{E74C3C}
+\definecolor{BackgroundColor}{HTML}{FCF3CF}
+\normalsize
+
+
+Folgend werden einige generierte Textrezensionen des COOP Modells und des COOP + Attributionsmodell Modells direkt miteinander verglichen.
+Zur besseren Darstellung sind bei den generierten Rezensionen die mit der Gold-Zusammenfassung übereinstimmenden Unigrams \textcolor{HighlightColor}{rot} markiert, Bigrams sind \ccolorbox[BackgroundColor]{farblich hinterlegt} und die längste übereinstimmende Textsequenz \underline{unterstrichen}.
+Der Moverscore lässt sich nicht visuell darstellen.
+
+
+% \setlength{\DepthReference}{6pt}
+% \setlength{\HeightReference}{6pt}
+
+\setlength{\fboxsep}{1em}
+
+\begin{figure}[!h]
+
+    \centering
+    \scriptsize
+    \framebox{
+
+        \parbox{\columnwidth-4\fboxsep}{\textbf{Produkt:} NuGo Protein Bar, Vanilla Yogurt \\ \\
+        \textbf{COOP+Attribute-Model:} \textcolor{HighlightColor}{easily} \ccolorbox[BackgroundColor]{orange \textcolor{HighlightColor}{easily} background} Apart from the obvious nutritional value, the taste was surprisingly better than I anticipated. Normally, if I find soy-based nutritional bars tend to have a chalky or tree-bark-like texture and taste. I dare say, the texture reminds me of a healthy-not-too-sweet 'Rice Krispy Treat'.\\ 
+        \textbf{Scores:} R-1: ,R-2: ,R-L: ,MV: \\ \\
+        \textbf{COOP:} Apart from the obvious nutritional value, the taste was surprisingly better than I anticipated. Normally, if I find soy-based nutritional bars tend to have a chalky or tree-bark-like texture and taste. I dare say, the texture reminds me of a healthy-not-too-sweet 'Rice Krispy Treat'.\\
+        \textbf{Scores:} R-1: ,R-2: ,R-L: ,MV: }
+    }
+    \caption{Vergleich der Generierten Rezensionen zu einem Produkt des Amazon Datensatzes}
+\end{figure}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{figure}[!h]
+    \centering
+    \scriptsize
+    \framebox{
+
+        \parbox{\columnwidth-4\fboxsep}{\textbf{Restaurant Id:} 87YsVbCN\_kfzheY79Fzjkg \\ \textbf{Review:} Great experience! Went cake tasting for our wedding and Jessica was a huge help!! She brought out the tastings for us after giving us time to look through their amazing book. She explained every cake and filling and had great recommendations for mixing the fillings. The champagne cake with cream cheese filling was amazing!! Chose our cake and design within an hour. Great service and knowledge. Thank you Jessica!}
+
+    }
+    \caption{Vergleich der Generierten Rezensionen zu einem Restaurant des Yelp Datensatzes}
+\end{figure}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 \pagebreak

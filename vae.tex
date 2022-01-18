@@ -5,7 +5,7 @@ Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu ve
 Normale Autoencoder bestehen aus einem Encoder und einem Decoder, wobei der Encoder versucht, eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel, eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
 Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist, da im Latentraum viele leere Stellen existieren. 
 Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentspaces legt. 
-Somit führt keine Regularisierung der einzelnen Datenpunkte oft zu Overfitting.
+Somit führt die fehlende Regularisierung der einzelnen Datenpunkte oft zu Overfitting.
 
 Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz, um Datenpunkte $x$ im Latentspace $Z$ zu repräsentieren. 
 Der Encoder des Variational Autoencoder encodiert die Eingabe in eine multivariate Verteilung von der die Latentvektoren gesamplet werden. 
@@ -19,12 +19,14 @@ Die Latentvektoren werden anschließend vom Decoder decodiert und der Rekonstruk
     \caption{VAE Modellarchitektur \citep{jordan_2018}}
     \label{vae_model}
 \end{figure}
+
 Die Beziehungen zwischen den Eingabedaten $x$ und den Latentvektoren $z$ sind wie folgt definiert, wobei $\phi$ die Parameter des Encoders und $\theta$ die Parameter des Decoders sind:
 \begin{itemize}
 \item Prior $p_\theta (z)$
 \item Likelihood $p_\theta (x|z)$
 \item Posterior $p_\theta (z|x)  \approx q_\phi (z|x)$
 \end{itemize}
+%ANDERS AUFSCHREIBEN
 
 Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann, approximieren wir diese mit $q_\phi (z|x)$ unter Verwendung der Variationsinferenzmethode zur Minimierung der Kullback-Leibler-Divergenz, wie in Abschnitt \ref{elbo} beschrieben.
 

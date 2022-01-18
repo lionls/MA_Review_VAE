@@ -69,4 +69,9 @@ Die erzeugten Bewertungen sind repräsentativ für eine Gruppe von Bewertungen u
 Trotzdem stellt sich die Frage, ob und inwiefern sich diese Ergebnisse noch weiter optimieren lassen.
 Im weiteren Verlauf wurde ein Verfahren entwickelt, welches entsprechende Latentvektoren weiterhin adaptiert, um ein noch höheres \textit{Input-Output-Overlapping} zu erhalten und somit präzisere Informationen in den Durchschnittsbewertungen zu generieren.
 
+Die beiden Modelle Optimus und \textsc{BiMeanVAE} sind bereits von den Autoren \citep{coop} vortrainiert und werden im weiteren Verlauf verwendet. 
+Als Optimierer wurde Adam verwendet mit einer Learningrate von $10^{-5}$ für Optimus und $10^{-3}$ für \textsc{BiMeanVAE}.
+Die Cyclical Annealing Learning Strategie wurde wie in Kapitel \ref{cyc_anneal} beschrieben angewandt.
+
+
 \pagebreak

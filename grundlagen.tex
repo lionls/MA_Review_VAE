@@ -79,8 +79,8 @@ Der Decoder ist ebenfalls ein RNN, welcher aus dem HiddenState Vektor des Encode
 Um die Performance von Sequence-To-Sequence Modellen weiter zu optimieren werden in Kapitel \ref{attention} Attention Modelle eingeführt.
 
 
-\subsection{LSTM}
-Long Short Term Memory (LSTM) Netze sind eine Untergruppe der Rekurrenten neuronalen Netze (RNN), die es ermöglichen Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
+\subsection{\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory}
+\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory (LSTM) Netze sind eine Untergruppe der Rekurrenten neuronalen Netze (RNN), die es ermöglichen Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
 Rekurrente neuronale Netze zeichnen sich durch ihre rekurrenten Verbindungen innerhalb desselben Layers aus, wodurch die nächste RNN-Zelle die vorherigen Informationen weiterverarbeiten kann.
 Ein häufiges Problem ist das Modellieren von Langzeitbeziehungen mittels RNNs. 
 LSTMs sind speziell darauf ausgelegt diese Langzeitbeziehungen abzubilden, indem sie stets einen Zellzustand $c_t$ mit übergeben.
@@ -90,7 +90,15 @@ Erstens dem Forget Gate, welches der Zelle ermöglicht alte Werte zu vergessen.
 Zweitens dem Input Gate, welches steuert zu welchem Ausmaß neue Eingabewerte in dem HiddenState gespeichert werden.
 Drittens dem Output Gate, welches steuert welcher Teil des HiddenStates in die folgende Zelle propagiert wird.
 
-Durch die Anpassung des HiddenStates in den einzelnen Zellen können relevante Informationen anhand des HiddenStates durch die Zellen geleitet werden, wodurch lange Beziehungen in den Textsequenzen modelliert werden können.
+Durch die Anpassung des HiddenStates in den einzelnen Zellen können relevante Informationen anhand des HiddenStates durch die Zellen geleitet werden, wodurch lange Beziehungen in den Textsequenzen modelliert werden können \citep{lstmexplained}.
+Das Propagieren durch eine Reihe von LSTM-Zellen, sowie der Einfluss der einzelnen Gates ist in Abbildung \ref{lstm_chain} dargestellt.
 
+
+\begin{figure}[h]
+    \label{lstm_chain}
+    \centering
+    \includegraphics[width=8cm]{bilder/LSTM3-chain}
+    \caption{Reihe von LSTM-Zellen mit entsprechenden Gates \citep{lstmexplained}}
+\end{figure}
 
 \pagebreak

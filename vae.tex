@@ -10,21 +10,6 @@ Da Autoencoder nur einen diskreten Latentraum erzeugen existieren im Latentraum 
 Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentraums legt. 
 %Somit führt die fehlende Regularisierung der einzelnen Datenpunkte oft zu Overfitting.
 
-Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz, um Datenpunkte $x_i$ eines Datensatzes $X$, der durch die unbekannte Wahrscheinlichkeitsfunktion $P(X)$ beschrieben wird, im Latentraum $Z$ zu repräsentieren. 
-Für den Datensatz $X$ mit Datenpunkten $x_i$ wird angenommen, dass ein generatives Modell mit den Parametern $\theta$ existiert, welches mittels Latentvektor $z_i$ diesen Datenpunkt $x_i$ generieren kann.
-Dieser generative Teil des Variational Autoencoders ist der Decoder des  Netzes, welcher approximativ versucht die Daten als Verteilung $p_\theta (X)$ zu modellieren.
-\begin{equation}
-    \label{px}
-p_\theta (x) = \int_{z} p_\theta (x | z) p_\theta (z) dz
-\end{equation}
-Die Verteilung $p_\theta(x)$ aus Gleichung \ref{px} geht von einer A-priori-Wahrscheinlichkeit für $p_\theta (z)$ aus.
-
-
-Der Encoder des Variational Autoencoder encodiert die Eingaben in jeweils eine multivariate Verteilung von der anschließend Latentvektoren $z_i$ gezogen werden. 
-Die Latentvektoren werden anschließend vom Decoder decodiert und der Rekonstruktionsfehler zurückgegeben.
-%Normalerweise werden für die Encodierteverteilung 
-%Normalverteilung Regalusierung erklären https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73
-
 
 \begin{figure}[h]
     \centering
@@ -33,17 +18,48 @@ Die Latentvektoren werden anschließend vom Decoder decodiert und der Rekonstruk
     \label{vae_model}
 \end{figure}
 
-Die Beziehungen zwischen den Eingabedaten $x$ und den Latentvektoren $z$ sind wie folgt definiert, wobei $\phi$ die Parameter des Encoders und $\theta$ die Parameter des Decoders sind:
-\begin{itemize}
-\item Prior $p_\theta (z)$
-\item Likelihood $p_\theta (x|z)$
-\item Posterior $p_\theta (z|x)  \approx q_\phi (z|x)$
-\end{itemize}
-%ANDERS AUFSCHREIBEN
 
-Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann, approximieren wir diese mit $q_\phi (z|x)$ unter Verwendung der Variationsinferenzmethode zur Minimierung der Kullback-Leibler-Divergenz, wie in Abschnitt \ref{elbo} beschrieben.
+Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz, um Datenpunkte $x_i$ eines Datensatzes $X$, der durch die unbekannte Wahrscheinlichkeitsfunktion $P(X)$ beschrieben wird, im Latentraum $Z$ zu repräsentieren. 
+Für den Datensatz $X$ mit Datenpunkten $x_i$ wird angenommen, dass ein generatives Modell mit den Parametern $\theta$ existiert, welches mittels Latentvektor $z_i$ diesen Datenpunkt $x_i$ generieren kann.
+Dieser generative Teil des Variational Autoencoders ist der Decoder des  Netzes, welcher approximativ versucht die Daten als Verteilung $p_\theta (X)$ zu modellieren.
+\begin{equation}
+    \label{px}
+p_\theta (x) = \int_{z} p_\theta (x | z) p_\theta (z) dz
+\end{equation}
+In Gleichung \ref{px} wird für $p_\theta (z)$ die A-priori-Wahrscheinlichkeit angenommen und für $p_\theta (x | z)$ die Likelihood. Der Decoder zieht demnach eine Latentvariable $z$ aus der A-priori-Menge $p_\theta (z)$ und berechnet mit der Likelihood $p_\theta (x | z)$ Datenpunkte $x$.
 
-Um mittels Variational Autoencoder neue Datenobjekte zu samplen wird zunächst mit der Prior-Verteilung $p_\theta (z)$ ein neuer Latentvektor $\hat{z}$ gezogen. Anschließend lässt sich ein neues Datenobjekt $\hat{x}$ mit der Verteilung $p_\theta (x|z=\hat{z})$ generieren.
+Die inferierten Latentvariablen für die bekannten Datenpunkte $X$ lassen sich über die A-posteriori-Wahrscheinlichkeit $p_\theta (z|x)$ aus Gleichung \ref{posteriori} herleiten. 
+
+\begin{equation}
+    \label{posteriori}
+    p_\theta (z|x) = \frac{p_\theta (x | z) p_\theta (z)}{p_\theta(x)}
+\end{equation}
+
+%Die Berechnung von $p_\theta(x)$ ist meistens nicht möglich. Demnach lässt sich auch $p_\theta (z|x)$ nicht trivial berechnen. 
+Der Encoder des Variational Autoencoder approximiert die A-posteriori-Wahrscheinlichkeit durch ein Inferenzmodell $q_\phi (z|x)$, da sich $p_\theta (z|x)$ nicht trivial berechnen lässt.
+Die Parameter $\phi$ des Encoders werden optimiert um mit $q_\phi (z|x) \approx p_\theta (z|x)$ die wahre A-posteriori-Verteilung zu approximieren, indem die Kullback-Leibler-Divigenz zwischen den beiden Wahrscheinlichkeiten minimiert wird, wie in Abschnitt \ref{elbo} beschrieben wird.
+
+
+
+% Der Encoder des Variational Autoencoder encodiert die Eingaben in jeweils eine multivariate Verteilung von der anschließend Latentvektoren $z_i$ gezogen werden. 
+% Die Latentvektoren werden anschließend vom Decoder decodiert und der Rekonstruktionsfehler zurückgegeben.
+% %Normalerweise werden für die Encodierteverteilung 
+% %Normalverteilung Regalusierung erklären https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73
+
+
+
+
+% Die Beziehungen zwischen den Eingabedaten $x$ und den Latentvektoren $z$ sind wie folgt definiert, wobei $\phi$ die Parameter des Encoders und $\theta$ die Parameter des Decoders sind:
+% \begin{itemize}
+% \item Prior $p_\theta (z)$
+% \item Likelihood $p_\theta (x|z)$
+% \item Posterior $p_\theta (z|x)  \approx q_\phi (z|x)$
+% \end{itemize}
+% %ANDERS AUFSCHREIBEN
+
+% Da die Posterior Verteilung $p_\theta (z|x)$ nicht bestimmt werden kann, approximieren wir diese mit $q_\phi (z|x)$ unter Verwendung der Variationsinferenzmethode zur Minimierung der Kullback-Leibler-Divergenz, wie in Abschnitt \ref{elbo} beschrieben.
+
+% Um mittels Variational Autoencoder neue Datenobjekte zu samplen wird zunächst mit der Prior-Verteilung $p_\theta (z)$ ein neuer Latentvektor $\hat{z}$ gezogen. Anschließend lässt sich ein neues Datenobjekt $\hat{x}$ mit der Verteilung $p_\theta (x|z=\hat{z})$ generieren.
 \subsection{Evidence Lower Bound}
 %https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html#contractive-autoencoder
 %https://openreview.net/forum?id=Sy2fzU9gl
@@ -59,21 +75,44 @@ Um mittels Variational Autoencoder neue Datenobjekte zu samplen wird zunächst m
 %https://xyang35.github.io/2017/04/14/variational-lower-bound/
 
 \label{elbo}
-Bei Variational Autoencodern ist das Optimierungsziel die Minimierung des Rekonstruktionsfehlers zwischen Eingabe- und Ausgabedaten und die Approximation von $p_\theta (z|x)$ durch Minimierung der Kullback-Leibler-Divergenz $D_{KL}(q_\phi (z|x) \parallel p_\theta (z|x) )$.
-\begin{align*}
-    \small
-    D_{KL}(q_\Phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) &= \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z\mid x})} \, d\mathbf{z}\\
-    &= \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})p_\theta(\mathbf{x})}{p_\theta(\mathbf{z,x})} \,d\mathbf{z}\\
-    &= \int q_\Phi(\mathbf{z\mid x}) \left( \log (p_\theta(\mathbf{x})) + \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z,x})}\right) d\mathbf{z}\\
-    &= \log (p_\theta(\mathbf{x})) + \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z,x})} \,d\mathbf{z}\\
-    &= \log (p_\theta(\mathbf{x})) + \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{x\mid z})p_\theta(\mathbf{z})} \,d\mathbf{z}\\
-    &= \log (p_\theta(\mathbf{x})) + E_{\mathbf{z} \sim q_\Phi(\mathbf{z\mid x})}(\log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z})} - \log(p_\theta(\mathbf{x\mid z})))\\
-    &= \log (p_\theta(\mathbf{x})) + D_{KL}(q_\Phi(\mathbf{z\mid x}) \parallel p_\theta(\mathbf{z})) - E_{\mathbf{z} \sim q_\Phi(\mathbf{z\mid x})}(\log(p_\theta(\mathbf{x\mid z})))
-    \end{align*}
-der \textbf{E}vidence \textbf{L}ower \textbf{B}ound (ELBO).
+Die Lossfunktion von Variational Autoencodern ist die \textbf{E}vidence \textbf{L}ower \textbf{Bo}und (ELBO).
+Bei Variational Autoencodern ist das Optimierungsziel die gleichzeitige Minimierung des Rekonstruktionsfehlers des generativen Modells $\theta$ zwischen Eingabe- und Ausgabedaten sowie die Approximation von $p_\theta (z|x)$ mit $q_\phi (z|x)$ durch Minimierung der Kullback-Leibler-Divergenz $D_{KL}(q_\phi (z|x) \parallel p_\theta (z|x))$.
+Für eine beliebige Wahl der Decoder Parameter $\phi$ gilt:
+\begin{align}
+    log(p_\theta(\mathbf{x})) &= \mathbb{E}_{ q_\phi(\mathbf{z\mid x}) } [log( p_\theta(\mathbf{x}) )] \\
+    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ p_\theta(\mathbf{z \mid x}) } \Bigr] \Bigr] \\
+    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ q_\phi( \mathbf{z\mid x} ) } \tfrac{ q_\phi( \mathbf{z\mid x} ) }{ p_\theta(\mathbf{z \mid x}) }\Bigr] \Bigr] \\
+    &= \underbrace{\mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ q_\phi( \mathbf{z\mid x} ) } \Bigr] \Bigr]}_{=\mathcal{L}_{\theta,\phi}(\mathbf{x}) \text{ (ELBO)}} + \underbrace{\mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ q_\phi( \mathbf{z\mid x} ) }{ p_\theta(\mathbf{z \mid x}) }\Bigr] \Bigr]}_{=D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x}))} \label{elbo4}
+\end{align}
+In Zeile \ref{elbo4} ist der erste Term die Evidence Lower Bound und der zweite Teil die Kullback-Leibler Divergenz.
+Die Kullback-Leibler Divergenz zwischen $q_\Phi(\mathbf{z\mid x})$ und $p_\theta(\mathbf{z\mid x})$ ist nicht negativ und genau null, wenn $q_\Phi(\mathbf{z\mid x})$ der wahren A-posteriori-Verteilung entspricht.
+
+\begin{equation}
+    \label{dkl}
+    D_{KL}(q_\Phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) \geq 0
+\end{equation}
+
+Aus Gleichung \ref{elbo4} wird die Evidence Lower Bound Loss Funktion aufgestellt:
+\begin{equation}
+    \label{realelbo}
+    \mathcal{L}_{\theta,\phi}(\mathbf{x}) = log(p_\theta(\mathbf{x})) - D_{KL}(q_\Phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) \leq log(p_\theta(\mathbf{x})) 
+\end{equation}
+Aufgrund der nicht Negativität der Kullback-Leibler Divergenz in Gleichung \ref{dkl} ist die Evidence Lower Bound eine untere Schranke der Log-Likelihood der Datenmenge.
+Bei Maximierung der Evidence Lower Bound Funktion in Gleichung \ref{realelbo} wird die Evidenz $log(p_\theta(\mathbf{x}))$ maximiert, wodurch das generative Modell verbessert wird. Ebenfalls wird die Kullback-Leibler Divergenz minimiert, wodurch der Encoder die A-posteriori-Verteilung besser approximieren kann.
+% \begin{align*}
+%     \small
+%     D_{KL}(q_\Phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) &= \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z\mid x})} \, d\mathbf{z}\\
+%     &= \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})p_\theta(\mathbf{x})}{p_\theta(\mathbf{z,x})} \,d\mathbf{z}\\
+%     &= \int q_\Phi(\mathbf{z\mid x}) \left( \log (p_\theta(\mathbf{x})) + \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z,x})}\right) d\mathbf{z}\\
+%     &= \log (p_\theta(\mathbf{x})) + \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z,x})} \,d\mathbf{z}\\
+%     &= \log (p_\theta(\mathbf{x})) + \int q_\Phi(\mathbf{z\mid x}) \log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{x\mid z})p_\theta(\mathbf{z})} \,d\mathbf{z}\\
+%     &= \log (p_\theta(\mathbf{x})) + E_{\mathbf{z} \sim q_\Phi(\mathbf{z\mid x})}(\log \frac{q_\Phi(\mathbf{z\mid x})}{p_\theta(\mathbf{z})} - \log(p_\theta(\mathbf{x\mid z})))\\
+%     &= \log (p_\theta(\mathbf{x})) + D_{KL}(q_\Phi(\mathbf{z\mid x}) \parallel p_\theta(\mathbf{z})) - E_{\mathbf{z} \sim q_\Phi(\mathbf{z\mid x})}(\log(p_\theta(\mathbf{x\mid z})))
+% \end{align*}
+% der \textbf{E}vidence \textbf{L}ower \textbf{B}ound (ELBO).
 
 
-ÜBERARBEITEN
+% ÜBERARBEITEN
 \subsubsection{Reparametisierung} %kingma welling
 Zum Training des Variational Autoencoder wird mittels Backpropagation der Fehler des Netzwerkes propagiert. Da das Samplen von $z \sim q_\Phi(z|x)$ nicht deterministisch ist, kann hier keine Backpropagation durchgeführt werden.
 Um dennoch Backpropagation verwenden zu können wird mittels Reparametisierung $z$ durch eine deterministische Funktion $z=f_\Phi(x,\epsilon)$ dargestellt mit $\epsilon$ als externe unabhängig zufällige Hilfsvariable \citep{kingma2014autoencoding,jordan_2018}. 

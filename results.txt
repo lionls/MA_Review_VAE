@@ -519,7 +519,7 @@ Optimal Combination -  R1:0.5 R2:0.0 RL: 0.0 MV:1.0  - Scores
 }
 MoverScore: 0.5653869579571295
 
-
+$\quad$ \textsc{BiMeanVae}& 36.45 & 7.08 & 21.64 & 56.54 & & & &\\[0.2cm] 
 
 Preset Combination -  R1:2 R2:0 RL: 1 MV:1.5  - Scores
 {
@@ -611,6 +611,8 @@ Optimal Combination -  R1:3.5 R2:0.0 RL: 1.0 MV:0.5  - Scores
 MoverScore: 0.5642614232926645
 
 
+$\quad$ \textsc{BiMeanVae}& 36.55 & 7.32 & 21.78 & 56.43 & & & &\\[0.2cm] 
+
 
 Preset Combination -  R1:2 R2:0 RL: 1 MV:1.5  - Scores
 {
@@ -631,7 +633,6 @@ Preset Combination -  R1:2 R2:0 RL: 1 MV:1.5  - Scores
     }
 }
 MoverScore: 0.5641833838981342
-
 
 
 
@@ -702,6 +703,7 @@ Optimal Combination -  R1:3.5 R2:0.0 RL: 0.5 MV:3.5  - Scores
 }
 MoverScore: 0.5648718253453241
 
+$\quad$ \textsc{BiMeanVae}& 36.58 & 7.07 & 21.39 & 56.49 & & & &\\ [0.2cm] 
 
 
 Preset Combination -  R1:2 R2:0 RL: 1 MV:1.5  - Scores
@@ -789,7 +791,7 @@ Optimal Combination -  R1:0.5 R2:0.0 RL: 0.0 MV:1.0  - Scores
 }
 MoverScore: 0.5654764900904515
 
-
+$\quad$ \textsc{BiMeanVae} & 36.40 & 7.19 & 21.65 & 56.55 & & & &\\ [0.2cm] % DEV STEP 05
 
 Preset Combination -  R1:2 R2:0 RL: 1 MV:1.5  - Scores
 {

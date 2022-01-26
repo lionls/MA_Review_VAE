@@ -86,6 +86,7 @@ BERT wird mit den beiden Pretrainings Aufgaben Masked Language Modeling und Next
 Beim Masked Language Modeling werden die bidirektionalen Repräsentationen trainiert indem zufällig 15\% der Worttokens in einer Sequenz gegen ein \textbf{[MASK]} Token ersetzt werden. Das Trainingsziel ist, die maskierten Tokens korrekt vorherzusagen.
 Zum Verständnis der Zusammenhänge zwischen den Sätzen wird beim Next Sentence Prediction Pretrainingsschritt vorhergesagt, ob ein zu 50\% zufällig gewählter Satz B auf Satz A folgt \citep{DBLP:journals/corr/abs-1810-04805}.
 
+\pagebreak
 \subsection{\textbf{G}enerative \textbf{P}re-trained \textbf{T}ransformer-2}
 GPT-2 (\textbf{G}enerative \textbf{P}re-trained \textbf{T}ransformer-2) ist ein von OpenAI \citep{radford2019language} veröffentlichtes autoregressives Sprachmodell auf Basis von Transformerdecodern.
 Autoregressive Sprachmodelle generieren Textsequenzen, indem sie einzeln Tokens generieren und diese an die Eingabesequenz anhängen. Die neue verlängerte Textsequenz wird erneut als Eingabe zur Generation genutzt.

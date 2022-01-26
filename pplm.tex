@@ -199,24 +199,29 @@ F√ºr jede Schrittweite wurden jeweils die besten bestimmten Gewichtungen ausgew√
     \begin{tabular}{@{}lcccccccc@{}}
     \toprule
     DEV-Dataset                    & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
-    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule
+    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule 
     
     \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.05$}             &        &   & &     \\
-    $\quad$ Optimus          &  36.31 & 7.17& 20.75&56.82 &     &      &   &      \\ 
-    $\quad$ \textsc{BiMeanVae}   &  37.93 & 7.19& 21.85&56.77 &     &      &   &    \\ 
+    $\quad$ Optimus          &  \underline{36.31} & \underline{7.17}& \underline{20.75}&\textbf{56.82} &     &      &   &      \\ 
+    %$\quad$ \textsc{BiMeanVae}   &  37.93 & 7.19& 21.85&56.77 &     &      &   &    \\[0.2cm] % TEST STEP 05
+    $\quad$ \textsc{BiMeanVae} & 36.40 & \underline{7.19} & \underline{21.65} & \textbf{56.55} & & & &\\ [0.2cm] % DEV STEP 05
     
     \textit{COOP + Attribute Model}        &         \multicolumn{3}{l}{Stepsize $\alpha= 0.1$}            &        &   & &     \\
-    $\quad$ Optimus            & 36.40  & 7.78&20.99 &56.78 &     &      &   &   \\ 
-    $\quad$ \textsc{BiMeanVae} &  \textbf{38.16} & 7.30 & \underline{22.00} & 56.78&     &      &   &     \\ 
+    $\quad$ Optimus            & \textbf{36.40}  & \textbf{7.78}&\textbf{20.99} &\underline{56.78} &     &      &   &   \\ 
+    %$\quad$ \textsc{BiMeanVae} &  \textbf{38.16} & 7.30 & \underline{22.00} & 56.78&     &      &   &     \\[0.2cm]  %TEST STEP 1
+    $\quad$ \textsc{BiMeanVae}& 36.45 & 7.08 & 21.64 & \underline{56.54} & & & & \\[0.2cm]  %DEV STEP 1
+
 
     \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.3$}                &        &        &   & &     \\
     $\quad$ Optimus            & 35.03  & 6.81& 19.44 &56.22 &     &      &   &   \\ 
-    $\quad$ \textsc{BiMeanVae} & 37.98  & \textbf{7.56} & 21.95& \underline{56.92} &     &      &   &     \\ 
+    %$\quad$ \textsc{BiMeanVae} & 37.98  & \textbf{7.56} & 21.95& \underline{56.92} &     &      &   &     \\[0.2cm] %TEST STEP 3
+    $\quad$ \textsc{BiMeanVae} & \underline{36.55} & \textbf{7.32} & \textbf{21.78} & 56.43 & & & &\\[0.2cm] %DEV STEP 3
+
 
     \textit{COOP + Attribute Model}        &    \multicolumn{3}{l}{Stepsize $\alpha= 0.5$}            &        &   & &     \\
-       $\quad$ Optimus            & 35.84  &6.93 & 19.75& 56.23&     &      &   &   \\ 
-    $\quad$ \textsc{BiMeanVae} &   \underline{37.99}&\underline{7.44} &\textbf{22.24} & \textbf{57.00}&     &      &   &     \\ \midrule
-
+    $\quad$ Optimus            & 35.84  &6.93 & 19.75& 56.23&     &      &   &   \\ 
+    %$\quad$ \textsc{BiMeanVae} &   \underline{37.99}&\underline{7.44} &\textbf{22.24} & \textbf{57.00}&     &      &   &     \\ %TEST STEP 5
+    $\quad$ \textsc{BiMeanVae}& \textbf{36.58} & 7.07 & 21.39 & 56.49 & & & &\\ \midrule % DEV STEP 5
 
     \textit{COOP}              &         &         &        &        &        & &   &    \\
     % $\quad$ Optimus  $^{\star}$           & 35.98 & 7.17    & 20.16 & - & 35.51  & 7.84   & 19.27 & -\\ 

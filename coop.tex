@@ -1,17 +1,17 @@
 \section{Multi-Document Summarization}
 In den letzten Jahren erzielten unterschiedliche Verfahren große Fortschritte beim automatisierten Zusammenfassen von mehreren Dokumenten zu einem repräsentativen Dokument.
-Im Gegensatz zum normalen Zusammenfassen von einzelnen Dokumenten enthalten beim Multi-Document Zusammenfassen mehrere Dokumente über ein Thema viele redundante Informationen, die so gefiltert werden müssen, dass redundante Informationen nur einmal im Ausgabedokument dargestellt werden.
+Im Gegensatz zum normalen Zusammenfassen von einzelnen Dokumenten enthalten bei der Multi-Document Summarization mehrere Dokumente über ein Thema viele redundante Informationen, die so gefiltert werden müssen, dass redundante Informationen nur einmal im Ausgabedokument dargestellt werden.
 Ebenfalls ist das Verarbeiten von widersprüchlichen Informationen eine große Herausforderung bei der Zusammenfassung von mehreren Dokumenten.
 Das Ziel von Multi-Document Summarization ist das zusammengefasste Repräsentieren der wichtigen Aspekte aller Dokumente in einem einzelnen Dokument, um einen guten allgemeinen Überblick zu schaffen.
 
-Im weiteren Verlauf werden Multi-Document Summarization Systeme zur Zusammenfassung von Bewertungen verwendet.
+Im folgenden werden Multi-Document Summarization Systeme zur Zusammenfassung von Bewertungen verwendet.
 Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Wörtern bestehen.
 Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt representiert.
 
 
 Insbesondere im Bereich der Multi-Review Summarization existieren viele unterschiedliche Ansätze.
-Zum einen existieren extraktive Ansätze, wie zum Beispiel LexRank \citep{lexrank}, ein unüberwachter Algorithmus, der repräsentative Sätze für eine Bewertung basierend auf ihrer Zentralität in einem TF-IDF gewichteten Graphen selektiert.
-Zum anderen existieren abstraktive Ansätze wie zum Beispiel MeanSum \citep{meansum}, CopyCat \citep{copycat} oder COOP \citep{coop}, die generative Ansätze verwenden, um neuartige Sätze in den Bewertungen zu erzeugen.
+Zum einen existieren extraktive Ansätze, wie zum Beispiel LexRank \citep{lexrank}, ein unüberwachter Algorithmus, der repräsentative Sätze für eine Bewertung basierend auf ihrer Zentralität in einem TF-IDF (\textbf{T}erm \textbf{F}requency - \textbf{I}nverse \textbf{D}ocument \textbf{F}requency) \citep{tfidf} gewichteten Graphen selektiert.
+Zum anderen existieren abstraktive Ansätze, wie zum Beispiel MeanSum \citep{meansum}, CopyCat \citep{copycat} oder COOP \citep{coop}, die generative Ansätze verwenden, um neuartige Sätze in den Bewertungen zu erzeugen.
 
 Die abstraktiven Modelle basieren auf Autoencoder Architekturen. Es wird ein Encoder $E_\phi : X \rightarrow Z$ verwendet, um Textrepräsentationen in einen Latentvektor im Latentraum $Z$ umzuwandeln.
 Aus den Latentvektoren $z$ kann anschließend unter Verwendung von einem Decoder $D_\theta : Z \rightarrow \hat{X}$ eine Textrepräsentation generiert werden.
@@ -31,7 +31,7 @@ Durch den Zugriff auf die anderen Bewertungen $r_i$ kann der Decoder spezifische
 
 \subsection{Convex Aggregation for Opinion Summarization}
 \label{coop}
-Convex Aggregation for Opinion Summarization kurz COOP \citep{coop} ist eine Methode, die unterschiedliche Kombinationenen von einzelnen Latentvektoren zum Berechnen einer Durchschnittsbewertung untersucht.
+\textbf{Co}nvex Aggregation for \textbf{Op}inion Summarization kurz COOP \citep{coop} ist eine Methode, die unterschiedliche Kombinationenen von einzelnen Latentvektoren zum Berechnen einer Durchschnittsbewertung untersucht.
 Bei der Verwendung von Variational Autoencodern werden die einzelnen Eingabebewertungen durch einen Latentvektor repräsentiert. 
 Häufig wird im nächsten Schritt zur Berechnung einer Durchschnittsbewertung der normale Durchschnitt aller verwendeten Latentvektoren bestimmt und von diesem eine neue Durchschnittsbewertung generiert.
 
@@ -42,7 +42,7 @@ Häufig wird im nächsten Schritt zur Berechnung einer Durchschnittsbewertung de
     \label{coop_fig}
 \end{figure}
 
-Wie in Abbildung \ref{coop_fig} zu erkennen ist ähneln sich Bewertungen, die durch Bestimmung des Durchschnitts der Latentvektoren generiert worden sind sehr. 
+Abbildung \ref{coop_fig} zeigt, dass sich Bewertungen sehr ähneln, die durch Bestimmung des Durchschnitts der Latentvektoren generiert worden sind. 
 Auffällig ist die Korrelation zwischen der Ausdrucksstärke und dem Informationsgehalt eines Latentvektors und seiner $L_2$-Norm $\| z \|$.
 Latentvektoren, die durch den Durschnitt bestimmt werden, haben eine geringere $L_2$-Norm und somit in den erzeugten Bewertungen einen geringeren Informationsgehalt \citep{coop}.
 
@@ -69,7 +69,7 @@ Die erzeugten Bewertungen sind repräsentativ für eine Gruppe von Bewertungen u
 Trotzdem stellt sich die Frage, ob und inwiefern sich diese Ergebnisse noch weiter optimieren lassen.
 Im weiteren Verlauf wurde ein Verfahren entwickelt, welches entsprechende Latentvektoren weiterhin adaptiert, um ein noch höheres \textit{Input-Output-Overlapping} zu erhalten und somit präzisere Informationen in den Durchschnittsbewertungen zu generieren.
 
-Die beiden Modelle Optimus und \textsc{BiMeanVAE} sind bereits von den Autoren \citep{coop} vortrainiert und werden im weiteren Verlauf verwendet. 
+Die beiden Modelle Optimus und \textsc{BiMeanVAE} sind bereits von den Autoren \citep{coop} vortrainiert und werden in dieser Arbeit bereits vortrainiert verwendet. 
 Als Optimierer wurde Adam verwendet mit einer Learningrate von $10^{-5}$ für Optimus und $10^{-3}$ für \textsc{BiMeanVAE}.
 Die Cyclical Annealing Learning Strategie wurde wie in Kapitel \ref{cyc_anneal} beschrieben angewandt.
 

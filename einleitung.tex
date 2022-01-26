@@ -4,7 +4,7 @@ Natural Language Processing ist ein Unterbereich der künstlichen Intelligenz, d
 Aufgrund von neuen Methoden und immer größeren, komplexeren Netzwerken lassen sich hervorragende Ergebnisse in diversen NLP Aufgabenbereichen erzielen. 
 Insbesondere lassen sich große, kostenspielig vortrainierte Modelle mit vielen Parametern durch Transfer Learning in diversen speziellen Aufgabenbereichen einsetzen. 
 
-GPT-2 erzielte unter Verwendung von Transformern großartige Ergebnisse bei der Textgenerierung, unter anderem auch bei der abstraktiven Zusammenfassung von Texten. 
+Generative Pre-trained Transformers 2 (GPT-2) erzielte unter Verwendung von Transformern großartige Ergebnisse bei der Textgenerierung, unter anderem auch bei der abstraktiven Zusammenfassung von Texten. 
 Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen Text. 
 
 \subsection{Motivation}
@@ -12,20 +12,20 @@ Im Bereich des E-Commerce und von Online-Vergleichsportalen entstehen eine groß
 Es ist für den Anwender eine Herausforderung sich einen repräsentativen Überblick über die einzelnen Rezensionen zu verschaffen. 
 Ein gängiges Bewertungssystem ist das Berechnen des arithmetischen Mittels über die einzelnen Scores aller Bewertungen. 
 Ein zusammengefasster Bewertungsscore ist nicht ausreichend repräsentativ für viele Produkte und beleuchtet nicht spezifische Funktionen der einzelnen Produkte.
-Hier bietet es sich an, ein Produkt durch eine generierte Rezension zu repräsentieren, die die anderen Rezensionen repräsentativ zusammenfasst und auf die verschiedenen wichtigen Aspekte der Produkte eingeht.
-So kann ein Anwender sich zeitsparend einen allumfassenden Überblick über bestimmte Produkte verschaffen.
+Hier bietet es sich an, ein Produkt durch eine generierte Rezension zu repräsentieren, die die anderen Rezensionen inkludiert und auf die verschiedenen wichtigen Aspekte der Produkte eingeht.
+So kann ein Anwender sich zeitsparend einen ersten groben Überblick über bestimmte Produkte verschaffen.
 
 \subsection{Ziel und Aufbau der Arbeit}
 Ziel dieser Masterarbeit ist das unbeaufsichtigte abstraktive Zusammenfassen von mehreren Produktrezensionen mittels Variational Autoencodern zu einer repräsentativen Rezension.
-Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Restaurant geben.
-Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die zu Produkten und Restaurants mehrere unterschiedliche diverse Rezensionen liefern.
+Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Dienstleistungen (zum Beispiel Restaurants) geben.
+Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die zu Produkten und Dienstleistungen mehrere unterschiedliche diverse Rezensionen liefern.
 
 Mittels zwei unterschiedlichen Variational Autoencodern Optimus und \textsc{BiMeanVAE} werden die Zusammenfassungen generiert.
-Optimus basiert auf den beiden bekannten Sprachmodellen BERT und GPT-2. 
+Optimus basiert auf den beiden bekannten Sprachmodellen Bidirectional Encoder Representations from Transformers (BERT) und GPT-2. 
 \textsc{BiMeanVAE} besteht aus einem bidirektionalem LSTM-Encoder und einem LSTM-Decoder.
-Des Weiteren werden die verwendeten Variational Autoencoder durch ein Attribut-Modell optimiert, um präzisere Rezensionen zu generieren.
+Des Weiteren werden die verwendeten Variational Autoencoder durch ein Attribut-Modell optimiert, um optimierte repräsentative Rezensionen zu generieren.
 
-Abschließend werden die vorgestellten Variational Autoencoder mit den entsprechenden Optimierungen auf den beiden Datensätzen evaluiert und untereinander verglichen.
+Abschließend werden die vorgestellten Variational Autoencoder mit den entsprechenden Optimierungen auf den beiden Datensätzen evaluiert und miteinander verglichen.
 
 
 

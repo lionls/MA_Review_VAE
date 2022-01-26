@@ -135,7 +135,7 @@ Bei einer multivariaten Gaussverteilung für $q_\phi (\mathbf{z\mid x})$ wäre d
 \label{cyc_anneal}
 Trainieren von Variational Autoencodern als Sprachmodell im Bereich des Natural Language Processing ist aufgrund des KL-Vanishing Problems besonders schwierig.
 VAE Sprachmodelle sollen bei der Textgeneration den lokalen Kontext, allerdings auch globale Eigenschaften wie zum Beispiel Thema, Sprachstil oder Stimmung beachten. 
-Trotzdem werden von VAE Modellen bei der Generation oft die globalen Eigenschaften vernachlässigt. 
+Trotzdem werden von VAE Modellen bei der Generierung oft die globalen Eigenschaften vernachlässigt. 
 Dieses Problem ist als KL-Vanishing bekannt, da die KL-Regularisierung des Loss-Terms beim Trainieren von autoregressiven Decodern innerhalb von VAE Sprachmodellen sehr klein wird.
 Somit sind die erlernten Features nahezu identisch zu der vorher angenommenen Normalverteilung und der Decoder nutzt keine Latentfeatures bei der Generation. %https://www.microsoft.com/en-us/research/blog/less-pain-more-gain-a-simple-method-for-vae-training-with-less-of-that-kl-vanishing-agony/ nochmal checken
 
@@ -166,8 +166,8 @@ Trainiert wird Optimus mit dem Ziel, Sätze in einem universellen Latentspace zu
 Somit kann durch gezieltes Verändern des Latentvektors $z$ kontrolliert Text generiert werden. %ÜBERARBEITEN
 
 BERT und GPT-2 über eine VAE Architektur miteinander zu verbinden hat die Herausforderung, die unterschiedlichen Tokenisierungsschemen der einzelnen Modelle zu verwenden und den Latentvektor bei der Textgeneration von GPT-2 zu injizieren. 
-Die Eingabetokens von BERT verwenden das WordPiece Embeddings Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996. 
-Die Ausgabe erfolgt über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260. 
+Die Eingabetokens von BERT verwenden das WordPiece Embeddings Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996 Tokens. 
+Die Ausgabe erfolgt über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260 Tokens. 
 Innerhalb des Netzwerkes wird im Latentvektor ein Token durch eine Einbettung $h_{Emb}$, die das Token, die Position und das Segment Embedding wiedergibt, repräsentiert.
 Um beim Training den Loss des Rekonstruktionstask zu berechnen, werden die Sätze mit beiden Tokenisierungen tokenisiert.
 
@@ -176,7 +176,7 @@ Als Latentvektor $z \in \mathbb{R}^P$ wird die gepoolte Ausgabe des letzten Hidd
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=8cm]{bilder/latent_optimus}
+    \includegraphics[width=\textwidth]{bilder/latent_optimus}
     \caption{Methoden, um den Latentvektor in GPT-2 zu injizieren \citep{DBLP:journals/corr/abs-2004-04092}}
     \label{latent_optimus}
 \end{figure}
@@ -191,7 +191,7 @@ Der Past-Key-Vektor beschleunigt normalerweise den Decodiervorgang von GPT-2, da
 Diese Key-, Valuevektoren des Attentionlayers werden durch $h_{Mem} = W_M z$ mit $W_M \in \mathbb{R}^{LH \times P}$ ersetzt. GPT-2 kann so beim Decodieren auf den injezierten Latentvektor bei jeder Attentionberechnung zugreifen.
 
 Die Parameter ${\phi_{BERT}, \theta_{GPT-2}, W_E,W_M,W_D}$ des VAEs werden mittels Cyclical Annealing Schedule \citep{cyc_anneal} trainiert, um das KL Vanishing Problem beim Trainieren eines VAEs zu verhindern.
-Die $\beta$ Variable, die wie in \ref{cyc_anneal} erklärt den KL-Regularisierer Anteil steuert, wird für einen Trainingsdurchlauf für die erste halbe Menge der Trainingsdaten auf $\beta = 0$ gesetzt. Somit wird zu Beginn lediglich ein Autoencoder trainiert. 
+Die $\beta$ Variable, die wie in Abschnitt \ref{cyc_anneal} dargestellt den KL-Regularisierer Anteil steuert, wird für einen Trainingsdurchlauf für die erste halbe Menge der Trainingsdaten auf $\beta = 0$ gesetzt. Somit wird zu Beginn lediglich ein Autoencoder trainiert. 
 Anschließend wird $\beta$ für das nächste Viertel der Trainingsmenge schrittweise von 0 auf 1 erhöht und für das letzte Viertel der Trainingsmenge auf 1 belassen, um das VAE Modell zu trainieren.
 
 Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, der kontrollierten Text Generation und des Language Understanding.
@@ -211,15 +211,15 @@ Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cycli
 \subsection{Latent Space Operationen}
 VAEs erlernen bidirektionale Abbildungen zwischen dem Datenraum und ihrem Latentspace. 
 Im Latentspace werden Eingabesequenzen von Optimus und \textsc{BiMeanVAE} jeweils durch einen Latentvektor dargestellt.
-Die zur Generation verwendeten Latentvektoren können durch arithmetische Operationen verändert werden, wodurch sich die gesampelte Ausgabe des VAEs präzise verändern und steuern lässt.
+Die zur Generation verwendeten Latentvektoren können durch arithmetische Operationen verändert werden, wodurch sich die gesampelte Ausgabe des VAEs gezielt verändern und steuern lässt.
 
 Durch die KL-Regularisierung beim Training von VAEs entsteht ein kontinuierlicher Latentspace, wodurch semantisch ähnliche Inhalte im Latentspace nah beieinander organisiert werden.
 Somit kann zwischen mehreren Datenobjekten im Latentspace interpoliert werden.
 
-Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent Space Operationen, die VAEs ermöglichen elementar.
+Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent Space Operationen, die VAEs ermöglichen, elementar.
 So kann zum Beispiel zwischen mehreren Bewertungen interpoliert werden, um eine durchschnittliche Meinung zu generieren.
 
 Sei zum Beispiel $\mathcal{Z}$ die Menge der encodierten Bewertungen zu einer Produktgruppe.
-So lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch geschicktes Kombinieren eine gute Durchschnittsrepräsentation im Latentvektorraum finden.
+So lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch Kombinieren eine gute Durchschnittsrepräsentation im Latentvektorraum finden.
 Das genaue Vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop} beschrieben
 \pagebreak

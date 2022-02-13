@@ -1,10 +1,12 @@
 \section{Variational Autoencoder}\raggedbottom
+\label{vae}
 Variational Autoencoder \citep{kingma2014autoencoding} gehören zu den probabilistischen generativen Modellarchitekturen. In den letzten Jahren haben generative Modelle, insbesondere auch Variational Autoencoder, beeindruckende Möglichkeiten aufgezeigt, hochrealistische Daten wie zum Beispiel Bilder, Texte oder Audios zu generieren.
 Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu verstehen und anschließend neuartige Datenbeispiele, die ähnlich zum Trainingsdatensatz sind zu generieren.
 
 Autoencoder sind neuronale Netze die trainiert werden um Eingabedaten zu komprimieren und anschließend zu rekonstruieren. 
 Sie bestehen aus einem Encoder $\mathbf{E}:\mathbb{R}^n \rightarrow \mathbb{R}^m$ und einem Decoder $\mathbf{D}:\mathbb{R}^m \rightarrow \mathbb{R}^n$, wobei der Encoder versucht, eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel, eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
-Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt $m<n$. 
+Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt $m<n$ \citep{introVAE}. 
+
 Da Autoencoder nur einen diskreten Latentraum erzeugen existieren im Latentraum viele leere Stellen, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist.
 %Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist, da im Latentraum viele leere Stellen existieren. 
 Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentraums legt. 
@@ -13,14 +15,17 @@ Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen V
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=10cm]{bilder/vae}
+    \includegraphics[width=12cm]{bilder/vae}
     \caption{VAE Modellarchitektur \citep{jordan_2018}}
     \label{vae_model}
 \end{figure}
 
 
 Im Gegensatz zu normalen Autoencodern verwenden Variational Autoencoder einen probabilistischen Ansatz, um Datenpunkte $x_i$ eines Datensatzes $X$, der durch die unbekannte Wahrscheinlichkeitsfunktion $P(\mathbf{X})$ beschrieben wird, im Latentraum $Z$ zu repräsentieren. 
+Die Architektur und der probabilistische Ansatz wird in Abbildung \ref{vae_model} dargestellt.
 Für den Datensatz $X$ mit Datenpunkten $x_i$ wird angenommen, dass ein generatives Modell mit den Parametern $\theta$ existiert, welches mittels Latentvektor $z_i$ diesen Datenpunkt $x_i$ generieren kann.
+
+%only for pagebreak
 Dieser generative Teil des Variational Autoencoders ist der Decoder des  Netzes, welcher approximativ versucht die Daten als Verteilung $p_\theta (\mathbf{X})$ zu modellieren.
 \begin{equation}
     \label{px}
@@ -79,9 +84,9 @@ Die Lossfunktion von Variational Autoencodern ist die \textbf{E}vidence \textbf{
 Bei Variational Autoencodern ist das Optimierungsziel die gleichzeitige Minimierung des Rekonstruktionsfehlers des generativen Modells $\theta$ zwischen Eingabe- und Ausgabedaten sowie die Approximation von $p_\theta (\mathbf{z\mid x})$ mit $q_\phi (\mathbf{z\mid x})$ durch Minimierung der Kullback-Leibler-Divergenz$D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x}))$.
 Für eine beliebige Wahl der Decoder Parameter $\phi$ gilt \citep{introVAE}:
 \begin{align}
-    log(p_\theta(\mathbf{x})) &= \mathbb{E}_{ q_\phi(\mathbf{z\mid x}) } [log( p_\theta(\mathbf{x}) )] \\
-    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ p_\theta(\mathbf{z \mid x}) } \Bigr] \Bigr] \\
-    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ q_\phi( \mathbf{z\mid x} ) } \tfrac{ q_\phi( \mathbf{z\mid x} ) }{ p_\theta(\mathbf{z \mid x}) }\Bigr] \Bigr] \\
+    log(p_\theta(\mathbf{x})) &= \mathbb{E}_{ q_\phi(\mathbf{z\mid x}) } [log( p_\theta(\mathbf{x}) )] \nonumber \\
+    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ p_\theta(\mathbf{z \mid x}) } \Bigr] \Bigr] \nonumber \\
+    &= \mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ q_\phi( \mathbf{z\mid x} ) } \tfrac{ q_\phi( \mathbf{z\mid x} ) }{ p_\theta(\mathbf{z \mid x}) }\Bigr] \Bigr] \nonumber \\
     &= \underbrace{\mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ p_\theta(\mathbf{x,z}) }{ q_\phi( \mathbf{z\mid x} ) } \Bigr] \Bigr]}_{=\mathcal{L}_{\theta,\phi}(\mathbf{x}) \text{ (ELBO)}} + \underbrace{\mathbb{E}_{q_\phi( \mathbf{z\mid x} )} \Bigl[ log \Bigl[ \tfrac{ q_\phi( \mathbf{z\mid x} ) }{ p_\theta(\mathbf{z \mid x}) }\Bigr] \Bigr]}_{=D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x}))} \label{elbo4}
 \end{align}
 In Zeile \ref{elbo4} ist der erste Term die Evidence Lower Bound und der zweite Teil die Kullback-Leibler Divergenz.
@@ -92,7 +97,7 @@ Die Kullback-Leibler Divergenz zwischen $q_\phi(\mathbf{z\mid x})$ und $p_\theta
     D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) \geq 0
 \end{equation}
 
-Aus Gleichung \ref{elbo4} wird die Evidence Lower Bound Funktion aufgestellt:
+Aus Gleichung \ref{elbo4} lässt sich durch Umformung die Evidence Lower Bound Funktion aufstellen:
 \begin{equation}
     \label{realelbo}
     \mathcal{L}_{\theta,\phi}(\mathbf{x}) = log(p_\theta(\mathbf{x})) - D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) \leq log(p_\theta(\mathbf{x})) 
@@ -127,7 +132,7 @@ Zum Training des Variational Autoencoder wird mittels Backpropagation der Fehler
 Um dennoch Backpropagation verwenden zu können wird mittels Reparametisierung $z$ durch eine deterministische Funktion $z=f_\phi(x,\epsilon)$ dargestellt mit $\epsilon$ als externe unabhängige Hilfsvariable \citep{kingma2014autoencoding,jordan_2018}. 
 Bei einer multivariaten Gaussverteilung für $q_\phi (\mathbf{z\mid x})$ wäre die Reparametisierung wie folgt, wobei $\times$ die elementweise Multiplikation denotiert:
 \begin{align}
-    \mathbf{z} \sim q_\phi(\mathbf{z\mid x}) = \mathcal{N}(\mathbf{z;\mu,\sigma \mathcal{I}}) \\
+    \mathbf{z} \sim q_\phi(\mathbf{z\mid x}) = \mathcal{N}(\mathbf{z;\mu,\sigma \mathcal{I}}) \nonumber \\
     \mathbf{z} = \mu + \sigma \times \mathbf{\epsilon} \text{ , mit } \mathbf{\epsilon} \sim \mathcal{N}(0,\mathcal{I}) 
 \end{align}
 
@@ -135,7 +140,7 @@ Bei einer multivariaten Gaussverteilung für $q_\phi (\mathbf{z\mid x})$ wäre d
 \label{cyc_anneal}
 Trainieren von Variational Autoencodern als Sprachmodell im Bereich des Natural Language Processing ist aufgrund des KL-Vanishing Problems besonders schwierig.
 VAE Sprachmodelle sollen bei der Textgeneration den lokalen Kontext, allerdings auch globale Eigenschaften wie zum Beispiel Thema, Sprachstil oder Stimmung beachten. 
-Trotzdem werden von VAE Modellen bei der Generierung oft die globalen Eigenschaften vernachlässigt. 
+Trotzdem werden von VAE Modellen bei der Generierung oft die globalen Eigenschaften vernachlässigt \citep{cyc_anneal}. 
 Dieses Problem ist als KL-Vanishing bekannt, da die KL-Regularisierung des Loss-Terms beim Trainieren von autoregressiven Decodern innerhalb von VAE Sprachmodellen sehr klein wird.
 Somit sind die erlernten Features nahezu identisch zu der vorher angenommenen Normalverteilung und der Decoder nutzt keine Latentfeatures bei der Generation. %https://www.microsoft.com/en-us/research/blog/less-pain-more-gain-a-simple-method-for-vae-training-with-less-of-that-kl-vanishing-agony/ nochmal checken
 
@@ -149,7 +154,6 @@ Falls $\beta = 0$ ist wird das Modell wie ein normaler Autoencoder trainiert, be
 Beim zyklischen Erhöhen wird der $\beta$-Wert des VAE während des Trainings monoton von $\beta=0$ auf zum Ende des Trainings $\beta=1$ in kleinen Abständen erhöht.
 So kann beim Training des VAE bei $\beta<1$ zunächst der Fokus darauf gelegt werden, mehr Information für die Rekonstruktion zu erlernen. 
 Abschließend enthalten bei $\beta=1$ die vorher trainierten $z$ Vektoren bereits mehr Informationen, die zu einer besseren Anpassung als eine zufällige Initialisierung führen.
-
 
 
 \subsection{Optimus}
@@ -169,14 +173,14 @@ BERT und GPT-2 über eine VAE Architektur miteinander zu verbinden hat die Herau
 Die Eingabetokens von BERT verwenden das WordPiece Embeddings Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996 Tokens. 
 Die Ausgabe erfolgt über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260 Tokens. 
 Innerhalb des Netzwerkes wird im Latentvektor ein Token durch eine Einbettung $h_{Emb}$, die das Token, die Position und das Segment Embedding wiedergibt, repräsentiert.
-Um beim Training den Loss des Rekonstruktionstask zu berechnen, werden die Sätze mit beiden Tokenisierungen tokenisiert.
+Um beim Training den Loss der Rekonstruktionsaufgabe zu berechnen, werden die Sätze mit beiden Tokenisierungen tokenisiert.
 
-\pagebreak
+
 Als Latentvektor $z \in \mathbb{R}^P$ wird die gepoolte Ausgabe des letzten Hiddenlayers $h_{[CLS]} \in \mathbb{R}^H$ von BERT mit einer Gewichtsmatrix multipliziert $W_{E} \in \mathbb{R}^{P\times H}$ gewählt. Somit kann ein Latentvektor wie folgt bestimmt werden $z = W_{E}h_{[CLS]}$.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{bilder/latent_optimus}
+    \includegraphics[width=11cm]{bilder/latent_optimus}
     \caption{Methoden, um den Latentvektor in GPT-2 zu injizieren \citep{DBLP:journals/corr/abs-2004-04092}}
     \label{latent_optimus}
 \end{figure}
@@ -202,10 +206,10 @@ Insgesamt zeigt Optimus gute Ergebnisse in den Bereichen des Language Modeling, 
 \pagebreak
 \subsection{\textsc{BiMeanVAE}}
 \textsc{BiMeanVAE} ist ein von \citep{coop} vorgestelltes Modell, bestehend aus einem bidirektionalem LSTM Encoder und einem LSTM Decoder. 
-Die Hiddensize der einzelnen LSTMs beträgt 512. Nach dem BiLSTM Encoder wird ein mean pooling verwendet, um einen Latentvektor $z$ zu erhalten.
-\textsc{BiMeanVAE} verwendet die Standard Variational Autoencoder Ziele, dass Minimieren des Rekonstruktionsfehlers mit KL-Regularisierung verwendet.
+Die Hiddensize der einzelnen LSTMs beträgt 512. Nach dem BiLSTM Encoder wird ein Mean Pooling Layer verwendet, um einen Latentvektor $z$ zu erhalten.
+\textsc{BiMeanVAE} verwendet die Standard Variational Autoencoder Ziele, dass Minimieren des Rekonstruktionsfehlers mit KL-Regularisierung.
 Die verwendete Prior Verteilung $p_\theta(z)$ ist die Gausssche Normalverteilung $\mathcal{N}(0,\mathcal{I})$. 
-Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cyclical Annealing Verfahren verwendet, um graduell vom Autoencoder zum Variational Autoencoder Trainingsziel zu wechseln.
+Beim Trainig wird ebenfalls das in Abschnitt \ref{cyc_anneal} beschriebene Cyclical Annealing Verfahren verwendet, um graduell vom Autoencoder zum Variational Autoencoder Trainingsziel überzuleiten.
 
 
 \subsection{Latent Space Operationen}

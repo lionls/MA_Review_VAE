@@ -28,14 +28,14 @@ Große Fortschritte im Bereich der abstraktiven Textzusammenfassung ergaben sich
 \subsubsection{Multi-Document Textzusammenfassung}
 Eine große Herausforderung ist das Zusammenfassen von mehreren Dokumenten über dasselbe Thema zu einem einzigen Dokument. 
 Die entstehende Zusammenfassung soll Anwendern einen guten und schnellen Überblick über eine große Anzahl an Dokumenten bieten. 
-Die unterschiedlichen Dokumente enthalten diverse Informationen die sich nicht immer im Ergebnis und Vokabulardeckungsgleich sind. 
+Die unterschiedlichen Dokumente enthalten diverse Informationen die sich nicht immer im Ergebnis und Vokabular deckungsgleich sind. 
 Somit ergibt sich die Herausforderung, unterschiedliche Perspektiven in den jeweiligen Dokumenten zusammenfassend zu representieren.
-Da sich unterschiedliche Standpunkte schlecht mittels extraktiven Methoden darstellen lassen, bieten sich bei der Multi-Document Textzusammenfassung abstraktive Methoden an.
-DeclareDelimFormat kann eine kongruente Zusammenfassung generiert werden, die die unterschiedlichen Aspekte der Dokumente darstellt.
+Da sich unterschiedliche Standpunkte schlecht mittels extraktiven Methoden darstellen lassen, bieten sich bei der Multi-Document Textzusammenfassung die Verwendung abstraktiver Methoden an.
+Damit kann eine kongruente Zusammenfassung generiert werden, die die unterschiedlichen Aspekte der Dokumente darstellt.
 
-In dieser Masterarbeit werden unterschiedliche Bewertungen zu Produkten und Restaurants zusammengefasst. 
-Insbesondere Bewertungen unterscheiden sich stark in ihren Nutzerperspektiven und können positiv, negativ oder neutral sein und auf sehr spezifische Eigenschaften der entsprechenden Produkte eingehen.
-Es ist eine große Herausforderung aus einer Menge aus Produktbewertungen eine repräsentative zusammenfassende Bewertung zu produzieren, die klar strukturiert, kongruent, verständlich und Zielgruppenbezüglich die entsprechenden Inhalte wiedergibt.
+In dieser Masterarbeit werden unterschiedliche Rezensionen zu Produkten und Dienstleistungen zusammengefasst. 
+Insbesondere Rezensionen unterscheiden sich stark in ihren Nutzerperspektiven und können positiv, negativ oder neutral sein und auf sehr spezifische Eigenschaften der entsprechenden Produkte eingehen.
+Es ist eine große Herausforderung aus einer Menge aus Produktrezensionen eine repräsentative zusammenfassende Rezension zu produzieren, die klar strukturiert, kongruent, verständlich und Zielgruppenbezüglich die entsprechenden Inhalte wiedergibt.
 
 \subsection{Deep Learning}
 Deep Learning ist ein Teilbereich des Machine Learning, bei dem nach dem Vorbild für das menschliche Gehirn neuronale Netze verwendet werden. 
@@ -63,10 +63,10 @@ Durch das Splitten in Subtokens und Erlernen von Einbettungen für diese lässt 
 Da sich die Wörter stets in Subtokens zerlegen lassen können Out-of-Vocabulary-Fehler vermieden werden.
 
 \subsection{Sequence-To-Sequence Modelle}
-Sequence-To-Sequence Modelle sind eine Gruppe von Deep Leaning Modellen zur Sprachverarbeitung die eine Textsequenz $(x_1,x_2,\ldots,x_n)$ in eine andere Textsequenz $(y_1,y_2,\ldots,y_n)$ überführen \citep{DBLP:journals/corr/SutskeverVL14}.
+Sequence-To-Sequence Modelle sind eine Gruppe von Deep Leaning Modellen zur Sprachverarbeitung die eine Textsequenz $(x_1,x_2,\ldots,x_n)$ bestehend aus den Tokens $x_i$ in eine andere Textsequenz $(y_1,y_2,\ldots,y_n)$ überführen \citep{DBLP:journals/corr/SutskeverVL14}.
 Die Besonderheit bei diesem Modell liegt darin, dass die Länge der Eingabesequenz und der Ausgabesequenz unterschiedlich sein kann.
 Die am meisten verwendeten Sequence-To-Sequence Modelle bestehen aus einer Encoder/Decoder Architektur.
-Der Encoder und Decoder besteht jeweils aus sequentiellen Rekurrenten Neuronalen Netzen (RNN), die jeweils als Eingabe ein Token und den HiddenState des vorherigen RNNs erhalten.
+Der Encoder und Decoder besteht jeweils aus sequentiellen Rekurrenten Neuronalen Netzen (RNN), die jeweils als Eingabe ein Token und den Hidden-State des vorherigen RNNs erhalten.
 Somit summieren sich innerhalb des Encoders die Hidden-States auf und werden abschließend durch einen Hidden-State Vektor repräsentiert, der die Informationen aus der Eingabe enthält.
 Der abschließende Hidden-State Vektor lässt sich wie folgt iterativ bestimmen, wobei $f$ für die entsprechende RNN-Zelle und $W$ für die Gewichtsmatrizen steht:
 \begin{equation}
@@ -74,7 +74,7 @@ Der abschließende Hidden-State Vektor lässt sich wie folgt iterativ bestimmen,
 \end{equation}
 
 Oft werden als RNN-Zellen Long Short Term Memory (LSTM)- oder Gated Recurrent Unit (GRU)-Zellen verwendet.
-Der Decoder ist ebenfalls ein RNN, welcher aus dem HiddenState Vektor des Encoders eine Ausgabesequenz generiert.
+Der Decoder ist ebenfalls ein RNN, welcher aus dem Hidden-State Vektor des Encoders eine Ausgabesequenz generiert.
 
 Um die Performance von Sequence-To-Sequence Modellen weiter zu optimieren werden in Kapitel \ref{attention} Attention Modelle eingeführt.
 
@@ -87,17 +87,17 @@ LSTMs sind speziell darauf ausgelegt diese Langzeitbeziehungen abzubilden, indem
 Eine LSTM-Zelle hat nun die Möglichkeit diesen Zellstatus zu manipulieren, indem Informationen hinzugefügt oder gelöscht werden können.
 Diese Manipulationen des Zellstatus wird durch drei Gates ermöglicht. 
 Erstens dem Forget Gate, welches der Zelle ermöglicht alte Werte zu vergessen.
-Zweitens dem Input Gate, welches steuert zu welcher Gewichtung neue Eingabewerte in dem HiddenState gespeichert werden.
-Drittens dem Output Gate, welches steuert welcher Teil des HiddenStates in die folgende Zelle propagiert wird.
+Zweitens dem Input Gate, welches steuert zu welcher Gewichtung neue Eingabewerte in dem Hidden-State gespeichert werden.
+Drittens dem Output Gate, welches steuert welcher Teil des Hidden-States in die folgende Zelle propagiert wird.
 
-Durch die Anpassung des HiddenStates in den einzelnen Zellen können relevante Informationen anhand des HiddenStates durch die Zellen geleitet werden, wodurch lange Beziehungen in den Textsequenzen modelliert werden können \citep{lstmexplained}.
+Durch die Anpassung des Hidden-States in den einzelnen Zellen können relevante Informationen anhand des Hidden-States durch die Zellen geleitet werden, wodurch lange Beziehungen in den Textsequenzen modelliert werden können \citep{lstmexplained}.
 Das Propagieren durch eine Reihe von LSTM-Zellen, sowie der Einfluss der einzelnen Gates ist in Abbildung \ref{lstm_chain} dargestellt.
 
 
 \begin{figure}[h]
     \label{lstm_chain}
     \centering
-    \includegraphics[width=8cm]{bilder/LSTM3-chain}
+    \includegraphics[width=\textwidth]{bilder/LSTM3-chain}
     \caption{Reihe von LSTM-Zellen mit entsprechenden Gates \citep{lstmexplained}}
 \end{figure}
 

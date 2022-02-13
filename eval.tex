@@ -3,19 +3,20 @@
 Die unterschiedlichen Optimierungen der Latentvektoren für ein Optimus Modell und des Cellstates für \textsc{BiMeanVAE} werden auf dem Amazon und dem Yelp Datensatz verglichen und mit dem aktuellem State-of-the-Art Modell COOP in Relation gesetzt.
 Es existieren im Dev-Datensatz und Test-Datensatz jeweils 8 Eingabebewertungen und drei Gold-Summaries zum Evaluieren der generierten Ausgabebewertungen.
 Die Eingabebewertungen werden durch ein Optimus VAE Modell und ein \textsc{BiMeanVAE} Modell in Latentvektoren umgewandelt.
-Anschließend werden mittels in Abschnitt \ref{coop} erklärter COOP Herangehensweise die Latentvektoren kombiniert, um den \textit{Input-Output-Overlap} zu maximieren. 
-Weiterhin werden die Latentvektoren mittels in dieser Arbeit eingeführtem Attribut-Modell optimiert, um detailreichere und präzisere Durchschnittsrezensionen zu erhalten.
+Anschließend werden mittels in Abschnitt \ref{coop} dargestellter COOP Herangehensweise die Latentvektoren kombiniert, um den \textit{Input-Output-Overlap} zu maximieren. 
+Weiterhin werden die Latentvektoren mittels in dieser Arbeit eingeführtem Attribut-Modell optimiert, um detailreichere und umfassende Durchschnittsrezensionen zu erhalten.
 
 
 \subsection{Evaluationsmetriken}
 Die generierten Textbewertungen werden mit den drei Gold-Summaries verglichen.
-Zum Vergleich der generierten Rezensionen wird die ROUGE (\textbf{R}ecall-\textbf{O}riented \textbf{U}nderstudy for \textbf{G}isting \textbf{E}valuation)-Metrik verwendet.
+Zum Vergleich der generierten Rezensionen wird die ROUGE (\textbf{R}ecall-\textbf{O}riented \textbf{U}nderstudy for \textbf{G}isting \textbf{E}valuation)-Metrik verwendet \citep{lin-2004-rouge}.
 Die ROUGE-N Metrik misst die Anzahl der übereinstimmenden N-Grams zwischen dem generierten Text und den Referenztexten. 
 Ein N-Gram ist eine N-lange sequentielle Folge von Wörtern innerhalb der Texte. 
 
-Zur Bewertung der generierten Bewertungen werden die vorhergesagten Ergebnisse mit den korrekten Ergebnissen verglichen. 
+Zur Bewertung der generierten Rezensionen werden die vorhergesagten Ergebnisse mit den korrekten Ergebnissen verglichen. 
 Die Konfusionsmatrix in Abbildung \ref{confusionmatrix} ist eine Wahrheitsmatrix, welche die Einteilung der vorhergesagten Ergebnisse ermöglicht. 
 True Positive (TP) und True Negative (TN) sind von dem Modell korrekt vorhergesagte Ergebnisse, False Positive (FP) und False Negative (FN) ist eine Klasse von falsch vorhergesagten Ergebnissen.
+
 
 
 \begin{figure}[h!]
@@ -72,7 +73,7 @@ ROUGE-1 verwendet als N-Gram Unigramme, ROUGE-2 Bigramme und ROUGE-L misst die l
 Da die ROUGE-Scores lediglich die einzelnen Wortsequenzen miteinander vergleichen, findet die semantische Bedeutung und Ähnlichkeit der Bewertungen mit der Referenz keinen Einfluss.
 Hier erzielen zum Beispiel Synonyme keine guten ROUGE-Scores, obwohl sie eine semantische Übereinstimmung haben.
 Um trotzdem die semantische Ähnlichkeit zwischen Bewertungen und Referenz zu messen, wird als weitere Metrik der Moverscore aus Abschnitt \ref{moverscore} verwendet.
-Der Moverscore basiert auf BERT und vergleicht Context-Embeddings mittels Earth-Mover-Distance. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
+Der Moverscore basiert auf BERT und vergleicht Context-Embeddings mittels Earth-Mover-Distance \ref{emd}. Als Metrik konnte der Moverscore hohe Korrelationen mit menschlichem Urteilsvermögen aufweisen.
 
 
 \subsection{Moverscore}
@@ -85,7 +86,7 @@ Die semantische Distanz wird über die Word Mover Distance \citep{wordmoverdist
 Die Worteinbettungen werden durch ein BERT Modell erzeugt.
 
 Insgesamt ist der Moverscore für die Bewertungsgenerierung ein wichtiger Leistungsindikator, da nicht nur übereinstimmende N-Gramme an Wörtern gemessen werden, sondern die Semantik der einzeln Wörter miteinbezogen wird. 
-Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise ausgedrückt werden können, bietet sich der Moverscore hier gut als Metrik an um diese Übereinstimmungen zu finden.
+Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise ausgedrückt werden können, bietet sich der Moverscore hier gut als Metrik an um diese Übereinstimmungen zu finden, siehe Abschnitt \ref{moverscore_ranking}.
 
 
 % \subsection{Bewertung der Datensätze}
@@ -95,17 +96,18 @@ Da insbesondere in Bewertungen ähnliche Meinungen auf unterschiedliche Weise au
 % \subsubsection{Yelp-Datensatz}
 
 \subsection{Ergebnisse}
+\label{eval_results_chapter}
 In Tabelle \ref{eval_results} ist die Performance der unterschiedlichen untersuchten und erstellten Modelle dargestellt.
-Das in dieser Arbeit entwickelte Modell ist das \glqq COOP+Attribute Model\grqq{} Modell.
-Es basiert auf dem COOP Modell und verbessert die Generation von neuen Bewertungen durch die Verwendung eines Attribut-Modells.
-Unterschieden werden die COOP Modelle durch ihre grundlegend verwendete Variational Autoencoder Architektur in Optimus und \textsc{BiMeanVAE}.
-Das Optimus Modell kombiniert BERT und GPT-2 in ein Variational Autoencoder Modell. \textsc{BiMeanVAE} hingegen besteht aus einem BiLSTM Encoder mit einem LSTM Decoder trainiert als Variational Autoencoder Modell.
+In dieser Arbeit wurde das \glqq \textit{COOP}+Attribute Model\grqq{} Modell entwickelt.
+Es basiert auf dem \textit{COOP} Modell und verbessert die Generierung von neuen Rezensionen durch die Verwendung eines Attribut-Modells.
+Unterschieden werden die \textit{COOP} Modelle durch ihre grundlegend verwendete Variational Autoencoder Architektur in Optimus und \textsc{BiMeanVAE}, siehe Kapitel \ref{vae}.
+Das Optimus Modell kombiniert BERT und GPT-2 in einem Variational Autoencoder Modell. \textsc{BiMeanVAE} hingegen besteht aus einem BiLSTM Encoder mit einem LSTM Decoder trainiert als Variational Autoencoder Modell.
 
 Verglichen wird die Performance der unterschieldichen Modelle mit den zuvor beschriebenen Evaluationsmetriken, dem ROUGE-1, ROUGE-2, ROUGE-L Score und dem Moverscore.
-Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance der Modelle und einer Leistungssteigerung zwischen den COOP Basismodellen und den modifizierten COOP mit Attributionsmodellen zu.
+Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance der Modelle und einer Leistungssteigerung zwischen den \textit{COOP} Basismodellen und den modifizierten \textit{COOP} mit Attributionsmodellen zu.
 
 \begin{table}[!h]
-    \label{eval_results}
+  
     \centering
     \begin{tabular}{@{}lcccccccc@{}}
     \toprule
@@ -116,57 +118,70 @@ Diese Metriken lassen ausreichend Rückschlüsse auf die erreichte Performance d
     % $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
     
     \textit{COOP + Attribute Model}        &         &         &        &        &        &   & &     \\
-    $\quad$ Optimus            &     \textbf{37.01}    &   \underline{7.44}  &  20.55  & \textbf{23.86} &   \textbf{35.99}   &   \textbf{7.79}       & \underline{19.40}   &   23.56 \\ 
-    $\quad$ \textsc{BiMeanVae}   &   \underline{36.47}   &   \textbf{7.59}    &   \textbf{22.22}  & 23.05 &     &      &   &    \\ \midrule
+    $\quad$ Optimus   ?         &   35.57   & 7.50  &  20.28 & 56.49 &     &         &   &    \\ 
+    $\quad$ \textsc{BiMeanVae}   &   37.94  &   7.20    &  21.75 & 56.69&     &      &   &    \\ \midrule
     
 
-    \textit{COOP}              &         &         &        &        &        & &   &    \\
-    $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 23.33\\ 
-    $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 22.87 & 35.37  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
+
+    \textit{COOP}              &         &         &        &        &        & &   &    \\ %PAPER
+    $\quad$ Optimus           & 35.32 &6.22 &19.84  & 56.41&  33.68& 7.00 &18.95 & 56.41\\ 
+    $\quad$ \textsc{BiMeanVae}  & 36.57 &7.23 &21.24 & 56.49 & 35.37& 7.35 &19.94 & 56.78\\ \midrule
+    
+
+    % \textit{COOP}              &         &         &        &        &        & &   &    \\
+    % $\quad$ Optimus           & 33.60  & 6.63    & 20.87 & \underline{20.85} & 33.60  & 7.00   & 18.95 & 56.41\\ 
+    % $\quad$ \textsc{BiMeanVae}  & 36.40 &  7.16 &  21.08 & 56.49 & 35.37  & \underline{7.35}  & \textbf{19.94} & 56.78\\ \midrule
     
     % \textit{COOP-DEV}              &         &         &        &        &        & &   &    \\
     % $\quad$ Optimus $^{\star}$           & 35.32   & 6.22    & 19.84 & \underline{23.22} & 33.60  & 7.00   & 18.95 & 23.33\\ 
     % $\quad$ \textsc{BiMeanVae}$^{\dagger}$  & $\text{35.67}^{\dagger}$    & $\text{6.53}^{\dagger}$   & \underline{$\text{21.07}^{\dagger}$} & 22.12 & \underline{35.37}  & \underline{7.35}  & \textbf{19.94} & 23.78\\ \midrule
     
 
-    \textit{SimpleAvg}         &         &         &        &      &  &        &        \\
+    \textit{SimpleAvg}                   &         &         &       &      &        &        &        \\
     $\quad$ Optimus  $^{\star}$          & 33.54   & 6.18    & 19.34 & 22.35& 31.23  & 6.48   & 18.27 & 23.05\\
     $\quad$ \textsc{BiMeanVae}$^{\star}$ & 33.60   & 6.64    & 20.87 & 20.85& 32.87  & 6.93   & 19.89 & 22.41\\
-    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 &- & 29.47  & 5.26   & 18.09 & -\\ 
-    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & -& 28.46  & 3.66   & 15.57 & -\\ \midrule
-    \textit{Extractive}        &         &         &        &      &  &        &  &      \\
-    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & -& 25.01  & 3.62   & 14.67 & -\\ \bottomrule
+    $\quad$ CopyCat  $^{\star}$          & 31.97   & 5.81    & 20.16 &-     & 29.47  & 5.26   & 18.09 & -\\ 
+    $\quad$ MeanSum  $^{\star}$          & 29.20   & 4.70    & 18.15 & -    & 28.46  & 3.66   & 15.57 & -\\ \midrule
+    \textit{Extractive}                  &         &         &       &      &        &        &       &      \\
+    $\quad$ LexRank  $^{\star}$          & 28.74   & 5.47    & 16.75 & -    & 25.01  & 3.62   & 14.67 & -\\ \bottomrule
     \end{tabular}
     \caption{ROUGE und Moverscore Ergebnisse auf den Test-Benchmarkdatensätzen der unterschiedlichen Modelle. Die besten Ergebnisse sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+    Der Stern $^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
     %$^{\dagger}$ Evaluierte Performance unterscheidet sich vom \citep{coop} Paper. Performance wurde nach SourceCode des Papers bestimmt.
     }
+    \label{eval_results}
 \end{table}
 
 Grundsätzlich lassen sich die Ergebnisse in Tabelle \ref{eval_results} in die Kategorien abstraktive und extraktive Zusammenfassung unterteilen.
-Hier ist eindeutig zu erkennen, dass LexRank als extraktive Methode in allen Bereichen den abstraktiven Methoden unterliegt.
+Hier ist eindeutig zu erkennen, dass LexRank als extraktive Methode in allen Bereichen den abstraktiven Methoden unterliegt. 
+Die Gruppe der abstraktiven Methoden umfasst die \textit{SimpleAVG} Gruppe, die \textit{COOP} Gruppe und die \textit{COOP+Attribute Model} Gruppe, die alle auf Variational Autoencoder basieren.
+Diese Gruppen wurden nach der Kombinationsmethode der einzelnen Latentvektoren zu einem repräsentativen Latentvektor unterschieden.
 
-Die \textit{SimpleAvg} Gruppe umfasst abstraktive Textzusammenfassungsmethoden. 
+
+Die \textit{SimpleAvg} Gruppe umfasst unterschiedliche abstraktive Textzusammenfassungsmethoden auf Basis von Variational Autoencodern.
 Bei dieser Gruppe wird von allen erzeugten Latentvektoren ein normaler Durchschnittsvektor errechnet, von dem anschließend gesamplet wird.
 Es ist erkennbar, dass die beiden Methoden Optimus und \textsc{BiMeanVAE} den Methoden CopyCat und MeanSum überlegen sind, da diese in allen Messwerten bessere Ergebnisse erzielen.
-Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als \textsc{BiMeanVAE} erzielt, allerdings in den ROUGE Werten minimal schlechter abschneidet.
+Besonders hervozuheben ist hier, dass Optimus bessere Moverscore Ergebnisse als \textsc{BiMeanVAE} erzielt, allerdings in den ROUGE Werten minimal schlechter abschneidet. 
 
-Eine große Leistungssteigerung ergibt sich durch die COOP Methode, um eine optimale Kombination der einzelnen Latentvektoren zu finden.
-Hier erzielen sowohl Optimus wie auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
+Eine große Leistungssteigerung ergibt sich durch die \textit{COOP} Methode, die eine optimale Kombination der einzelnen Latentvektoren findet.
+Hier erzielen sowohl Optimus als auch \textsc{BiMeanVAE} in allen Metriken bessere Ergebnisse als die \textit{SimpleAvg} Vergleichsgruppe.
 Demnach ist das Durchsuchen der Kombinationen von Latentvektoren sinnvoll. 
 Insbesondere der ROUGE-1 Score übertrifft die \textit{SimpleAVG} Scores bei Optimus und \textsc{BiMeanVAE} signifikant im Durchschnitt um 1.93\%.  %PROZENT COOP-SIMPLEAVG
-Die größte Leistungssteigerung zwischen der COOP Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
+Die größte Leistungssteigerung zwischen der \textit{COOP} Kombinationsstrategie und \textit{SimpleAvg} erfährt \textsc{BiMeanVAE}.
 Dies ist sehr beeindruckend, da \textit{BiMeanVAE} mit 13 Millionen Parametern weitaus weniger Parameter hat als Optimus mit 239 Millionen Paramtern und auch nicht auf vortrainierte Sprachmodelle zurückgreifen kann.
 Demnach lassen sich mittels Variational Autoencoder Textsequenzen hervorragend in Latentvektoren encodieren und diese mittels Vektoroperationen kombinieren.
 
+
 %Vergleich Optimus vs BiMeanVAE an Texten
-Eine weitere Leistungssteigerung der verwendeten Variational Autoencoder Optimus und \textsc{BiMeanVAE} lässt sich durch die in dieser Arbeit verwendeten Attributmodelle feststellen.
+Eine weitere Leistungssteigerung der verwendeten Variational Autoencoder Optimus und \textsc{BiMeanVAE} mit \textit{COOP} Kombinatorik lässt sich durch die in dieser Arbeit verwendeten Attributmodelle feststellen.
 Die aus dem Latentvektoren decodierten Textsequenzen lassen sich so noch stärker in die gewünschte Richtung bei der Generation adaptieren. 
 Das verwendete Attributmodell ist ein Bag of Words Modell, welches aus den 150 am häufigsten vorkommenden Tokens besteht. 
-Somit wird der Fokus bei der Generation auf die häufig vorkommenden Tokens gelegt und die generierten Textsequenzen haben eine höhere Überlappung.
+Somit wird die Gewichtung bei der Generation auf die häufig vorkommenden Tokens gelenkt und die generierten Textsequenzen haben eine höhere Überlappung.
 Beispielsweise fällt auf, dass beim Generieren teilweise mehrere vorgeschlagene Tokens ein hohes Ranking erhalten, wobei am Ende durch das Attributionsmodell das am besten passende mit einer höheren Wahrscheinlichkeit ausgewählt wird.
+Insbesondere spezifische Begriffe die ausschlaggebend für die erzeugten Rezensionen sind, allerdings in einer normalen Sprachverteilung eine geringe Gewichtung erhalten würden, werden durch das Bag of Words Attributmodell stark hervorgehoben.
 
-Die Performance des kombinierten COOP + Attributmodells zeigt in den ROUGE-1 Scores
+Die Performance des kombinierten \textit{COOP + Attributmodells} zeigt in den ROUGE-1 Scores in allen Modellen deutliche Verbesserungen gegenüber den normalen \textit{COOP} Modellen.
+
 
 \subsection{Textgenerationsbeispiele}
 

@@ -1,5 +1,30 @@
 \section{Zusammenfassung und Ausblick}\raggedbottom
-In dieser Masterarbeit konnte ein umfassender Überblick über State-of-the-Art Multi-Document Summarization im Bereich von Bewertungen gegeben werden.
+In dieser Masterarbeit konnte ein umfassender Überblick über State-of-the-Art NLP-Techniken im Bereich der Multi-Document Summarization gegeben werden.
+Es wurden unterschiedliche Architekturen wie Transformer, BERT, GPT-2, LSTM und Attention-Layer dargestellt. 
+Insbesondere Variational Autoencoder, Optimierungen dieser Modelle und die Verwendung dieser im Bereich von Sprachmodellen wurde explizit erläutert.
+
+Das Ziel dieser Arbeit war das Zusammenfassen von mehreren Rezensionen eines Produkts oder einer Dienstleistung zu einer generierten repräsentativen Rezension, die die anderen Rezensionen inkludiert und auf die verschiedenen wichtigen Aspekte der zu bewertenden Produkte oder Dienstleistung eingeht.
+
+Als Datensätze wurden Amazon und Yelp-Review Datensätze verwendet. Diese bieten eine Vielzahl an unterschiedlichen Rezensionen zu unterschiedlichen Produkten und Dienstleistungen. Insbesondere zur Multi-Review Summarization existieren menschlich erstellte Rezessionszusammenfassungen auf beiden Datensätzen.
+
+Weiterhin wurden unterschiedliche extraktive und abstraktive Methoden zur Multi-Review Summarization vorgestellt und untereinander verglichen. 
+Die in dieser Arbeit verwendete Convex Aggregation for Opinion Summarization Methode basiert darauf, dass generierte Rezessionen aus normalen Durchschnittslatentvektoren ihre Expressivität verlieren. 
+Die \textit{COOP} Methode findet eine optimale Kombination der einzelnen Latentvektoren für einen Durchschnittslatentvektor, um eine maximale Expressivität beizubehalten.
+
+In dieser Masterarbeit wurde die \textit{COOP} Methode durch ein Bag of Words Attributmodell weiter optimiert, um bei der Generierung von Rezensionen die berechneten Wahrscheinlichkeiten der Tokens in Bezug auf das gewählte Attributmodell zu optimieren.
+Das Attributmodell wurde bei dem Optimus Modell in die Vergangenheitsmatrix von GPT-2 injiziert. Bei dem \textsc{BiMeanVAE} Modell wurde bei der Generierung jeweils der vorherige Cellstate des LSTM-Decoders optimiert.
+
+Durch Anwendung der Beam Search Methode auf den durch das Attributmodell optimierten Latentvektoren konnten erfolgreich präzise Zusammenfassungen der Rezensionen generiert werden.
+Des Weiteren wurde ein neuartiger Rankingalgorithmus zur Auswahl der besten generierten Rezension auf Basis der Kombination von mehreren ROUGE-Werten und dem Moverscore erstellt.
+
+In der Evaluation zeigt das in dieser Masterarbeit entwickelte \textit{COOP}+Attributmodell eine hervorragende Performance bei der Zusammenfassung von Rezessionen. 
+Die wichtigen Aspekte der unterschiedlichen Rezensionen werden wiedergegeben und insbesondere durch das Attributmodell zeigt sich eine Steigerung der Präzision bei den generierten Rezessionen. 
+Im Vergleich zu den bisherigen Modellen übertrifft das \textit{COOP}+Attributmodell die Performance der anderen Modelle in allen gewählten Metriken und erzielt demnach State-of-the-Art Ergebnisse.
+
+Diese Ergebnisse bilden eine Grundlage für weiterführende Untersuchengen inwiefern Variational Autoencoder durch Verwendung von Attributmodellen bei der Generierung unterstützt werden können.
+Ebenfalls wäre eine Auswertung der unterschiedlichen Methoden mittels menschlicher Evaluation sinnvoll, insbesondere auch um den Einfluss des Moverscore gestützten Ranking auf die empfundene Übereinstimmung von menschlichen Evaluatoren zu erörtern.
+Somit könnte das in dieser Masterarbeit erstellte Modell verwendet werden, um auf Webportalen Benutzern einen schnellen allgemeingültigen Überblick über unterschiedliche Rezessionen von Produkten und Dienstleistungen zu ermöglichen.
+
 
 
 \pagebreak

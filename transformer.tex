@@ -10,9 +10,9 @@ Die vortrainierten Sprachmodelle BERT und GPT-2 lassen sich auf spezielle Aufgab
 
 
 \subsection{Transformer Encoder / Decoder}
-Transformer verwenden eine Encoder - Decoder Struktur. Der Encoder wandelt eine Eingabesequenz $(x_1,\ldots,x_n)$ in eine kontinuierliche Übergangsrepräsentation $(z_1, \ldots, z_n)$ um. 
+Transformer verwenden eine Encoder - Decoder Struktur. Der Encoder wandelt eine Eingabesequenz $(x_1,\ldots,x_n)$ in eine kontinuierliche Übergangsrepräsentation $z=(z_1, \ldots, z_n)$ um. 
 Mit dieser Übergangsrepräsentation $z$ kann anschließlich vom Decoder eine Ausgabesequenz $(y_1, \ldots, y_n)$ generiert werden.
-Der Transformer Decoder generiert Textsequenzen autoregressiv und bezieht also für die Berechnung des nächsten Ausgabetokens die vorherigen Tokens als Eingabe mit ein.
+Der Transformer Decoder generiert Textsequenzen autoregressiv und bezieht somit für die Berechnung des nächsten Ausgabetokens die vorherigen Tokens als Eingabe mit ein.
 
 
 \begin{figure}[h]
@@ -23,12 +23,12 @@ Der Transformer Decoder generiert Textsequenzen autoregressiv und bezieht also f
     \label{transformerfig}
 \end{figure}
 
-Abbildung \ref{transformerfig} stellt die Architektur und den Datenfluss durch die verschiedenen Layer von Transformer Encodern und Decodern dar. 
+Abbildung \ref{transformerfig} stellt die Architektur und den Datenfluss durch die verschiedenen Layer von Transformer Encodern und Transformer Decodern dar. 
 Grundsätzlich bestehen sowohl der Encoder sowie auch der Decoder aus aufeinanderfolgenden Multi-Head Attention-Layern gefolgt von Fully-Connected Feed-Forward-Netzen \citep{AttentionIALYN}.
 
 
 Die Transformer Encoder Blöcke verwenden Self-Attention-Layer und beziehen damit ihre Eingabe vollständig aus der Ausgabe des vorherigen Layers. 
-Die meisten Modelle verwenden mehrere Transformer Encoder Blöcke und Decoder Blöcke sequentiell hintereinander.
+Die meisten Modelle verwenden mehrere Transformer Encoder Blöcke und Transformer Decoder Blöcke sequentiell hintereinander.
 
 Nach Encodierung der Eingabesequenzen durch den Transformer Encoder wird die Ausgabe in Attention Key- und Value-Vektoren umgewandelt.
 Diese Attentionvektoren werden vom Transformer Decoder in den Encoder-Decoder Attention Layern verwendet.
@@ -51,13 +51,14 @@ Bei Self-Attention-Layern werden die Query- $(Q)$, Key- $(K)$ und Value- $(V)$ V
 \begin{equation}
     Q = X \times W^{Q}, K = X \times W^{K}, V = X \times W^{V}
 \end{equation}
-Durch ein Dot-Product zwischen Query- und Key-Vektoren der entsprechenden Eingabewörtern mit anschließender Softmax Normalisierung lässt sich ein Score errechnen, der den Fokus im Valuevektor auf das jeweilige Wort angibt \citep{AttentionIALYN}.
+Durch ein Dot-Product zwischen Query- und Key-Vektoren der entsprechenden Eingabewörtern mit anschließender Softmax Normalisierung lässt sich ein Score errechnen, der den Fokus im Valuevektor auf das jeweilige Wort gewichtet \citep{AttentionIALYN}.
 \begin{equation}
     \label{attentioneq}
     Attention(Q,K,V) = Softmax(\frac{Q\times K^T}{\sqrt{d_k}})\times V
 \end{equation}
 In Gleichung \ref{attentioneq} werden die Berechnungen an den Matrizen $Q$ für die Queries, $K$ für die Keys und $V$ für die entsprechenden Values durchgeführt. Als Skalierungsfaktor wird $\sqrt{dk}$ , die Dimension der Key Vektoren verwendet, um einen stabilen Gradienten zu erhalten. 
 
+\pagebreak
 Attention Funktionen lassen sich parallel ausführen. Diese Eigenschaft nutzen Transformermodelle aus und verwenden Multi-Head Attention Layer, um mehrere Attention Funktionen parallel auszuführen.
 Es werden parallel $h$ voneinander unabhängige Attention Layer ausgeführt, die ihre einzelnen Ergebnisse für die Weiterverarbeitung aneinanderfügen und linear in die gewünschte Dimension transformieren. 
 \begin{equation}
@@ -100,7 +101,8 @@ Durch die Masked Self-Attention Layer kann das GPT-2 Modell beim Training im Geg
 
 Zur Generation von Textpassagen kann GPT-2 unkontrolliert Samples aus einer leeren Eingabesequenz generieren.
 Kontrolliert werden kann die Generation durch das Festlegen einer spezifischen Starteingabe an die GPT-2 generierte Tokens anfügt.
-Während der Generation selbst lässt sich die Generation allerdings nicht kontrollieren.
+Weiterhin kann GPT-2 auf einen spezifischen Datensatz finegetuned werden, um so die zu erwartende Ausgabe zu beeinflussen.
+Während der Generierung selbst lässt sich die Generation allerdings nicht kontrollieren.
 
 GPT-2 verwendet zur Tokenisierung das BytePairEncoding Verfahren \citep{bytepairencoding}.
 Das Pretraining von GPT-2 wurde auf einem Datensatz mit ca. 8 Millionen Webseiten durchgeführt, mit der Aufgabenstellung jeweils in Texten das nächste Token vorherzusagen.

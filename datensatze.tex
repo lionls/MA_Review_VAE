@@ -5,9 +5,9 @@ Zum Training und zur Evaluation von neuronalen Netzen sind große Datensätze er
 Zur Lösung der Aufgabenstellung, Durchschnittsrezensionen aus Textbewertungen zu erzeugen, werden Datensätze mit mehreren Bewertungen und Zusammenfassungen zu einem Produkt benötigt.
 
 Es bietet sich an, Bewertungen von großen Webportalen wie Amazon oder Yelp zu verwenden. 
-Diese Portale haben zu den unterschiedlichsten Produkten und Restaurants zahlreiche Bewertungen.
+Diese Portale haben zu den unterschiedlichsten Produkten und Dienstleistungen zahlreiche Bewertungen.
 
-Es existieren bereits bestehende Amazon und Yelp Datensätze mit menschlich erstellten Gold-Standard Zusammenfassungen. 
+Es existieren bereits bestehende Amazon und Yelp Datensätze mit menschlich erstellten Gold-Standard Zusammenfassungen \citep{copycat}. 
 Die Variational Autoencoder Modelle lassen sich somit mit den Review Daten mit dem Trainingsziel der Rekonstruktion trainieren, um einen aussagekräftigen Latentraum mit Bewertungen und deren spezifischen Eigenschaften zu erlernen.
 Anschließend können die trainierten Modelle auf den respektiven Testdatensätzen evaluiert werden, da jeweils Gold-Standard Zusamenfassungen vorliegen, mit denen sich mittels in Abschnitt \ref{evalmetric} erklärten Metriken die generierten Rezensionen bewerten lassen.
 
@@ -19,7 +19,7 @@ Der Umfang der zum Training und Testen verwendeten Datensätze ist in Tabelle \r
         \toprule
                               &            & \textbf{Amazon} &      &           & \textbf{Yelp} &      \\
                               & Train      & Dev             & Test & Train     & Dev           & Test \\ \midrule
-    \# Produkte / Restaurants & 244.652    &   28            &  32  & 75.988    &  100          &  100    \\
+    \# Produkte / Dienstleister & 244.652    &   28            &  32  & 75.988    &  100          &  100    \\
     \# Rezensionen            & 13.053.202 &    224          &   256& 4.658.968 &  800          &  800 \\ \bottomrule
     \end{tabular}
     \caption{Enthaltene Rezensionen der einzelnen Datensätze \citep{coop}}
@@ -48,6 +48,8 @@ Die Bewertungen gehen oft auf unterschiedliche Aspekte der Produkte ein und erl�
 Die für das Training relevanten Bewertungen wurden aus den Kategorien Kleidung, Schuhe, Schmuck, Elektronikartikeln, Gesundheit- und Pflegeprodukte, Einrichtung und Küchenartikeln gewählt.
 Gefiltert wurden die Bewertungen indem Produkte mit einer maximalen Länge von 128 Tokens gewählt wurden und nur Produkte mit über 10 existierenden Bewertungen ausgewählt wurden. 
 Die entsprechenden Bewertungen sind bereits in Trainings- und Validierungsdaten gesplittet.
+
+%layout pagebreak
 Die Validierungsdaten des Amazon Datensatz sind manuell erstellte Zusammenfassungen, die für den Dev / Test Split im Verhältnis von 28 / 32 vorliegen.
 Somit ergibt sich insgesamt ein Trainingsdatensatz mit 244.652 Produkten und den zugehörigen 13.053.202 Bewertungen.
 % Der Datensatz enthält somit diverse Produkte, bei denen jeweils unterschiedliche Eigenschaften wichtig sind.
@@ -72,14 +74,14 @@ Der Yelp Review Datensatz \citep{meansum} enthält Rezensionen zu unterschiedlic
 Die von den Yelpnutzern erstellten Bewertungen unterschieden sich von den Amazon Bewertungen durch mehr Subjektivität in den Bewertungen.
 Die Bewertungen enhtalten wesentlich mehr persönliche Details und Erfahrungen der Nutzer.
 Das Variational Autoencoder Modell hat hier die Aufgabe, wichtige Informationen zu extrahieren und unwichtiges Rauschen in den Daten herauszufiltern, um eine gute Durchschnittsrepräsentation zu bestimmen.
-Insbesondere in den Yelp Reviews befinden sich meistens unnötige Zusatzinformationen, die nicht zur Bewertung des Restaurants an sich beitragen, wie zum Beispiel das Erwähnen von privat ausgetragenen Geburtstagsfeiern. 
+Insbesondere in den Yelp Reviews befinden sich meistens unnötige Zusatzinformationen, die nicht zur Bewertung der Dienstleistung an sich beitragen, wie zum Beispiel das Erwähnen von privat ausgetragenen Geburtstagsfeiern. 
 
 \begin{figure}[!h]
     \centering
     \scriptsize
     \framebox{
 
-        \parbox{\columnwidth-4\fboxsep}{\textbf{Restaurant Id:} 87YsVbCN\_kfzheY79Fzjkg \\ \\ \textbf{Review:} Great experience! Went cake tasting for our wedding and Jessica was a huge help!! She brought out the tastings for us after giving us time to look through their amazing book. She explained every cake and filling and had great recommendations for mixing the fillings. The champagne cake with cream cheese filling was amazing!! Chose our cake and design within an hour. Great service and knowledge. Thank you Jessica!}
+        \parbox{\columnwidth-4\fboxsep}{\textbf{Dienstleister Id:} 87YsVbCN\_kfzheY79Fzjkg \\ \\ \textbf{Review:} Great experience! Went cake tasting for our wedding and Jessica was a huge help!! She brought out the tastings for us after giving us time to look through their amazing book. She explained every cake and filling and had great recommendations for mixing the fillings. The champagne cake with cream cheese filling was amazing!! Chose our cake and design within an hour. Great service and knowledge. Thank you Jessica!}
 
     }
     \caption{Beispiel Bewertung zu einem Restaurant des Yelp Datensatzes}

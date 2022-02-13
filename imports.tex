@@ -48,6 +48,8 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{booktabs}
 \usepackage[colorlinks,citecolor=blue,linkcolor=black]{hyperref} %anklickbares Inhaltsverzeichnis
+
+
 \usepackage{calc}
 
 \usepackage{tikz}
@@ -131,3 +133,19 @@
 
 
 %\makeindex
+
+\usepackage{etoolbox}
+\makeatletter
+\newif\ifdavid@number
+\preto\equation{\david@numberfalse}
+\preto\endequation{\ifdavid@number\else\notag\fi}
+\patchcmd\label@in@display{\@empty}{\@empty\david@numbertrue}{}{}
+
+\preto\align{\david@numberfalse}
+\preto\endalign{\ifdavid@number\else\nonumber\fi}
+\patchcmd\label@in@display{\@empty}{\@empty\david@numbertrue}{}{}
+
+\preto\alignat{\david@numberfalse}
+\preto\endalignat{\ifdavid@number\else\nonumber\fi}
+\patchcmd\label@in@display{\@empty}{\@empty\david@numbertrue}{}{}
+\makeatother

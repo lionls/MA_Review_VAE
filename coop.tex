@@ -5,7 +5,7 @@ Ebenfalls ist das Verarbeiten von widersprüchlichen Informationen eine große H
 Das Ziel von Multi-Document Summarization ist das zusammengefasste Repräsentieren der wichtigen Aspekte aller Dokumente in einem einzelnen Dokument, um einen guten allgemeinen Überblick zu schaffen.
 
 Im folgenden werden Multi-Document Summarization Systeme zur Zusammenfassung von Bewertungen verwendet.
-Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Wörtern bestehen.
+Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Tokens bestehen.
 Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt representiert.
 
 
@@ -24,8 +24,8 @@ Von diesem Durchschnittslatentvektor $z_p$ wird anschließend eine Bewertung gen
 CopyCat basiert auf einem Variational Autoencoder Modell \citep{copycat}, welches GRU Encoder und Decoder verwendet. 
 Für jede Gruppe von Bewertungen berechnet CopyCat einen Latentvektor $c$, der die gesamte Semantik der Gruppe beschreibt. 
 Weiterhin wird jede einzelne Bewertung einer Gruppe mit einem einzelnen Latentvektor $z$ beschrieben.
-Bei der Generation von Durchschnittsbewertungen ermöglicht es CopyCat dem Decoder, die einzelnen Latentvektoren für die Bewertungen $z_i$, den allgemeinen Gruppenvektor $c$ und die Bewertungen $r_i$ an sich zu betrachten.
-Durch den Zugriff auf die anderen Bewertungen $r_i$ kann der Decoder spezifische Worte von diesen \glqq kopieren\grqq{}  und somit übernehmen.
+Bei der Generation von Durchschnittsbewertungen ermöglicht es CopyCat dem Decoder, die einzelnen Latentvektoren für die Bewertungen $z_i$, den allgemeinen Gruppenvektor $c$ und die Bewertungen $x_i$ an sich zu betrachten.
+Durch den Zugriff auf die anderen Bewertungen $x_i$ kann der Decoder spezifische Worte von diesen \glqq kopieren\grqq{}  und somit übernehmen.
 
 
 
@@ -47,11 +47,11 @@ Auffällig ist die Korrelation zwischen der Ausdrucksstärke und dem Information
 Latentvektoren, die durch den Durschnitt bestimmt werden, haben eine geringere $L_2$-Norm und somit in den erzeugten Bewertungen einen geringeren Informationsgehalt \citep{coop}.
 
 Um ausdrucksstarke Latentvektoren für die Generation der Bewertungen zu erhalten, formuliert COOP \citep{coop} die Bestimmung des optimalen Latentvektors als Optimierungsproblem, um die beste Kombination von einzelnen Latentvektoren zu finden.
-\begin{alignat}{2}
+\begin{alignat*}{2}
     \max_z              &\quad&  Overlap(R_p, D_\theta(z))    & \\
     \text{unter der Nebenbedingung: } &\quad&  z = \sum_{i=1}^{|R_p|} w_i z_i \\
                          &\quad&  \sum_{i=1}^{|R_p|}w_i=1,                        &\quad \forall w_i \in \mathbb{R}^+
-\end{alignat}
+\end{alignat*}
 Maximiert wird der \textit{Input-Output-Word Overlap} zwischen den Eingabebewertungen $R_p$ und der generierten Bewertung $D_\theta(z)$. 
 Die \textit{Overlap}-Metrik in Gleichung \ref{overlap_rouge} basiert auf dem ROUGE-1 F1 Score und ermöglicht es, Bewertungen zu generieren, die konsistent zu den Eingabebewertungen sind.
 \begin{align}
@@ -67,6 +67,7 @@ z_p = \frac{1}{|R_p^{'}|} \sum_{i=1}^{R_p^{'}}z_i \text{, mit } R_p^{'} \in 2^{R
 Die COOP Methode zur Kombination der einzelnen Latentvektoren, um ausdrucksstarke Bewertungen zu erhalten, erreicht State-of-the-Art Ergebnisse im Vergleich zu den anderen vorgestellten Methoden, die lediglich den normalen Durchschnittslatentvektor verwenden.
 Die erzeugten Bewertungen sind repräsentativ für eine Gruppe von Bewertungen und erhalten ein hohes Maß an Informationen. 
 Trotzdem stellt sich die Frage, ob und inwiefern sich diese Ergebnisse noch weiter optimieren lassen.
+
 Im weiteren Verlauf wurde ein Verfahren entwickelt, welches entsprechende Latentvektoren weiterhin adaptiert, um ein noch höheres \textit{Input-Output-Overlapping} zu erhalten und somit präzisere Informationen in den Durchschnittsbewertungen zu generieren.
 
 Die beiden Modelle Optimus und \textsc{BiMeanVAE} sind bereits von den Autoren \citep{coop} vortrainiert und werden in dieser Arbeit bereits vortrainiert verwendet. 

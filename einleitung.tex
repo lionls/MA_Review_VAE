@@ -2,7 +2,7 @@
 Das automatisierte Zusammenfassen von Dokumenten ist im Bereich des Natural Language Processing (NLP) eine große Herausforderung.
 Natural Language Processing ist ein Unterbereich der künstlichen Intelligenz, der sich mit dem maschinellen Verarbeiten von natürlicher Sprache auseinandersetzt. 
 Aufgrund von neuen Methoden und immer größeren, komplexeren Netzwerken lassen sich hervorragende Ergebnisse in diversen NLP Aufgabenbereichen erzielen. 
-Insbesondere lassen sich große, kostenspielig vortrainierte Modelle mit vielen Parametern durch Transfer Learning in diversen speziellen Aufgabenbereichen einsetzen. 
+Insbesondere lassen sich große, kostspielig vortrainierte Modelle mit vielen Parametern durch Transfer Learning in diversen speziellen Aufgabenbereichen einsetzen. 
 
 Generative Pre-trained Transformers 2 (GPT-2) erzielte unter Verwendung von Transformern großartige Ergebnisse bei der Textgenerierung, unter anderem auch bei der abstraktiven Zusammenfassung von Texten. 
 Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen Text. 
@@ -11,7 +11,7 @@ Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu 
 Im Bereich des E-Commerce und von Online-Vergleichsportalen entstehen eine große Anzahl an Rezensionen zu unterschiedlichen Produkten, Dienstleistungen und Anbietern.
 Es ist für den Anwender eine Herausforderung sich einen repräsentativen Überblick über die einzelnen Rezensionen zu verschaffen. 
 Ein gängiges Bewertungssystem ist das Berechnen des arithmetischen Mittels über die einzelnen Scores aller Bewertungen. 
-Ein zusammengefasster Bewertungsscore ist nicht ausreichend repräsentativ für viele Produkte und beleuchtet nicht spezifische Funktionen der einzelnen Produkte.
+Ein zusammengefasster Bewertungsscore ist nicht ausreichend repräsentativ für viele Produkte und stellt nicht spezifische Funktionen der einzelnen Produkte dar.
 Hier bietet es sich an, ein Produkt durch eine generierte Rezension zu repräsentieren, die die anderen Rezensionen inkludiert und auf die verschiedenen wichtigen Aspekte der Produkte eingeht.
 So kann ein Anwender sich zeitsparend einen ersten groben Überblick über bestimmte Produkte verschaffen.
 
@@ -22,7 +22,7 @@ Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die
 
 Mittels zwei unterschiedlichen Variational Autoencodern Optimus und \textsc{BiMeanVAE} werden die Zusammenfassungen generiert.
 Optimus basiert auf den beiden bekannten Sprachmodellen Bidirectional Encoder Representations from Transformers (BERT) und GPT-2. 
-\textsc{BiMeanVAE} besteht aus einem bidirektionalem LSTM-Encoder und einem LSTM-Decoder.
+\textsc{BiMeanVAE} besteht aus einem bidirektionalem Long Short Term Memory (LSTM)-Encoder und einem LSTM-Decoder.
 Des Weiteren werden die verwendeten Variational Autoencoder durch ein Attribut-Modell optimiert, um optimierte repräsentative Rezensionen zu generieren.
 
 Abschließend werden die vorgestellten Variational Autoencoder mit den entsprechenden Optimierungen auf den beiden Datensätzen evaluiert und miteinander verglichen.
@@ -50,21 +50,21 @@ Abschließend werden die vorgestellten Variational Autoencoder mit den entsprech
 % In Kapitel 6 werden die unterschiedlich trainierten Modelle evaluiert und untereinander verglichen. 
 % In der abschließenden Zusammenfassung in Kapitel 7 wird ein Fazit und ein Ausblick auf weitere Forschungsgebiete gegeben.
 
-\pagebreak
-\subsection{Terminologie}
+% \pagebreak
+% \subsection{Terminologie}
 
-\textbf{Adaptive Moment Estimation} (Adam) ist ein Optimierer für neuronale Netze.
+% \textbf{Adaptive Moment Estimation} (Adam) ist ein Optimierer für neuronale Netze.
 
-\textbf{Fine-Tuning} ist ein Trainingsprozess, der ein bereits vortrainiertes neuronales Netz an eine spezielle Aufgabenstellung anpasst und auf diese trainiert. Die bereits im Pre-Training gefundenen Parameter werden weiter angepasst.
+% \textbf{Fine-Tuning} ist ein Trainingsprozess, der ein bereits vortrainiertes neuronales Netz an eine spezielle Aufgabenstellung anpasst und auf diese trainiert. Die bereits im Pre-Training gefundenen Parameter werden weiter angepasst.
 
-\textbf{Global Vectors for Word Representation} (GloVe) ein Verfahren für das Zuweisen von Vektorrepräsentationen zu Worten.
+% \textbf{Global Vectors for Word Representation} (GloVe) ein Verfahren für das Zuweisen von Vektorrepräsentationen zu Worten.
 
-\textbf{JavaScript Object Notation} (JSON) ist ein in Textform vorliegendes Datenformat.
+% \textbf{JavaScript Object Notation} (JSON) ist ein in Textform vorliegendes Datenformat.
 
-\textbf{Natural Language Processing} (NLP) beschreibt das maschinelle Verarbeiten und Analysieren von natürlichen Sprachen unter Verwendung von unterschiedlichen Techniken und Verfahren. 
+% \textbf{Natural Language Processing} (NLP) beschreibt das maschinelle Verarbeiten und Analysieren von natürlichen Sprachen unter Verwendung von unterschiedlichen Techniken und Verfahren. 
 
-\textbf{Pre-Training} beschreibt den initialen Trainingsprozess eines neuronalen Netzes. Im Bereich des NLP wird Pre-Training verwendet, um ein allgemeines Sprachmodell zu trainieren, welches später auf individuelle Aufgabenstellungen nachtrainiert wird.
+% \textbf{Pre-Training} beschreibt den initialen Trainingsprozess eines neuronalen Netzes. Im Bereich des NLP wird Pre-Training verwendet, um ein allgemeines Sprachmodell zu trainieren, welches später auf individuelle Aufgabenstellungen nachtrainiert wird.
 
-\textbf{Tokenisierung} ist die Segmentierung eines Textes in eine Folge von Tokens. Die einzelnen Tokens sind Zeichenketten bestehend aus einem oder mehreren Zeichen.
+% \textbf{Tokenisierung} ist die Segmentierung eines Textes in eine Folge von Tokens. Die einzelnen Tokens sind Zeichenketten bestehend aus einem oder mehreren Zeichen.
 
 \pagebreak

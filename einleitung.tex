@@ -17,15 +17,30 @@ So kann ein Anwender sich zeitsparend einen ersten groben Überblick über besti
 
 \subsection{Ziel und Aufbau der Arbeit}
 Ziel dieser Masterarbeit ist das unbeaufsichtigte abstraktive Zusammenfassen von mehreren Produktrezensionen mittels Variational Autoencodern zu einer repräsentativen Rezension.
-Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Dienstleistungen (zum Beispiel Restaurants) geben.
+Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen, konsistent in ihrem Inhalt sein und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Dienstleistungen (zum Beispiel Restaurants) geben.
 Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die zu Produkten und Dienstleistungen mehrere unterschiedliche diverse Rezensionen liefern.
 
-Mittels zwei unterschiedlichen Variational Autoencodern Optimus und \textsc{BiMeanVAE} werden die Zusammenfassungen generiert.
-Optimus basiert auf den beiden bekannten Sprachmodellen Bidirectional Encoder Representations from Transformers (BERT) und GPT-2. 
-\textsc{BiMeanVAE} besteht aus einem bidirektionalem Long Short Term Memory (LSTM)-Encoder und einem LSTM-Decoder.
-Des Weiteren werden die verwendeten Variational Autoencoder durch ein Attribut-Modell optimiert, um optimierte repräsentative Rezensionen zu generieren.
+Zunächst werden in Kapitel \ref{grundlagen} die verwendeten Grundlagen zu Textzusammenfassung, Deep Learning, Word Embeddings und Sequence To Sequence Modellen erläutert.
+Anschließend werden in Kapitel \ref{transformer} die Transformermodelle Bidirectional Encoder Representations from Transformers (BERT) und GPT-2 erklärt, wobei detailliert auf die besonderen Merkmale wie Transformer Architekturen und Attention Layer eingegangen wird.
+Der Attention Layer Aufbau ist insbesondere wichtig für die spätere Injektion der adaptierten Latentvektoren.
 
-Abschließend werden die vorgestellten Variational Autoencoder mit den entsprechenden Optimierungen auf den beiden Datensätzen evaluiert und miteinander verglichen.
+In Kapitel \ref{vae} wird der Aufbau und die mathematischen Details von Variational Autoencodern vermittelt.
+Hier werden die zwei unterschiedlichen Variational Autoencoder Optimus und \textsc{BiMeanVAE} hergeleitet, die im weiteren Verlauf die Zusammenfassungen generieren.
+Optimus basiert auf den beiden bekannten Sprachmodellen BERT und GPT-2. 
+\textsc{BiMeanVAE} besteht aus einem bidirektionalem Long Short Term Memory (LSTM)-Encoder und einem LSTM-Decoder.
+
+Im Anschluss werden in Kapitel \ref{dataset} die beiden Datensätze Amazon und Yelp vorgestellt, wobei die unterschiedlichen Aspekte und Herausforderungen der Datensätze dargestellt werden.
+
+Danach werden in Kapitel \ref{multisum} mehrere aktuelle Verfahren zur Multi-Review Summarization vorgestellt. 
+Convex Aggregation for Opinion Summarization (COOP) ist ein Verfahren, welches unterschiedliche Kombinationen von einzelnen Latentvektoren untersucht.
+
+In Kapitel \ref{pplm_chap} wird das vorgestellte COOP Verfahren durch ein Attributmodell weiter optimiert. 
+Hierzu wird bei den Variational Autoencodern der Generationsprozess in Bezug auf das Attributmodell optimiert.
+Des Weiteren wird in diesem Kapitel eine neue Rankingfunktion zur Auswahl der Rezensionen eingeführt und die Hyperparameter für die Evaluation bestimmt.
+
+Abschließend werden die konstruierten Modelle in Kapitel \ref{evalmetric} auf den Datensätzen evaluiert. Ebenfalls werden einzelne generierte Rezensionen untereinander verglichen.
+In der abschließenden Zusammenfassung in Kapitel \ref{summary} wird ein Fazit und ein Ausblick auf weitere Forschungsgebiete gegeben.  
+
 
 
 

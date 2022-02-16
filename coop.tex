@@ -1,4 +1,5 @@
 \section{Multi-Document Summarization}
+\label{multisum}
 In den letzten Jahren erzielten unterschiedliche Verfahren große Fortschritte beim automatisierten Zusammenfassen von mehreren Dokumenten zu einem repräsentativen Dokument.
 Im Gegensatz zum normalen Zusammenfassen von einzelnen Dokumenten enthalten bei der Multi-Document Summarization mehrere Dokumente über ein Thema viele redundante Informationen, die so gefiltert werden müssen, dass redundante Informationen nur einmal im Ausgabedokument dargestellt werden.
 Ebenfalls ist das Verarbeiten von widersprüchlichen Informationen eine große Herausforderung bei der Zusammenfassung von mehreren Dokumenten.
@@ -6,7 +7,7 @@ Das Ziel von Multi-Document Summarization ist das zusammengefasste Repräsentier
 
 Im folgenden werden Multi-Document Summarization Systeme zur Zusammenfassung von Bewertungen verwendet.
 Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Tokens bestehen.
-Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt representiert.
+Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt repräsentiert.
 
 
 Insbesondere im Bereich der Multi-Review Summarization existieren viele unterschiedliche Ansätze.
@@ -30,7 +31,7 @@ Durch den Zugriff auf die anderen Bewertungen $x_i$ kann der Decoder spezifische
 
 
 \subsection{Convex Aggregation for Opinion Summarization}
-\label{coop}
+\label{coop_chap}
 \textbf{Co}nvex Aggregation for \textbf{Op}inion Summarization kurz COOP \citep{coop} ist eine Methode, die unterschiedliche Kombinationenen von einzelnen Latentvektoren zum Berechnen einer Durchschnittsbewertung untersucht.
 Bei der Verwendung von Variational Autoencodern werden die einzelnen Eingabebewertungen durch einen Latentvektor repräsentiert. 
 Häufig wird im nächsten Schritt zur Berechnung einer Durchschnittsbewertung der normale Durchschnitt aller verwendeten Latentvektoren bestimmt und von diesem eine neue Durchschnittsbewertung generiert.
@@ -60,7 +61,7 @@ Die \textit{Overlap}-Metrik in Gleichung \ref{overlap_rouge} basiert auf dem ROU
 \end{align}
 
 Die Suche der einzelnen Kombinationen wird auf die Potenzmenge der Eingabebewertungen $R_p$ beschränkt. 
-Der Zusammenfassunslatentvektor $z_p$ wird anschließend aus dem Durchschnitt der ausgewählten Eingabebewertungslatentvektoren berechnet.
+Der Zusammenfassungslatentvektor $z_p$ wird anschließend aus dem Durchschnitt der ausgewählten Eingabebewertungslatentvektoren berechnet.
 \begin{align}
 z_p = \frac{1}{|R_p^{'}|} \sum_{i=1}^{R_p^{'}}z_i \text{, mit } R_p^{'} \in 2^{R_p} \setminus  \{ \emptyset\}
 \end{align}

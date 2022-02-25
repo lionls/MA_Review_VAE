@@ -5,7 +5,7 @@ Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu ve
 
 Autoencoder sind neuronale Netze, die trainiert werden, um Eingabedaten zu komprimieren und anschließend zu rekonstruieren. 
 Sie bestehen aus einem Encoder $\mathbf{E}:\mathbb{R}^n \rightarrow \mathbb{R}^m$ und einem Decoder $\mathbf{D}:\mathbb{R}^m \rightarrow \mathbb{R}^n$, wobei der Encoder versucht, eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel, eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
-Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt $m<n$ \citep{introVAE}. 
+Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt, also $m<n$ \citep{introVAE}. 
 
 Da Autoencoder nur einen diskreten Latentraum erzeugen existieren im Latentraum viele leere Stellen, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist.
 %Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist, da im Latentraum viele leere Stellen existieren. 
@@ -25,7 +25,7 @@ Die Architektur und der probabilistische Ansatz wird in Abbildung \ref{vae_model
 Für den Datensatz $X$ mit Datenpunkten $x_i$ wird angenommen, dass ein generatives Modell mit den Parametern $\theta$ existiert, welches mittels Latentvektor $z_i$ diesen Datenpunkt $x_i$ generieren kann.
 
 %only for pagebreak
-Dieser generative Teil des Variational Autoencoders ist der Decoder des  Netzes, welcher approximativ versucht, die Daten als Verteilung $p_\theta (\mathbf{X})$ zu modellieren.
+Dieser generative Teil des Variational Autoencoders ist der Decoder des  Netzes, welcher approximativ versucht, die Daten als Verteilung $p_\theta (\mathbf{x})$ zu modellieren.
 \begin{equation}
     \label{px}
 p_\theta (\mathbf{x}) = \int_{\mathbf{z}} p_\theta (\mathbf{x\mid z}) p_\theta (\mathbf{z}) dz
@@ -187,7 +187,7 @@ Als Latentvektor $z \in \mathbb{R}^P$ wird die gepoolte Ausgabe des letzten Hidd
 Um mit GPT-2 kontrolliert unter Verwendung des Latentvektors Text zu generieren, kann der Latentvektor entweder als Memoryvektor in die Past-Gewichtsmatrix injeziert oder auf die vorherigen Embeddings addiert werden \citep{DBLP:journals/corr/abs-2004-04092}.
 
 Beim Embedding wird $z$ direkt auf den Embedding Layer addiert. Somit ergibt sich der neue Embedding Layer durch $h_{Emb}^{'} = h_{Emb} + W_D z$ mit der Gewichtsmatrix $W_D \in \mathbb{R}^{H \times P}$.
-Der Decoder kann hier die zusätzlichen Informationen des Embeddings beim Input und Output Layer verwenden.
+Der Decoder kann hier die zusätzlichen Informationen des Embeddings im Input und Output Layer verwenden.
 
 Bei der Injezierung von $z$ als Memoryvektor $h_{Mem} \in \mathbb{R}^{L\times H}$ wird der Latentvektor in den Past-Key-Vektor von GPT-2 injeziert. 
 Der Past-Key-Vektor beschleunigt normalerweise den Decodiervorgang von GPT-2, da bei einem Decodierungsdurchlauf zu den vorherigen Tokens bereits berechnete Key- und Valuevektoren der Attentionlayern gespeichert und wiederverwendet werden.

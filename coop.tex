@@ -61,9 +61,9 @@ Die \textit{Overlap}-Metrik in Gleichung \ref{overlap_rouge} basiert auf dem ROU
 \end{align}
 
 Die Suche der einzelnen Kombinationen wird auf die Potenzmenge der Eingabebewertungen $R_p$ beschränkt. 
-Der Zusammenfassungslatentvektor $z_p$ wird anschließend aus dem Durchschnitt der ausgewählten Eingabebewertungslatentvektoren berechnet.
+Der Zusammenfassungslatentvektor $z_p$ aus Gleichung \ref{zp_eq} wird anschließend aus dem Durchschnitt der ausgewählten Eingabebewertungslatentvektoren berechnet.
 \begin{align}
-z_p = \frac{1}{|R_p^{'}|} \sum_{i=1}^{R_p^{'}}z_i \text{, mit } R_p^{'} \in 2^{R_p} \setminus  \{ \emptyset\}
+z_p = \frac{1}{|R_p^{'}|} \sum_{i=1}^{R_p^{'}}z_i \text{, mit } R_p^{'} \in 2^{R_p} \setminus  \{ \emptyset\} \label{zp_eq}
 \end{align}
 Die COOP Methode zur Kombination der einzelnen Latentvektoren, um ausdrucksstarke Bewertungen zu erhalten, erreicht State-of-the-Art Ergebnisse im Vergleich zu den anderen vorgestellten Methoden, die lediglich den normalen Durchschnittslatentvektor verwenden.
 Die erzeugten Bewertungen sind repräsentativ für eine Gruppe von Bewertungen und erhalten ein hohes Maß an Informationen. 

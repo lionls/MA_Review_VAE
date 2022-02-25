@@ -21,7 +21,8 @@ Das Attribut Modell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attrib
 
 Zur kontrollierbaren Generierung werden bei PPLM-Modellen Gradienten für die generierten Sequenzen über die Log-Likelihood des normalen Sprachmodells $log(p(x))$ und der Log-Likelihood des Attribut-Modells $log(p(a|x))$ in Bezug auf die Vergangenheitsmatrix errechnet. 
 Durch Veränderung der Vergangenheitsmatrix $\tilde{H}_t = (H_t+\Delta H_t)$ wird die Wahrscheinlichkeit, das nächste Token mit den gewünschten Attributen zu erhalten, erhöht. 
-Hierbei wird $\Delta H_t$ schrittweise durch den Gradienten des Attribut-Modells bestimmt. Die Gradientenmatrix $\Delta H_t$ wird als eine Null-Matrix initialisiert.
+Hierbei wird $\Delta H_t$ schrittweise durch den Gradienten des Attribut-Modells bestimmt. 
+Die Gradientenmatrix $\Delta H_t$ wird als Null-Matrix initialisiert.
 Um den Gradienten des Attribut-Modells zu bestimmen, wird dieses zu $p(a|H_t+\Delta H_t)$ umformuliert mit folgendem Iterationsschritt \ref{gradient_pplm} zur Berechnung:
 \begin{align}
     \label{gradient_pplm}
@@ -101,7 +102,7 @@ Die Berücksichtigung eines Attribut-Modells bei der Generierung des Textes ents
 Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird der Latentvektor direkt optimiert und $\Delta z$ ergibt sich durch die folgende Iteration \ref{pplm_optimus}:
 \begin{align}
     \label{pplm_optimus}
-    \Delta z \leftarrow \Delta z + \alpha \frac{\nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)}{\| \nabla_{\Delta z} \text{log }p(a|z+\Delta z,z)\|^\gamma}
+    \Delta z \leftarrow \Delta z + \alpha \frac{\nabla_{\Delta z} \text{log }p(a|z+\Delta z)}{\| \nabla_{\Delta z} \text{log }p(a|z+\Delta z)\|^\gamma}
 \end{align}
 
 In Abschnitt \ref*{eval_pplm} wird die vorgeschlagene Optimierung der Latentvektoren anhand der Test-Datensätze evaluiert und nach geeigneten Parametern untersucht.
@@ -143,10 +144,10 @@ Somit wird stets die bestmögliche generierte Bewertung ausgewählt.
 In Tabelle \ref{opt_bimeanvae} sind die ROUGE-Scores, welche in Abschnitt \ref*{evalmetric} genauer erklärt werden, für die separiert optimierten Variablen $z, h_t, c_t$ aufgelistet.
 Beim Evaluieren der unterschiedlichen Optimierungsversuche zeigt sich, dass jede Optimierung bessere Ergebnisse als die unoptimierte Baseline auf den Gold-Summaries erzielt.
 Die größte Leistungssteigerung erzielt eine Optimierung der Variabel $c_t$.
-Somit beschreibt folgende Gleichung den Optimierungsschritt $\Delta c_t$ bei \textsc{BiMeanVAE}.
-\begin{align*}
-    \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,c_t)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,c_t )\|^\gamma}
-\end{align*}
+Somit beschreibt folgende Gleichung \ref{opt_lstm} den Optimierungsschritt $\Delta c_t$ bei \textsc{BiMeanVAE}.
+\begin{align}
+    \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,z)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,z )\|^\gamma} \label{opt_lstm}
+\end{align}
 
 
 \pagebreak %layout
@@ -202,18 +203,18 @@ Für jede Schrittweite wurden jeweils die besten bestimmten Gewichtungen ausgew�
     \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule 
     
     \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.05$}             &        &   & &     \\
-    $\quad$ Optimus          &  \underline{36.31} & \underline{7.17}& \underline{20.75}&\textbf{56.82} &  36.31   &   \underline{8.12}   & \underline{20.02}  &  56.71    \\ 
+    $\quad$ Optimus          &  36.31 & 7.17& 20.75&\textbf{56.82} &  36.31   &   \underline{8.12}   & \underline{20.02}  &  56.71    \\ 
     %$\quad$ \textsc{BiMeanVae}   &  37.93 & 7.19& 21.85&56.77 &     &      &   &    \\[0.2cm] % TEST STEP 05
     $\quad$ \textsc{BiMeanVae} & 36.40 & \underline{7.19} & \underline{21.65} & \textbf{56.55} &36.16 &7.51 &20.49 & 56.91\\ [0.2cm] % DEV STEP 05
     
     \textit{COOP + Attribute Model}        &         \multicolumn{3}{l}{Stepsize $\alpha= 0.1$}            &        &   & &     \\
-    $\quad$ Optimus            & \textbf{36.40}  & \textbf{7.78}&\textbf{20.99} &\underline{56.78} &   36.31  &  8.08    &  19.91 & 56.67  \\ 
+    $\quad$ Optimus            & \underline{36.40}  & \textbf{7.78}&\textbf{20.99} &56.78 &   36.31  &  8.08    &  19.91 & 56.67  \\ 
     %$\quad$ \textsc{BiMeanVae} &  \textbf{38.16} & 7.30 & \underline{22.00} & 56.78&     &      &   &     \\[0.2cm]  %TEST STEP 1
     $\quad$ \textsc{BiMeanVae}& 36.45 & 7.08 & 21.64 & \underline{56.54} & \underline{36.33}&\underline{7.61} & \textbf{20.50} &56.92 \\[0.2cm]  %DEV STEP 1
 
 
     \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.3$}                &        &        &   & &     \\
-    $\quad$ Optimus            & 35.03 ???  & 6.81& 19.44 &56.22 &   \underline{36.47}  &    \textbf{8.19}  & \textbf{20.21}  & \textbf{56.78}  \\ 
+    $\quad$ Optimus            & \textbf{36.43}  & \underline{7.64}& \underline{20.76} &\underline{56.79} &   \underline{36.47}  &    \textbf{8.19}  & \textbf{20.21}  & \textbf{56.78}  \\ 
     %$\quad$ \textsc{BiMeanVae} & 37.98  & \textbf{7.56} & 21.95& \underline{56.92} &     &      &   &     \\[0.2cm] %TEST STEP 3
     $\quad$ \textsc{BiMeanVae} & \underline{36.55} & \textbf{7.32} & \textbf{21.78} & 56.43 & 36.33 & 7.53 & 20.39& \textbf{57.00}\\[0.2cm] %DEV STEP 3
 
@@ -233,7 +234,7 @@ Für jede Schrittweite wurden jeweils die besten bestimmten Gewichtungen ausgew�
     
     \end{tabular}
     \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse je Modellgruppe sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
-    $^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
+    %$^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
     }
     \label{dev_eval_results}
 \end{table}
@@ -252,7 +253,7 @@ Folgende in Tabelle \ref{weight_mv} dargestellte Hyperparameter erzielen auf den
     
              &$\alpha$ & R1(x)  & R2(y)  & RL(z) & MV(v)&$\alpha$ &  R1(x)  & R2(y)  & RL(z) & MV(v) \\ \midrule
 
-    Optimus   & 0.1 & 0.5 & 1.0 & 1.5 & 3.0 & 0.3 & 3.5 & 1.0 & 0.5 & 3.5 \\
+    Optimus            & 0.3 & 1.0 & 0.5 & 1.5 & 3.5 & 0.5 & 3.5 & 1.0 & 0.0 & 2.5 \\
     \textsc{BiMeanVAE} & 0.3 & 3.5 & 0.0 & 1.0 & 0.5 & 0.5 & 0.5 & 0.0 & 0.0 & 1.0 \\ \bottomrule
     \end{tabular}
     \caption{Gewichtung der einzelnen Metriken zur Bestimmung des Input-Output-Overlap gesamt Scores}

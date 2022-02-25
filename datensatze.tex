@@ -15,7 +15,7 @@ Der Umfang der zum Training und Testen verwendeten Datensätze ist in Tabelle \r
 
 \begin{table}[!h]
     \centering
-    \begin{tabular}{@{}lcccccc@{}}
+    \begin{tabular}{@{}lccc|ccc@{}}
         \toprule
                               &            & \textbf{Amazon} &      &           & \textbf{Yelp} &      \\
                               & Train      & Dev             & Test & Train     & Dev           & Test \\ \midrule
@@ -51,6 +51,7 @@ Die entsprechenden Bewertungen sind bereits in Trainings- und Validierungsdaten 
 
 %layout pagebreak
 Die Validierungsdaten des Amazon Datensatz sind manuell erstellte Zusammenfassungen, die für den Dev / Test Split im Verhältnis von 28 / 32 vorliegen.
+Für jedes Produkt der Validierungsdaten existieren jeweils drei manuell erstellte Referenzzusammenfassungen.
 Somit ergibt sich insgesamt ein Trainingsdatensatz mit 244.652 Produkten und den zugehörigen 13.053.202 Bewertungen.
 % Der Datensatz enthält somit diverse Produkte, bei denen jeweils unterschiedliche Eigenschaften wichtig sind.
 
@@ -74,7 +75,7 @@ Der Yelp Review Datensatz \citep{meansum} enthält Rezensionen zu unterschiedlic
 Die von den Yelpnutzern erstellten Bewertungen unterscheiden sich von den Amazon Bewertungen durch mehr Subjektivität in den Bewertungen.
 Die Bewertungen enthalten wesentlich mehr persönliche Details und Erfahrungen der Nutzer.
 Das Variational Autoencoder Modell hat hier die Aufgabe, wichtige Informationen zu extrahieren und unwichtiges Rauschen in den Daten herauszufiltern, um eine gute Durchschnittsrepräsentation zu bestimmen.
-Insbesondere in den Yelp Reviews befinden sich meistens unnötige Zusatzinformationen, die nicht zur Bewertung der Dienstleistung an sich beitragen, wie zum Beispiel das Erwähnen von privat ausgetragenen Geburtstagsfeiern. 
+Insbesondere in den Yelp Reviews befinden sich teilweise unnötige Zusatzinformationen, die nicht zur Bewertung der Dienstleistung an sich beitragen, wie zum Beispiel das Erwähnen von privat ausgetragenen Geburtstagsfeiern. 
 
 \begin{figure}[!h]
     \centering
@@ -89,4 +90,5 @@ Insbesondere in den Yelp Reviews befinden sich meistens unnötige Zusatzinformat
 
 Der Yelp Review Datensatz wurde ebenfalls nach einer maximalen Länge von 128 Tokens mit mindestens 10 existierenden Bewertungen je Unternehmen gefiltert und besteht somit aus 13.053.202 Bewertungen zu 244.652 Unternehmen, die bereits in Trainings- und Validierungsdaten gesplittet sind. 
 Zusätzlich enthält der Datensatz 200 menschlich durch Amazon Mechanical Turk (AMT) Arbeiter erstellte Zusammenfassungen, die zu einem Dev / Test Verhältnis von 100 / 100 gesplittet werden. 
+Bei dem Yelp Datensatz liegt für jede der 200 Dienstleistungen der Validierungsdaten lediglich eine Referenzzusammenfassung vor.
 \pagebreak

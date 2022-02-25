@@ -81,7 +81,7 @@ Um die Performance von Sequence-To-Sequence Modellen weiter zu optimieren, werde
 
 
 \subsection{\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory}
-\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory (LSTM) Netze sind eine Untergruppe der Rekurrenten neuronalen Netze (RNN), die es ermöglichen, Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
+\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory (LSTM) Netze sind eine Untergruppe der Rekurrenten Neuronalen Netze (RNN), die es ermöglichen, Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
 Rekurrente Neuronale Netze zeichnen sich durch ihre rekurrenten Verbindungen innerhalb desselben Layers aus, wodurch die nächste RNN-Zelle die vorherigen Informationen weiterverarbeiten kann.
 Ein häufiges Problem ist das Modellieren von Langzeitbeziehungen mittels RNNs. 
 LSTMs sind speziell darauf ausgelegt diese Langzeitbeziehungen abzubilden, indem sie stets einen Zellzustand mit übergeben.
@@ -101,10 +101,11 @@ Das Propagieren durch eine Reihe von LSTM-Zellen sowie der Einfluss der einzelne
 
 
 \begin{figure}[h]
-    \label{lstm_chain}
+    
     \centering
     \includegraphics[width=\textwidth]{bilder/LSTM3-chain}
     \caption{Reihe von LSTM-Zellen mit entsprechenden Gates \citep{lstmexplained}}
+    \label{lstm_chain}
 \end{figure}
 
 \pagebreak

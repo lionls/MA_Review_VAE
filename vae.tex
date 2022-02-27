@@ -34,8 +34,8 @@ p_\theta (\mathbf{x}) = \int_{\mathbf{z}} p_\theta (\mathbf{x\mid z}) p_\theta (
 \end{equation}
 In Gleichung \ref{px} wird für $p_\theta (\mathbf{z})$ die A-priori-Wahrscheinlichkeit angenommen und für $p_\theta (\mathbf{x\mid z})$ die Likelihood. Der Decoder zieht demnach eine Latentvariable $z$ aus der A-priori-Menge $p_\theta (\mathbf{z})$ und berechnet mit der Likelihood $p_\theta (\mathbf{x\mid z})$ Datenpunkte $x$ \citep{vae2}.
 
-Die inferierten Latentvariablen für die bekannten Datenpunkte $X$ lassen sich über die A-posteriori-Wahrscheinlichkeit $p_\theta (\mathbf{z\mid x})$ aus Gleichung \ref{posteriori} herleiten. 
-
+%Die inferierten Latentvariablen für die bekannten Datenpunkte $X$ lassen sich über die A-posteriori-Wahrscheinlichkeit $p_\theta (\mathbf{z\mid x})$ aus Gleichung \ref{posteriori} herleiten. 
+Die Latentvariablen für die bekannten Datenpunkte $X$ lassen sich über die A-posteriori-Wahrscheinlichkeit $p_\theta (\mathbf{z\mid x})$ aus Gleichung \ref{posteriori} bestimmen. 
 \begin{equation}
     \label{posteriori}
     p_\theta (\mathbf{z\mid x}) = \frac{p_\theta (\mathbf{x\mid z}) p_\theta (\mathbf{z})}{p_\theta(\mathbf{x})}

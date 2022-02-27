@@ -93,7 +93,7 @@ Eine höhere Wörteranzahl ergibt keine weitere Leistungssteigerung. Dies lässt
 Darüber hinaus fällt auf, dass entgegen der Erwartung eine leichte Gewichtung mittels Softmax Funktion nach der Anzahl der Vorkommnisse entsprechender Wörter zu keinen besseren Ergebnissen führt.
 Keyword Extraction über das YAKE-Verfahren zeigt ebenfalls keine Leistungssteigerung. 
 
-Demnach wird im folgenden für die weitere Evaluierung auf dem Dev- und Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
+Demnach wird im Folgenden für die weitere Evaluierung auf dem Dev- und Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
 
 \subsection{Verbessern der Textgenerierung von Optimus}
 Den Variational Autoencoder Optimus mit einem Attributions-Modell zu kombinieren ist aufgrund der Injektion des Latentvektors nicht ohne weiteres möglich.
@@ -177,7 +177,7 @@ Somit ergibt sich eine neue Rankingfunktion \ref{ranking} zwischen den generiert
 \end{split}
 \end{align}
 Die Variablen $x,y,z,v$ geben die Gewichtung der einzelnen Metriken an. 
-Die Hyperparameter für die Gewichtung werden im folgenden Abschnitt auf dem Dev-Datensatz ermittelt.
+Die Hyperparameter für die Gewichtung werden im Folgenden Abschnitt auf dem Dev-Datensatz ermittelt.
 
 Mit dieser neuen Rankingfunktion wird bei den einzelnen generierten Rezensionen nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 
 Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Grammen aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.

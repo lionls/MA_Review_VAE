@@ -9,26 +9,26 @@ Im folgenden Kapitel \ref*{transformer} wird anschließend aus den Grundlagen di
 
 
 \subsection{Textzusammenfassung}
-Das automatisierte Zusammenfassen von Texten ist ein Teilgebiet des NLP, welches sich mit dem Zusammenfassen von langen Texten zu einem kongruenten, kürzeren Text unter Beibehaltung von wichtigen Informationen befasst. 
+Das automatisierte Zusammenfassen von Texten ist ein Teilgebiet des NLP, welches sich mit dem Zusammenfassen von langen Texten zu einem kongruenten, kürzeren Text unter Beibehaltung von wichtigen Informationen befasst \citep{DBLP:journals/corr/abs-1904-00688}. 
 Durch die zunehmenden Datenmengen wird automatisierte Textzusammenfassung immer relevanter, um akkurat aggregierte Zusammenfassungen und Überblicke zu geben.
 Automatisierte Textzusammenfassung lässt sich zum Beispiel bei der Generierung von Kurzzusammenfassungen zu Dokumenten verwenden.
 
 Grundsätzlich wird beim automatisierten Zusammenfassen von Texten zwischen den extraktiven und den abstraktiven Methoden unterschieden.
 
 \subsubsection{Extraktive Textzusammenfassung}
-Extraktive Textzusammenfassung ist das Identifizieren und anschließende Extrahieren von wichtigen Phrasen oder Sätzen aus dem Ursprungstext.
-Hierbei werden die entsprechend ausgewählten Phrasen in der Zusammenfassung genauso wie sie im Ursprungstext vorkommen übernommen.
+Extraktive Textzusammenfassung ist das Identifizieren und anschließende Extrahieren von wichtigen Phrasen oder Sätzen aus dem Ursprungstext \citep{DBLP:journals/corr/ChengL16a}.
+Hierbei werden die entsprechend ausgewählten Phrasen in der Zusammenfassung, genauso wie sie im Ursprungstext vorkommen, übernommen.
 Die zu extrahierenden Phrasen oder Sätze werden mithilfe einer Scoringfunktion gefunden und später aneinander gereiht. Hierzu gibt es unterschiedliche Methoden und Metriken.
 
 \subsubsection{Abstraktive Textzusammenfassung}
-Abstraktive Textzusammenfassung versucht durch Interpretation und Verständnis des Ursprungtexts eine kurze, kongruente Zusammenfassung zu produzieren. 
+Abstraktive Textzusammenfassung versucht durch Interpretation und Verständnis des Ursprungtexts eine kurze, kongruente Zusammenfassung zu produzieren \citep{DBLP:journals/corr/NallapatiXZ16}. 
 Die Zusammenfassung soll alle wichtigen Informationen enthalten und als zusammenhängender flüssiger Text erzeugt werden. Ein kongruenter Text wird erzeugt, da das Sprachmodell frei Sätze produzieren kann und nicht an vorher vorgegebene Sätze oder Phrasen gebunden ist, wie bei der extraktiven Zusammenfassung.
 
-Große Fortschritte im Bereich der abstraktiven Textzusammenfassung ergaben sich in den letzten Jahren durch Sequence-To-Sequence Modelle. Diese encodieren den Eingabetext in eine Übergangsrepräsentation und generieren aus dieser durch Decodierung eine Ausgangsrepräsentation.
+Große Fortschritte im Bereich der abstraktiven Textzusammenfassung ergaben sich in den letzten Jahren durch Sequence-To-Sequence Modelle \citep{DBLP:journals/corr/NallapatiXZ16}. Diese encodieren den Eingabetext in eine Übergangsrepräsentation und generieren aus dieser durch Decodierung eine Ausgangsrepräsentation.
 
 \subsubsection{Multi-Document Textzusammenfassung}
 Eine große Herausforderung ist das Zusammenfassen von mehreren Dokumenten über dasselbe Thema zu einem einzigen Dokument. 
-Die entstehende Zusammenfassung soll Anwendern einen schnellen, umfassenden Überblick über eine große Anzahl an Dokumenten bieten. 
+Die entstehende Zusammenfassung soll Anwendern einen schnellen, umfassenden Überblick über eine große Anzahl an Dokumenten bieten \citep{DBLP:journals/corr/abs-2011-04843}. 
 Die unterschiedlichen Dokumente enthalten diverse Informationen, die nicht immer im Ergebnis und Vokabular deckungsgleich sind. 
 Somit ergibt sich die Herausforderung, unterschiedliche Perspektiven in den jeweiligen Dokumenten zusammenfassend zu repräsentieren.
 Da sich unterschiedliche Standpunkte nur unzureichend mittels extraktiven Methoden darstellen lassen, bieten sich bei der Multi-Document Textzusammenfassung die Verwendung abstraktiver Methoden an.
@@ -56,7 +56,7 @@ Die errechneten Vektoren sind kontextunabhängig und für ein Wort wird stets de
 Word2vec erlernt die entsprechenden Vektorrepräsentationen mittels eines SkipGram neuronalen Netzes \citep{word2vec}, GloVe hingegen über die nicht Nulleinträge einer Co-occurrence Matrix von Wörtern untereinander \citep{glove}. 
 
 Kontextabhängige Verfahren, wie zum Beispiel ELMO \citep{elmo} oder BERT \citep{DBLP:journals/corr/abs-1810-04805}, generieren kontextabhängige Vektoren für Wörter und berücksichtigen dabei das Umfeld in dem das einzelne Wort auftritt.
-Bei diesen Verfahren wird zur Bestimmung eines Word Embeddings der gesamte Satz benötigt, um die erlernten kontextspezifischen Eigenarten für die Einbettung zu berücksichtigen. 
+Bei diesen Verfahren werden zur Bestimmung eines Word Embeddings der gesamte Satz benötigt, um die erlernten kontextspezifischen Eigenarten für die Einbettung zu berücksichtigen. 
 
 Verfahren wie zum Beispiel BERT nutzen besondere Tokenisierungsmethoden, die es erlauben einzelne Wörter durch mehrere Tokens zu repräsentieren.
 Dieses Splittingverfahren von Wörtern in Subtokens ist als WordPiece Verfahren \citep{wordpiece} für BERT und als BytePairEncoding \citep{bytepairencoding} für GPT-2 bekannt. 

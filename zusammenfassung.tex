@@ -3,45 +3,26 @@
 %%% Zusammenfassung:
 Im Bereich des Natural Language Processing erzielten generative Modelle wie Variational Autoencoder große Fortschritte und ermöglichen die gesteuerte Generierung von Textsequenzen.
 Insbesondere im Bereich der Multi-Document Summarization bietet sich die Verwendung von Variational Autoencodern an, um gezielt Dokumente im Latentvektorraum miteinander zu verknüpfen und präzise Zusammenfassungen dieser zu generieren.
-Multi-Document Summarization bezeichnet das Zusammenfassen mehrerer Dokumente zu einem repräsentativen Dokument, welches Anwendern einen schnellen guten Überblick ermöglicht.
-
+Multi-Document Summarization bezeichnet das Zusammenfassen mehrerer Dokumente zu einem repräsentativen Dokument, welches Anwendern einen schnellen und umfassenden Überblick ermöglicht.
 Im Bereich des E-Commerce und von Online-Vergleichsportalen entstehen eine große Anzahl an Rezensionen zu zahlreichen Produkten und Dienstleistungen.
+Nutzern ist es nicht möglich sich einen schnellen Überblick über die Besonderheiten eines Produktes oder einer Dienstleistung zu verschaffen.
+
 Das Ziel dieser Masterarbeit ist das automatisierte, unüberwachte Zusammenfassen von mehreren Rezensionen eines Produktes oder einer Dienstleistung unter Verwendung von Variational Autoencodern zu einer kongruenten repräsentativen Rezension.
-Es werden zwei unterschiedliche Variational Autoencoder Modelle verwendet, welche mittels eines Attributmodells optimiert werden.
-Durch das Attributmodell werden bei der Generierung die Token Wahrscheinlichkeiten restrukturiert, um weitaus bessere Ergebnisse zu erzielen.
+In dieser Arbeit wird ein neuer Ansatz entwickelt, der ein aktuelles Verfahren erweitert und verbessert.
+Hierzu werden zwei unterschiedliche Variational Autoencoder Modelle mit einem Attributmodell optimiert.
+Durch das Attributmodell werden bei der Generierung die Token Wahrscheinlichkeiten restrukturiert, um bessere Ergebnisse zu erzielen.
+Zur Auswahl der generierten Rezensionen wird eine neuartige Rankingfunktion eingeführt.
 
-In der Evaluation zeigen die entwickelten Modelle eine hervorragende Performance bei der Zusammenfassung und erreichen State-of-the-Art Ergebnisse auf unterschiedlichen Metriken.
-Es lassen sich Rezensionen zu unterschiedlichen Themengebieten automatisiert mittels Variational Autoencoder und Attributmodell zusammenfassen.
+Die konstruierten Modelle werden auf zwei Datensätzen evaluiert.
+In der Evaluation zeigen die entwickelten Modelle eine hervorragende Performance bei der Zusammenfassung und erreichen auf einem Datensatz neue State-of-the-Art Ergebnisse.
+Somit lassen sich erfolgreich Rezensionen zu unterschiedlichen Themengebieten automatisiert mittels Variational Autoencoder mit Attributmodell zusammenfassen.
 
-% Hier kommt eine ca.\ einseitige Zusammenfassung der Arbeit rein.
 
-% Im Bereich des Natural Language Processing erzielten bidirektionale Encoder Repräsen- tationen von Transformern (BERT) große Fortschritte und ermöglichten es, große Sprach- modelle vorzutrainieren und durch späteres Fine-Tuning auf spezielle Aufgaben anzu- passen. BERT erreichte auf englischen Closed-Domain Question Answering Benchmark- Datensätzen beeindruckend gute Ergebnisse. Im Natural Language Processing beschreibt Closed-Domain Question Answering das Beantworten von Fragestellungen in natürli- cher Sprache auf einen bekannten Kontext.
-% In dieser Bachelorarbeit werden bidirektionale Encoder Repräsentationen von Transfor- mern verwendet, um die Performance auf deutschsprachigen Closed-Domain Question Answering Aufgaben zu evaluieren. Dazu werden zwei verschiedene Datensätze unter Verwendung von unterschiedlichen Methoden selbst generiert. Erstens wird ein Evalua- tionsdatensatz durch dynamische Generation von Fragen und Antworten mittels Anfra- gen an Knowledge Bases erstellt. Zweitens wird ein bekannter englischer Trainings- und Evaluationsdatensatz maschinell ins Deutsche übersetzt.
-% Es werden unterschiedliche vortrainierte BERT-Modelle in mehreren Kombinationen auf den selbst erstellten Datensätzen und bereits bekannten Datensätzen nachtrainiert und anschließend evaluiert. Überprüft wird, wie hoch die Performance der BERT-Modelle auf der deutschen Sprache ist und wie gut die Abstraktionsfähigkeit zwischen unterschied- lichen Sprachen ist.
-% Die nachtrainierten BERT-Modelle zeigen bei der Auswertung ein tiefes Sprachverständ- nis und erreichen bei der Evaluation gute Ergebnisse. Die multilingual ausgelegten BERT- Modelle zeigen des Weiteren eine hohe Abstraktionsfähigkeit zwischen den nachtrainier- ten Sprachen. Insbesondere durch die Kombination von unterschiedlichen Datensätzen auf demselben Modell und demnach einer Vergrößerung der Trainingsmenge lassen sich besonders gute Ergebnisse bei der Evaluation erzielen.
+% ----
 
-% In dieser Masterarbeit konnte ein umfassender Überblick über State-of-the-Art NLP-Techniken im Bereich der Multi-Document Summarization gegeben werden.
-% Es wurden unterschiedliche Architekturen wie Transformer, BERT, GPT-2, LSTM und Attention-Layer dargestellt. 
-% Insbesondere Variational Autoencoder, Optimierungen dieser Modelle und die Verwendung dieser im Bereich von Sprachmodellen wurde explizit erläutert.
 
-% Das Ziel dieser Arbeit war das Zusammenfassen von mehreren Rezensionen eines Produkts oder einer Dienstleistung zu einer generierten repräsentativen Rezension, die die anderen Rezensionen inkludiert und auf die verschiedenen wichtigen Aspekte der zu bewertenden Produkte oder Dienstleistung eingeht.
+% Es werden zwei unterschiedliche Variational Autoencoder Modelle verwendet, welche mittels eines Attributmodells optimiert werden.
+% Durch das Attributmodell werden bei der Generierung die Token Wahrscheinlichkeiten restrukturiert, um weitaus bessere Ergebnisse zu erzielen.
 
-% Als Datensätze wurden Amazon und Yelp-Review Datensätze verwendet. Diese bieten eine Vielzahl an unterschiedlichen Rezensionen zu unterschiedlichen Produkten und Dienstleistungen. Insbesondere zur Multi-Review Summarization existieren menschlich erstellte Rezessionszusammenfassungen auf beiden Datensätzen.
-
-% Weiterhin wurden unterschiedliche extraktive und abstraktive Methoden zur Multi-Review Summarization vorgestellt und untereinander verglichen. 
-% Die in dieser Arbeit verwendete Convex Aggregation for Opinion Summarization Methode basiert darauf, dass generierte Rezessionen aus normalen Durchschnittslatentvektoren ihre Expressivität verlieren. 
-% Die \textit{COOP} Methode findet eine optimale Kombination der einzelnen Latentvektoren für einen Durchschnittslatentvektor, um eine maximale Expressivität beizubehalten.
-
-% In dieser Masterarbeit wurde die \textit{COOP} Methode durch ein Bag of Words Attributmodell weiter optimiert, um bei der Generierung von Rezensionen die berechneten Wahrscheinlichkeiten der Tokens in Bezug auf das gewählte Attributmodell zu optimieren.
-% Das Attributmodell wurde bei dem Optimus Modell in die Vergangenheitsmatrix von GPT-2 injiziert. Bei dem \textsc{BiMeanVAE} Modell wurde bei der Generierung jeweils der vorherige Cellstate des LSTM-Decoders optimiert.
-
-% Durch Anwendung der Beam Search Methode auf den durch das Attributmodell optimierten Latentvektoren konnten erfolgreich präzise Zusammenfassungen der Rezensionen generiert werden.
-% Des Weiteren wurde ein neuartiger Rankingalgorithmus zur Auswahl der besten generierten Rezession auf Basis der Kombination von mehreren ROUGE-Werten und dem Moverscore erstellt.
-
-% In der Evaluation zeigt das in dieser Masterarbeit entwickelte \textit{COOP}+Attributmodell eine hervorragende Performance bei der Zusammenfassung von Rezessionen. 
-% Die wichtigen Aspekte der unterschiedlichen Rezessionen werden wiedergegeben und insbesondere durch das Attributmodell zeigt sich eine Steigerung der Präzision bei den generierten Rezessionen. 
-% Im Vergleich zu den bisherigen Modellen übertrifft das \textit{COOP}+Attributmodell die Performance der anderen Modelle in allen gewählten Metriken und erzielt demnach State-of-the-Art Ergebnisse.
-
-% Diese Ergebnisse bilden eine Grundlage für weiterführende Untersuchengen inwiefern Variational Autoencoder durch Verwendung von Attributmodellen bei der Generierung unterstützt werden können.
-% Ebenfalls wäre eine Auswertung der unterschiedlichen Methoden mittels menschlicher Evaluation sinnvoll, insbesondere auch um den Einfluss des Moverscore gestützten Ranking auf die empfundene Übereinstimmung von menschlichen Evaluatoren zu erörtern.
-% Somit könnte das in dieser Masterarbeit erstellte Modell verwendet werden, um auf Webportalen Benutzern einen schnellen allgemeingültigen Überblick über unterschiedliche Rezessionen von Produkten und Dienstleistungen zu ermöglichen.
+% In der Evaluation zeigen die entwickelten Modelle eine hervorragende Performance bei der Zusammenfassung und erreichen State-of-the-Art Ergebnisse auf unterschiedlichen Metriken.
+% Es lassen sich Rezensionen zu unterschiedlichen Themengebieten automatisiert mittels Variational Autoencoder und Attributmodell zusammenfassen.

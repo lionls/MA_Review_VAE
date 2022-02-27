@@ -1,7 +1,7 @@
-\section{Kontrollierbare Textgeneration von Sprachmodellen}\raggedbottom
+\section{Kontrollierbare Textgenerierung mit Sprachmodellen}\raggedbottom
 \label{pplm_chap}
 Die in Abschnitt \ref{coop_chap} vorgestellte COOP Methode zur Suche der optimalen Kombination von Latentvektoren zur Maximierung des \textit{Input-Output-Overlaps} erzielt beeindruckende Resultate \citep{coop}.
-COOP verwendet die VAE Modelle Optimus und \textsc{BiMeanVAE}, welche zur Generation den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruieren.
+COOP verwendet die VAE Modelle Optimus und \textsc{BiMeanVAE}, welche zur Generierung den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruieren.
 %Als alternatives Modell wird BiMeanVAE vorgestellt, welches ein auf LSTM basierender Variational Autoencoder ist.
 Optimus verwendet zur Decodierung ein GPT-2 Modell. \textsc{BiMeanVAE} decodiert den Latentvektor mit einem LSTM Decoder.
 
@@ -13,7 +13,7 @@ Bei der Generierung werden die vorherigen Key-Value Paare der Attention-Layer in
 Diese Vergangenheitsmatrizen werden verwendet, um bei der Generierung auf bereits vorher berechnete Key-, Value-Werte zurückgreifen zu können und somit effizienter Text zu generieren.
 
 
-Das Unternehmen Uber hat mit der Einführung von \textbf{P}lug and \textbf{P}lay \textbf{L}anguage \textbf{M}odels (PPLM) \citep{DBLP:journals/corr/abs-1912-02164} es ermöglicht, die Textgeneration von großen Sprachmodellen wie zum Beispiel GPT-2 kontrolliert zu beeinflussen.
+Das Unternehmen Uber hat mit der Einführung von \textbf{P}lug and \textbf{P}lay \textbf{L}anguage \textbf{M}odels (PPLM) \citep{DBLP:journals/corr/abs-1912-02164} es ermöglicht, die Textgenerierung von großen Sprachmodellen wie zum Beispiel GPT-2 kontrolliert zu beeinflussen.
 Kontrollierbare Generierung von Texten mittels Sprachmodellen entspricht dem Modellieren von $p(x|a)$, wobei hier $a$ für ein kontrollierbares Attribut in Bezug auf den generierten Text $x$ steht. 
 Mit dem Satz von Bayes lässt sich das kontrollierbare Sprachmodell zu $p(x|a)\propto p(a|x)p(x)$ umformulieren \citep{DBLP:journals/corr/abs-1912-02164}. 
 Das Attribut Modell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attributs $a$ mit einer Wahrscheinlichkeit.
@@ -95,7 +95,7 @@ Keyword Extraction über das YAKE-Verfahren zeigt ebenfalls keine Leistungssteig
 
 Demnach wird im folgenden für die weitere Evaluierung auf dem Dev- und Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
 
-\subsection{Verbessern der Textgeneration von Optimus}
+\subsection{Verbessern der Textgenerierung von Optimus}
 Den Variational Autoencoder Optimus mit einem Attributions-Modell zu kombinieren ist aufgrund der Injektion des Latentvektors nicht ohne weiteres möglich.
 Optimus kann bereits unter Einbezug des Latentvektors Texte kontrolliert generieren $p(x|z)$.
 Die Berücksichtigung eines Attribut-Modells bei der Generierung des Textes entspricht $p(x|a,z) \propto p(a|x,z)p(x|z)$. %)= \frac{p(a|x,z)p(x|z)}{p(a|z)}$. %MATH WRONG
@@ -108,7 +108,7 @@ Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird d
 In Abschnitt \ref*{eval_pplm} wird die vorgeschlagene Optimierung der Latentvektoren anhand der Test-Datensätze evaluiert und nach geeigneten Parametern untersucht.
 
 \pagebreak %layout
-\subsection{Verbessern der Textgeneration von \textsc{BiMeanVAE}}
+\subsection{Verbessern der Textgenerierung von \textsc{BiMeanVAE}}
 \textsc{BiMeanVAE} ist ein Variational Autoencoder, bestehend aus einem bidirektionalem LSTM Encoder, gepaart mit einem LSTM Decoder.
 Der LSTM Decoder erhält als Eingabe den Latentvektor $z$. Der Hiddenstate $h_t$ und Cellstate $c_t$ wird aus dem Embedding des Latentvektor $z$ initialisiert und anschließend autoregressiv über die LSTM Architektur aktualisiert.
 Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei unterschiedliche Ansätze:

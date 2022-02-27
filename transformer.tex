@@ -2,7 +2,7 @@
 Transformer sind eine spezifische Encoder-Decoder Deep Learning Architektur, die insbesondere im Natural Language Processing eingesetzt wird. 
 Basierend auf Attention Layern ermöglichen Transformer die Leistung bei vielen NLP Anwendungen stark zu steigern. 
 Ein großer Vorteil von Transformermodellen ist die Parallelisierbarkeit. 
-Hierdurch lassen sich extrem große Sprachmodelle, wie zum Beispiel BERT (\textbf{B}idirectional \textbf{E}ncoder \textbf{R}epresentations from \textbf{T}ransformers) oder GPT-2 (\textbf{G}enerative \textbf{P}re-trained \textbf{T}ransformer-2) auf Basis von Transformern trainieren. 
+Hierdurch lassen sich extrem große Sprachmodelle, wie zum Beispiel BERT oder GPT-2, auf Basis von Transformern trainieren. 
 Beide Modelle erzielen in den unterschiedlichsten Benchmarks hervorragende Ergebnisse \citep{DBLP:journals/corr/abs-1810-04805}.
 
 Transformermodelle sind Sequence-To-Sequence Modelle, die aus einem Encoder und einem Decoder bestehen.
@@ -32,7 +32,8 @@ Die meisten Modelle verwenden mehrere Transformer Encoder Blöcke und Transforme
 
 Nach Encodierung der Eingabesequenzen durch den Transformer Encoder wird die Ausgabe in Attention Key- und Value-Vektoren umgewandelt.
 Diese Attentionvektoren werden vom Transformer Decoder in den Encoder-Decoder Attention Layern verwendet.
-Im Gegensatz zu den Self-Attention-Layern der Encoder verwendet der Decoder hier die Ausgabe des Encoders im Attention-Layer in den Berechnungen mit, um sich auf die korrekten Stellen im Input bei der Generierung der finalen Ausgabesequenz zu fokussieren.
+Im Gegensatz zu den Self-Attention-Layern der Encoder, verwendet der Decoder hier die Ausgabe des Encoders im Attention-Layer in den Berechnungen mit.
+Somit kann sich der Decoder auf die korrekten Stellen im Input bei der Generierung der finalen Ausgabesequenz fokussieren.
 
 
 %Stack
@@ -84,7 +85,7 @@ BERT zeichnet sich ebenfalls durch die Möglichkeit des Transfer Learnings aus. 
 Die Modellarchitektur von BERT sind sequentielle Transformerencoderlayer. Das Basis BERT-Modell verwendet 12 Transformerencoderblöcke mit jeweils 12 Multi-Attention-Heads und einer Hidden-Size von 768.
 BERT wird mit den beiden Pretrainings Aufgaben Masked Language Modeling und Next Sentence Prediction vortrainiert. Durch den besonderen Trainingsprozess betrachtet BERT Sequenzen von links und rechts gleichzeitig also bidirektional. Einige andere Verfahren betrachten Sequenzen nur einseitig beziehungsweise kombinieren zwei einseitige Betrachtungen wie zum Beispiel ELMO \citep{elmo} und haben demnach keine tiefe bidirektionale Repräsentation der Sequenzen.
 
-Beim Masked Language Modeling werden die bidirektionalen Repräsentationen trainiert, indem zufällig 15\% der Worttokens in einer Sequenz gegen ein \textbf{[MASK]} Token ersetzt werden. Das Trainingsziel ist, die maskierten Tokens korrekt vorherzusagen.
+Beim Masked Language Modeling werden die bidirektionalen Repräsentationen trainiert, indem zufällig 15\% der Worttokens in einer Sequenz gegen ein \textbf{[MASK]} Token ersetzt werden. Das Trainingsziel besteht darin, die maskierten Tokens korrekt vorherzusagen.
 Zum Verständnis der Zusammenhänge zwischen den Sätzen wird beim Next Sentence Prediction Pretrainingsschritt vorhergesagt, ob ein zu 50\% zufällig gewählter Satz B auf Satz A folgt \citep{DBLP:journals/corr/abs-1810-04805}.
 
 \pagebreak
@@ -102,7 +103,7 @@ Durch die Masked Self-Attention Layer kann das GPT-2 Modell beim Training im Geg
 Zur Generierung von Textpassagen kann GPT-2 unkontrolliert Samples aus einer leeren Eingabesequenz generieren.
 Kontrolliert werden kann die Generierung durch das Festlegen einer spezifischen Starteingabe an die GPT-2 generierte Tokens anfügt.
 Weiterhin kann GPT-2 auf einen spezifischen Datensatz finegetuned werden, um so die zu erwartende Ausgabe zu beeinflussen.
-Während der Generierung selbst lässt sich die Generierung allerdings nicht kontrollieren.
+Während der Generierung selbst lässt sich allerdings die Ausgabe nicht direkt kontrollieren.
 
 GPT-2 verwendet zur Tokenisierung das BytePairEncoding Verfahren \citep{bytepairencoding}.
 Das Pretraining von GPT-2 wurde auf einem Datensatz mit ca. 8 Millionen Webseiten durchgeführt, mit der Aufgabenstellung jeweils in Texten das nächste Token vorherzusagen.

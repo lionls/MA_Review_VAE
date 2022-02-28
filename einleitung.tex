@@ -1,16 +1,16 @@
 \section{Einleitung}\raggedbottom
 Das automatisierte Zusammenfassen von Dokumenten ist im Bereich des Natural Language Processing (NLP) eine große Herausforderung.
 Natural Language Processing ist ein Unterbereich der künstlichen Intelligenz, der sich mit dem maschinellen Verarbeiten von natürlicher Sprache auseinandersetzt. 
-Aufgrund von neuen Methoden und immer größeren, komplexeren Netzwerken lassen sich hervorragende Ergebnisse in diversen NLP Aufgabenbereichen erzielen. 
+Aufgrund von neuen Methoden und immer größeren, komplexeren Netzwerken lassen sich hervorragende Ergebnisse in diversen NLP Aufgabenbereichen erreichen. %change
 Insbesondere generative Modelle erzielen gute Ergebnisse bei der Generierung von Textinhalten. 
 Des Weiteren lassen sich große, kostspielig vortrainierte Modelle mit vielen Parametern durch Transfer Learning in diversen speziellen Aufgabenbereichen einsetzen. 
 
 Generative Pre-trained Transformers 2 (GPT-2) erzielte unter Verwendung von Transformern großartige Ergebnisse bei der Textgenerierung, unter anderem auch bei der abstraktiven Zusammenfassung von Texten. 
-Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen Text. 
+Die abstraktive Textzusammenfassung bezeichnet das Zusammenfassen von Texten zu einem kurzen, präzisen generierten Text.
 
 \subsection{Motivation}
-Im Bereich des E-Commerce und von Online-Vergleichsportalen entstehen eine große Anzahl an Rezensionen zu unterschiedlichen Produkten, Dienstleistungen und Anbietern.
-Es ist für den Anwender eine Herausforderung sich einen repräsentativen Überblick über die einzelnen Rezensionen zu verschaffen. 
+Im Bereich des E-Commerce und der Online-Vergleichsportale entstehen eine große Anzahl an Rezensionen zu unterschiedlichen Produkten, Dienstleistungen und Anbietern.
+Es ist für den Anwender eine Herausforderung, sich einen repräsentativen Überblick über die einzelnen Rezensionen zu verschaffen. 
 Ein gängiges Bewertungssystem ist das Berechnen des arithmetischen Mittels über die einzelnen Scores aller Bewertungen. 
 Ein zusammengefasster Bewertungsscore ist nicht ausreichend repräsentativ für viele Produkte und stellt nicht spezifische Eigenschaften der einzelnen Produkte dar.
 Hier bietet es sich an, ein Produkt durch eine generierte Rezension zu repräsentieren, die die anderen Rezensionen inhaltlich inkludiert und auf die verschiedenen wichtigen Aspekte der Produkte eingeht.
@@ -18,24 +18,26 @@ So kann ein Anwender sich zeitsparend einen Überblick über bestimmte Produkte 
 
 \subsection{Ziel und Aufbau der Arbeit}
 Ziel dieser Masterarbeit ist das unbeaufsichtigte abstraktive Zusammenfassen von mehreren Produktrezensionen mittels Variational Autoencodern zu einer repräsentativen Rezension.
-Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen, konsistent in ihrem Inhalt sein und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Dienstleistungen (zum Beispiel Restaurants) geben.
-Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz, die zu Produkten und Dienstleistungen mehrere unterschiedliche diverse Rezensionen liefern.
+Die generierten Zusammenfassungen sollten möglichst viele Aspekte der ursprünglichen Rezension aufgreifen, konsistent in ihrem Inhalt sein und einen guten Gesamtüberblick über die Rezensionen zu einem Produkt oder Dienstleistungen zum Beispiel Restaurants geben.
+Als Datengrundlage gelten hier der Amazon-Review- und Yelp-Review-Datensatz.
+Die Datensätze liefern zu Produkten und Dienstleistungen mehrere unterschiedliche diverse Rezensionen.
 
+\pagebreak
 Zunächst werden in Kapitel \ref{grundlagen} die verwendeten Grundlagen zu Textzusammenfassung, Deep Learning, Word Embeddings und Sequence-To-Sequence Modellen erläutert.
 Anschließend werden in Kapitel \ref{transformer} die Transformermodelle Bidirectional Encoder Representations from Transformers (BERT) und GPT-2 erklärt, wobei detailliert auf die besonderen Merkmale wie Transformer Architekturen und Attention Layer eingegangen wird.
 Der Attention Layer Aufbau ist insbesondere wichtig für die spätere Injektion der adaptierten Latentvektoren.
 
-In Kapitel \ref{vae} wird der Aufbau und die mathematischen Details von Variational Autoencodern vermittelt.
+In Kapitel \ref{vae} werden der Aufbau und die mathematischen Details von Variational Autoencodern vermittelt.
 Hier werden die zwei unterschiedlichen Variational Autoencoder Optimus und \textsc{BiMeanVAE} hergeleitet, die im weiteren Verlauf die Zusammenfassungen generieren.
 Optimus basiert auf den beiden bekannten Sprachmodellen BERT und GPT-2. 
 \textsc{BiMeanVAE} besteht aus einem bidirektionalem Long Short Term Memory (LSTM)-Encoder und einem LSTM-Decoder.
 
 Im Anschluss werden in Kapitel \ref{dataset} die beiden Datensätze Amazon und Yelp vorgestellt, wobei die unterschiedlichen Aspekte und Herausforderungen der Datensätze dargestellt werden.
 
-Danach werden in Kapitel \ref{multisum} mehrere aktuelle Verfahren zur Multi-Review Summarization vorgestellt. 
+Danach werden in Kapitel \ref{multisum} mehrere aktuelle Verfahren zur Multi-Review Summarization beschrieben. 
 Convex Aggregation for Opinion Summarization (COOP) ist eines dieser Verfahren, welches unterschiedliche Kombinationen von einzelnen Latentvektoren untersucht.
 
-In Kapitel \ref{pplm_chap} wird das vorgestellte COOP Verfahren mit einem Attributmodell weiter verbessert. 
+In Kapitel \ref{pplm_chap} wird das dargestellte COOP Verfahren mit einem Attributmodell weiter verbessert. 
 Hierzu wird bei den Variational Autoencodern der Generationsprozess durch ein Attributmodell optimiert.
 Des Weiteren wird in diesem Kapitel eine neue Rankingfunktion zur Auswahl der Rezensionen eingeführt und die Hyperparameter für die Evaluation bestimmt.
 

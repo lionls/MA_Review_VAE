@@ -6,9 +6,9 @@ Generative Modelle versuchen die Merkmale und Verteilung eines Datensatzes zu ve
 
 Autoencoder sind neuronale Netze, die trainiert werden, um Eingabedaten zu komprimieren und anschließend zu rekonstruieren. 
 Sie bestehen aus einem Encoder $\mathbf{E}:\mathbb{R}^n \rightarrow \mathbb{R}^m$ und einem Decoder $\mathbf{D}:\mathbb{R}^m \rightarrow \mathbb{R}^n$, wobei der Encoder versucht, eine komprimierte Darstellung $c \in \mathbb{R}^{m}$ für die Eingabedaten $x \in \mathbb{R}^{n}$ im Latentspace zu finden. Die komprimierte Darstellung im Latentspace wird vom Decoder rekonstruiert mit dem Ziel, eine möglichst identische Rekonstruktion zur Eingabe $x \in \mathbb{R}^{n}$ zu erzeugen.
-Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt, also $m<n$ \citep{introVAE}. 
+Um stets eine komprimierte Darstellung im Latentraum zu erhalten und nicht eine Identitätsabbildung für den Encoder und Decoder, wird die Dimension der Latentrepräsentation niederiger als die Eingabedimension gewählt, also $m<n$ \citep{introVAE}. 
 
-Da Autoencoder nur einen diskreten Latentraum erzeugen existieren im Latentraum viele leere Stellen, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist.
+Da Autoencoder nur einen diskreten Latentraum erzeugen, existieren im Latentraum viele leere Stellen, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist.
 %Autoencoder erzeugen nur einen diskreten Latentraum, wodurch Interpolation durch den Latentraum zur Rekonstruktion neuer Ausgaben kaum möglich ist, da im Latentraum viele leere Stellen existieren. 
 Dies ist darauf zurückzuführen, dass ein Autoencoder auf möglichst geringen Verlust beim Encodieren und Decodieren trainiert wird und somit keinen Wert auf die Organisation des Latentraums legt. 
 %Somit führt die fehlende Regularisierung der einzelnen Datenpunkte oft zu Overfitting.
@@ -43,7 +43,7 @@ Die Latentvariablen für die bekannten Datenpunkte $X$ lassen sich über die A-p
 
 %Die Berechnung von $p_\theta(x)$ ist meistens nicht möglich. Demnach lässt sich auch $p_\theta (z|x)$ nicht trivial berechnen. 
 Der Encoder des Variational Autoencoder approximiert die A-posteriori-Wahrscheinlichkeit durch ein Inferenzmodell $q_\phi (\mathbf{z\mid x})$, da sich $p_\theta (\mathbf{z\mid x})$ nicht trivial berechnen lässt.
-Die Parameter $\phi$ des Encoders werden optimiert, um mit $q_\phi (\mathbf{z\mid x}) \approx p_\theta (\mathbf{z\mid x})$ die wahre A-posteriori-Verteilung zu approximieren, indem die Kullback-Leibler-Divigenz zwischen den beiden Wahrscheinlichkeiten minimiert wird, wie in Abschnitt \ref{elbo} beschrieben.
+Die Parameter $\phi$ des Encoders werden optimiert, um mit $q_\phi (\mathbf{z\mid x}) \approx p_\theta (\mathbf{z\mid x})$ die wahre A-posteriori-Verteilung zu approximieren, indem die Kullback-Leibler-Divigenz zwischen den beiden Wahrscheinlichkeiten minimiert wird, wie in Abschnitt \ref{elbo} beschrieben wird.
 
 
 
@@ -82,7 +82,7 @@ Die Parameter $\phi$ des Encoders werden optimiert, um mit $q_\phi (\mathbf{z\mi
 
 \label{elbo}
 Die Lossfunktion von Variational Autoencodern ist die \textbf{E}vidence \textbf{L}ower \textbf{Bo}und (ELBO).
-Bei Variational Autoencodern ist das Optimierungsziel die gleichzeitige Minimierung des Rekonstruktionsfehlers des generativen Modells $\theta$ zwischen Eingabe- und Ausgabedaten sowie die Approximation von $p_\theta (\mathbf{z\mid x})$ mit $q_\phi (\mathbf{z\mid x})$ durch Minimierung der Kullback-Leibler-Divergenz$D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x}))$.
+Bei Variational Autoencodern ist das Optimierungsziel die gleichzeitige Minimierung des Rekonstruktionsfehlers des generativen Modells $\theta$ zwischen Eingabe- und Ausgabedaten sowie die Approximation von $p_\theta (\mathbf{z\mid x})$ mit $q_\phi (\mathbf{z\mid x})$ durch Minimierung der Kullback-Leibler-Divergenz $D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x}))$.
 Für eine beliebige Wahl der Decoder Parameter $\phi$ gilt \citep{introVAE}:
 \begin{align}
     log(p_\theta(\mathbf{x})) &= \mathbb{E}_{ q_\phi(\mathbf{z\mid x}) } [log( p_\theta(\mathbf{x}) )] \nonumber \\
@@ -103,7 +103,7 @@ Aus Gleichung \ref{elbo4} wird durch Umformung die Evidence Lower Bound Funktion
     \label{realelbo}
     \mathcal{L}_{\theta,\phi}(\mathbf{x}) = log(p_\theta(\mathbf{x})) - D_{KL}(q_\phi(\mathbf{z\mid x})\parallel p_\theta(\mathbf{z\mid x})) \leq log(p_\theta(\mathbf{x})) 
 \end{equation}
-Da die Kullback-Leibler Divergenz in Gleichung \ref{dkl} keine negativen Werte annimmt ist die Evidence Lower Bound eine untere Schranke der Log-Likelihood der Datenmenge.
+Da die Kullback-Leibler Divergenz in Gleichung \ref{dkl} keine negativen Werte annimmt, ist die Evidence Lower Bound eine untere Schranke der Log-Likelihood der Datenmenge.
 Bei Maximierung der Evidence Lower Bound Funktion in Gleichung \ref{realelbo} wird die Evidenz $log(p_\theta(\mathbf{x}))$ maximiert, wodurch das generative Modell verbessert wird. Ebenfalls wird die Kullback-Leibler Divergenz minimiert, wodurch der Encoder die A-posteriori-Verteilung besser approximieren kann.
 
 Somit wird als Lossfunktion $\mathbf{L}_{\theta,\phi}$ die negative Evidence Lower Bound Funktion gewählt, die es zu minimieren gilt:
@@ -171,7 +171,7 @@ Trainiert wird Optimus mit dem Ziel, Sätze in einem universellen Latentspace zu
 Somit kann durch gezieltes Verändern des Latentvektors $z$ kontrolliert Text generiert werden. %ÜBERARBEITEN
 
 BERT und GPT-2 über eine VAE Architektur miteinander zu verbinden hat die Herausforderung, die unterschiedlichen Tokenisierungsschemen der einzelnen Modelle zu verwenden und den Latentvektor bei der Textgeneration von GPT-2 zu injizieren. 
-Die Eingabetokens von BERT verwenden das WordPiece Embeddings Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996 Tokens. 
+Die Eingabetokens von BERT verwenden das WordPiece Embedding Verfahren \citep{wordpiece} mit einer Vokabulargröße von 28.996 Tokens. 
 Die Ausgabe erfolgt über die Byte Pair Encoding Tokenisierung \citep{bytepairencoding} von GPT-2 mit einer Vokabulargröße von 50.260 Tokens. 
 Innerhalb des Netzwerkes wird im Latentvektor ein Token durch eine Einbettung $h_{Emb}$, die das Token, die Position und das Segment Embedding wiedergibt, repräsentiert.
 Um beim Training den Loss der Rekonstruktionsaufgabe zu berechnen, werden die Sätze mit beiden Tokenisierungen tokenisiert.
@@ -225,5 +225,5 @@ Insbesondere für das kontrollierte Generieren von Bewertungen sind diese Latent
 So kann zum Beispiel zwischen mehreren Bewertungen interpoliert werden, um eine durchschnittliche Meinung zu generieren.
 
 Sei zum Beispiel $\mathcal{Z}$ die Menge der encodierten Bewertungen zu einer Produktgruppe, so lässt sich aus einer Untergruppe der Vektoren $\mathcal{Z}^{'} \subseteq \mathcal{Z}$ durch Kombinieren eine gute Durchschnittsrepräsentation im Latentvektorraum finden.
-Das genaue Vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop_chap} beschrieben
+Das genaue Vorgehen zum Finden einer solchen Untergruppe wird in Abschnitt \ref{coop_chap} beschrieben.
 \pagebreak

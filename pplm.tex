@@ -1,6 +1,6 @@
 \section{Kontrollierbare Textgenerierung mit Sprachmodellen}\raggedbottom
 \label{pplm_chap}
-Die in Abschnitt \ref{coop_chap} vorgestellte COOP Methode zur Suche der optimalen Kombination von Latentvektoren zur Maximierung des \textit{Input-Output-Overlaps} erzielt beeindruckende Resultate \citep{coop}.
+Die in Abschnitt \ref{coop_chap} vorgestellte COOP Methode zur Suche der optimalen Kombination von Latentvektoren zur Maximierung des \textit{Input-Output-Overlaps} erzielt hervorragende Resultate \citep{coop}.
 COOP verwendet die VAE Modelle Optimus und \textsc{BiMeanVAE}, welche zur Generierung den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruieren.
 %Als alternatives Modell wird BiMeanVAE vorgestellt, welches ein auf LSTM basierender Variational Autoencoder ist.
 Optimus verwendet zur Decodierung ein GPT-2 Modell. \textsc{BiMeanVAE} decodiert den Latentvektor mit einem LSTM Decoder.
@@ -81,17 +81,18 @@ Die Bag of Words Menge kann auch durch anderweitige Keyword-Extraktionsmethoden 
     %$\quad$ PRUNING??   &  40.75   &    9.03  &  23.40  \\
     $\quad$ YAKE &  40.72   &     9.00  &  \textbf{23.40}   \\ \bottomrule
     \end{tabular}
-    \caption{Ergebnisse für die unterschiedlichen Attributionsmodelle mit \textsc{BiMeanVAE} auf dem Amazon Dev-Datensatz}
+    \caption{Ergebnisse für die unterschiedlichen Attributmodelle mit \textsc{BiMeanVAE} auf dem Amazon Dev-Datensatz. Die besten Ergebnisse sind \textbf{fett} markiert und die zweitbesten Ergebnisse \underline{unterstrichen}.}
     \label{bow_opti}
 \end{table}
 
 In Tabelle \ref{bow_opti} wurden auf dem Amazon Dev-Datensatz die unterschiedlichen Verfahren, um Bag of Words Mengen zu erzeugen, evaluiert.
 Es zeigt sich, dass bei dem Bag of Words Attributmodell eine Wortanzahl von 150 optimal ist, um gute Ergebnisse zu erzielen. 
-Eine höhere Wörteranzahl ergibt keine weitere Leistungssteigerung. Dies lässt sich darauf zurückführen, dass gar nicht mehr Wörter ausgewählt werden können und diese bereits den gesamten Text umfassen würden.
+Eine höhere Wörteranzahl ergibt keine weitere Leistungssteigerung. 
+Dies ließe sich darauf zurückführen, dass gar nicht mehr Wörter ausgewählt werden können und da diese Wörter bereits den gesamten Text umfassen würden.
 
 \pagebreak %layout
 Darüber hinaus fällt auf, dass entgegen der Erwartung eine leichte Gewichtung mittels Softmax Funktion nach der Anzahl der Vorkommnisse entsprechender Wörter zu keinen besseren Ergebnissen führt.
-Keyword Extraction über das YAKE-Verfahren zeigt ebenfalls keine Leistungssteigerung. 
+Keyword Extraktion über das YAKE-Verfahren zeigt ebenfalls keine Leistungssteigerung. 
 
 Demnach wird im Folgenden für die weitere Evaluierung auf dem Dev- und Testdatensatz das Bag of Words Attributmodell mit der Wörterauswahl aus den $k=150$ am häufigst vorkommenden Wörtern initialisiert.
 
@@ -118,9 +119,9 @@ Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei 
     \item Optimieren des vorherigen Cellstates $c_t$ vor der nächsten Berechnung
 \end{enumerate}
 
-Es ist möglich, zu allen drei aufgezählten Optionen einen Gradienten zur Veränderung der entsprechenden Variabel zu bestimmen. 
+Es ist möglich, zu allen drei aufgezählten Optionen einen Gradienten zur Veränderung der entsprechenden Variable zu bestimmen. 
 
-Nachfolgend wurden alle drei Optionen auf dem Amazon-Testdatensatz evaluiert, um die zu optimierende Variabel mit der bestmöglichen Performance zu finden.
+Nachfolgend wurden alle drei Optionen auf dem Amazon-Testdatensatz evaluiert, um die zu optimierende Variable mit der bestmöglichen Performance zu finden.
 Die gewählte Schrittgröße ist $\alpha = 0.1$.
 Bei der Selektion der Ausgabebewertung wurde die Bewertung ausgewählt, die die höchste ROUGE-1 Übereinstimmung mit den Zusammenfassungsbewertungen hat.
 Somit wird stets die bestmögliche generierte Bewertung ausgewählt.
@@ -137,13 +138,13 @@ Somit wird stets die bestmögliche generierte Bewertung ausgewählt.
     $\quad$ optimze $h_t$      &  39.96   &    8.34  &  22.94  \\
     $\quad$ optimze $c_t$      &  \textbf{40.81}   &     \textbf{8.91}  &   \underline{23.49}    \\ \bottomrule
     \end{tabular}
-    \caption{Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ über ein Attributionsmodell}
+    \caption{Ergebnisse für die Optimierung der unterschiedlichen Variablen $z,h_t,c_t$ eines LSTM mit einem Attributionsmodell. Die besten Ergebnisse sind \textbf{fett} markiert und die zweitbesten Ergebnisse \underline{unterstrichen}.}
     \label{opt_bimeanvae}
 \end{table}
 
 In Tabelle \ref{opt_bimeanvae} sind die ROUGE-Scores, welche in Abschnitt \ref*{evalmetric} genauer erklärt werden, für die separiert optimierten Variablen $z, h_t, c_t$ aufgelistet.
 Beim Evaluieren der unterschiedlichen Optimierungsversuche zeigt sich, dass jede Optimierung bessere Ergebnisse als die unoptimierte Baseline auf den Gold-Summaries erzielt.
-Die größte Leistungssteigerung erzielt eine Optimierung der Variabel $c_t$.
+Die größte Leistungssteigerung erzielt eine Optimierung der Variable $c_t$.
 Somit beschreibt folgende Gleichung \ref{opt_lstm} den Optimierungsschritt $\Delta c_t$ bei \textsc{BiMeanVAE}.
 \begin{align}
     \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,z)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,z )\|^\gamma} \label{opt_lstm}
@@ -152,7 +153,7 @@ Somit beschreibt folgende Gleichung \ref{opt_lstm} den Optimierungsschritt $\Del
 
 \pagebreak %layout
 \subsection{Latentvektoroptimierung mit Beam Search}
-Beam Search ist ein Suchalgorithmus zum Auffinden eines Ausgabesatzes mit der höchsten Wahrscheinlichkeit. 
+Beam Search ist ein Suchalgorithmus zum Auffinden eines Ausgabesatzes mit einer hohen Wahrscheinlichkeit \citep{DBLP:journals/corr/abs-1903-06059}. 
 Im Gegensatz zur normalen Greedy Suche, bei der nachfolgend das bestmögliche Token ausgewählt wird, wird beim Beam Search Algorithmus eine Gruppe von N bestmöglichen Tokens für eine Position ausgewählt. 
 Somit wird ein Suchbaum erstellt, der eine maximale Breite von N hat und die Äste mit den N höchsten Wahrscheinlichkeiten weiterführt. 
 Demnach ist Beam Search nicht optimal, da die bestmögliche Lösung möglicherweise nicht fortgeführt wird. Trotzdem lassen sich mit Beam Search erfolgreich gute Ausgabesätze finden, die einer hohen Wahrscheinlichkeit entsprechen.
@@ -177,7 +178,7 @@ Somit ergibt sich eine neue Rankingfunktion \ref{ranking} zwischen den generiert
 \end{split}
 \end{align}
 Die Variablen $x,y,z,v$ geben die Gewichtung der einzelnen Metriken an. 
-Die Hyperparameter für die Gewichtung werden im Folgenden Abschnitt auf dem Dev-Datensatz ermittelt.
+Die Hyperparameter für die Gewichtung werden im folgenden Abschnitt auf dem Dev-Datensatz ermittelt.
 
 Mit dieser neuen Rankingfunktion wird bei den einzelnen generierten Rezensionen nun die semantische Ähnlichkeit mit den Eingabebewertungen miteinbezogen. 
 Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Grammen aber einer hohen semantischen Ähnlichkeit mit einer höheren Wahrscheinlichkeit ausgewählt werden.
@@ -187,7 +188,7 @@ Hierdurch können auch generierte Bewertungen mit weniger überlappenden N-Gramm
 \label{eval_pplm}
 Die Hyperparameter $x,y,z,v$ der Rankingfunktion \ref{ranking} legen bei der Auswahl der generierten Rezensionen fest, wie stark der ROUGE-1, ROUGE-2, ROUGE-L oder Moverscore berücksichtigt werden soll.
 Ein weiterer wichtiger Hyperparameter ist die Schrittweite $\alpha$ des Attributmodells. Die Schrittweite bestimmt den Grad der Korrektur des Gradienten pro Iteration des Attributmodells. 
-Da die Datensätze jeweils unterschiedliche Eigenschaften haben, wie in Abschnitt \ref{dataset} erläutert, bietet es sich an für die jeweiligen Datensätze eigene Hyperparameter zu finden.
+Da die Datensätze jeweils unterschiedliche Eigenschaften haben, wie in Abschnitt \ref{dataset} erläutert, bietet es sich an, für die jeweiligen Datensätze eigene Hyperparameter zu finden.
 
 Mit diesen adaptierten Rankingfunktionen ergeben sich bei der Auswertung auf dem Dev-Datensatz folgende in Tabelle \ref{dev_eval_results} dargestellte Ergebnisse.
 Die Gewichtungen wurden unter Verwendung eines Greedy-Search-Algorithmus bestimmt.
@@ -233,13 +234,13 @@ Für jede Schrittweite wurden jeweils die besten bestimmten Gewichtungen ausgew�
     	\bottomrule
     
     \end{tabular}
-    \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse je Modellgruppe sind fett markiert und die zweitbesten Ergebnisse unterstrichen.
+    \caption{ROUGE und Moverscore Ergebnisse auf den DEV-Benchmarkdatensätzen für das COOP Modell und das optimierte COOP Attribut-Modell. Die besten Ergebnisse je Modellgruppe sind \textbf{fett} markiert und die zweitbesten Ergebnisse \underline{unterstrichen}.
     %$^{\star}$ denotiert, dass die ROUGE-Ergebnisse aus den Ergebnissen von \citep{coop} übernommen wurden.
     }
     \label{dev_eval_results}
 \end{table}
 
-Die in Tabelle \ref{dev_eval_results} dargestellten Ergebnisse zeigen die Performance des kombinierten COOP + Attribut Modell im Vergleich zum normalen COOP Modell auf den Dev-Datensätzen.
+Die in Tabelle \ref{dev_eval_results} dargestellten Ergebnisse zeigen die Performance des kombinierten COOP + Attribut Modells im Vergleich zum normalen COOP Modell auf den Dev-Datensätzen.
 Die Ergebnisse zeigen eine Leistungssteigerung durch Verwendung des Attribut-Modells. Eine genaue Auswertung und Evaluierung findet in Abschnitt \ref{eval_results_chapter} auf den Test-Datensätzen statt.
 
 \pagebreak

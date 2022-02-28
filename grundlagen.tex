@@ -5,14 +5,13 @@ Zunächst wird die in dieser Masterarbeit untersuchte Aufgabe des abstrakten Zus
 Anschließend werden die Grundlagen zu neuronalen Netzen und insbesondere zu Deep Learning zusammengefasst dargestellt. 
 Hier wird ebenfalls die Struktur von Sequence-To-Sequence Modellen und LSTM-Zellen erläutert.
 
-Im Folgenden Kapitel \ref*{transformer} wird anschließend aus den Grundlagen die verwendete Transformer Architektur, BERT und GPT-2 konkretisiert.
+Im folgenden Kapitel \ref*{transformer} wird anschließend aus den Grundlagen die verwendete Transformer Architektur, BERT und GPT-2 konkretisiert.
 
 
 \subsection{Textzusammenfassung}
 Das automatisierte Zusammenfassen von Texten ist ein Teilgebiet des NLP, welches sich mit dem Zusammenfassen von langen Texten zu einem kongruenten, kürzeren Text unter Beibehaltung von wichtigen Informationen befasst \citep{DBLP:journals/corr/abs-1904-00688}. 
 Durch die zunehmenden Datenmengen wird automatisierte Textzusammenfassung immer relevanter, um akkurat aggregierte Zusammenfassungen und Überblicke zu geben.
 Automatisierte Textzusammenfassung lässt sich zum Beispiel bei der Generierung von Kurzzusammenfassungen zu Dokumenten verwenden.
-
 Grundsätzlich wird beim automatisierten Zusammenfassen von Texten zwischen den extraktiven und den abstraktiven Methoden unterschieden.
 
 \subsubsection{Extraktive Textzusammenfassung}
@@ -22,7 +21,8 @@ Die zu extrahierenden Phrasen oder Sätze werden mithilfe einer Scoringfunktion 
 
 \subsubsection{Abstraktive Textzusammenfassung}
 Abstraktive Textzusammenfassung versucht durch Interpretation und Verständnis des Ursprungtexts eine kurze, kongruente Zusammenfassung zu produzieren \citep{DBLP:journals/corr/NallapatiXZ16}. 
-Die Zusammenfassung soll alle wichtigen Informationen enthalten und als zusammenhängender flüssiger Text erzeugt werden. Ein kongruenter Text wird erzeugt, da das Sprachmodell frei Sätze produzieren kann und nicht an vorher vorgegebene Sätze oder Phrasen gebunden ist, wie bei der extraktiven Zusammenfassung.
+Die Zusammenfassung soll alle wichtigen Informationen enthalten und als zusammenhängender flüssiger Text erzeugt werden. 
+Ein kongruenter Text wird dadurch erzeugt, dass das Sprachmodell frei Sätze produzieren kann und nicht an vorher vorgegebene Sätze oder Phrasen gebunden ist, wie bei der extraktiven Zusammenfassung.
 
 Große Fortschritte im Bereich der abstraktiven Textzusammenfassung ergaben sich in den letzten Jahren durch Sequence-To-Sequence Modelle \citep{DBLP:journals/corr/NallapatiXZ16}. Diese encodieren den Eingabetext in eine Übergangsrepräsentation und generieren aus dieser durch Decodierung eine Ausgangsrepräsentation.
 
@@ -36,7 +36,7 @@ Damit kann eine kongruente Zusammenfassung generiert werden, die die unterschied
 
 In dieser Masterarbeit werden unterschiedliche Rezensionen zu Produkten und Dienstleistungen zusammengefasst. 
 Insbesondere Rezensionen unterscheiden sich stark in ihren Nutzerperspektiven und können positiv, negativ oder neutral sein und auf sehr spezifische Eigenschaften der entsprechenden Produkte eingehen.
-Es ist eine große Herausforderung aus einer Menge aus Produktrezensionen eine repräsentative zusammenfassende Rezension zu produzieren, die klar strukturiert, kongruent, verständlich und Zielgruppenbezogen die entsprechenden Inhalte wiedergibt.
+Es ist eine große Herausforderung aus einer Menge aus Produktrezensionen eine repräsentative zusammenfassende Rezension zu produzieren, die klar strukturiert, kongruent, verständlich und zielgruppenbezogen die entsprechenden Inhalte wiedergibt.
 
 \subsection{Deep Learning}
 Deep Learning ist ein Teilbereich des Machine Learning, bei dem nach dem Vorbild für das menschliche Gehirn neuronale Netze verwendet werden. 
@@ -55,16 +55,16 @@ Diese Verfahren berechnen für jedes Wort einen eindeutigen Vektor, der alle unt
 Die errechneten Vektoren sind kontextunabhängig und für ein Wort wird stets der gleiche Vektor verwendet. 
 Word2vec erlernt die entsprechenden Vektorrepräsentationen mittels eines SkipGram neuronalen Netzes \citep{word2vec}, GloVe hingegen über die nicht Nulleinträge einer Co-occurrence Matrix von Wörtern untereinander \citep{glove}. 
 
-Kontextabhängige Verfahren, wie zum Beispiel ELMO \citep{elmo} oder BERT \citep{DBLP:journals/corr/abs-1810-04805}, generieren kontextabhängige Vektoren für Wörter und berücksichtigen dabei das Umfeld in dem das einzelne Wort auftritt.
+Kontextabhängige Verfahren, wie zum Beispiel ELMO \citep{elmo} oder BERT \citep{DBLP:journals/corr/abs-1810-04805}, generieren kontextabhängige Vektoren für Wörter und berücksichtigen dabei das Umfeld, in dem das einzelne Wort auftritt.
 Bei diesen Verfahren werden zur Bestimmung eines Word Embeddings der gesamte Satz benötigt, um die erlernten kontextspezifischen Eigenarten für die Einbettung zu berücksichtigen. 
 
-Verfahren wie zum Beispiel BERT nutzen besondere Tokenisierungsmethoden, die es erlauben einzelne Wörter durch mehrere Tokens zu repräsentieren.
+Verfahren wie zum Beispiel BERT nutzen besondere Tokenisierungsmethoden, die es erlauben, einzelne Wörter durch mehrere Tokens zu repräsentieren.
 Dieses Splittingverfahren von Wörtern in Subtokens ist als WordPiece Verfahren \citep{wordpiece} für BERT und als BytePairEncoding \citep{bytepairencoding} für GPT-2 bekannt. 
-Durch das Splitten in Subtokens und Erlernen von Einbettungen für diese lässt sich ein kleines Wörterbuch erstellen. 
+Durch das Splitten in Subtokens und Erlernen von Einbettungen für diese lässt sich ein kleineres Wörterbuch erstellen. 
 Da sich die Wörter stets in Subtokens zerlegen lassen, können Out-of-Vocabulary-Fehler vermieden werden.
 
 \subsection{Sequence-To-Sequence Modelle}
-Sequence-To-Sequence Modelle sind eine Gruppe von Deep Leaning Modellen zur Sprachverarbeitung, die eine Textsequenz $(x_1,x_2,\ldots,x_n)$ bestehend aus den Tokens $x_i$ in eine andere Textsequenz $(y_1,y_2,\ldots,y_n)$ überführen \citep{DBLP:journals/corr/SutskeverVL14}.
+Sequence-To-Sequence Modelle sind eine Gruppe von Deep Learning Modellen zur Sprachverarbeitung, die eine Textsequenz $(x_1,x_2,\ldots,x_n)$ bestehend aus den Tokens $x_i$ in eine andere Textsequenz $(y_1,y_2,\ldots,y_n)$ überführen \citep{DBLP:journals/corr/SutskeverVL14}.
 Die Besonderheit bei diesem Modell liegt darin, dass die Länge der Eingabesequenz und der Ausgabesequenz unterschiedlich sein kann.
 Die am meisten verwendeten Sequence-To-Sequence Modelle bestehen aus einer Encoder/Decoder Architektur.
 Der Encoder und Decoder besteht jeweils aus sequentiellen Rekurrenten Neuronalen Netzen (RNN), die jeweils als Eingabe ein Token und den Hidden-State des vorherigen RNNs erhalten.
@@ -79,7 +79,7 @@ Der Decoder ist ebenfalls ein RNN, welcher aus dem Hidden-State Vektor des Encod
 
 Um die Performance von Sequence-To-Sequence Modellen weiter zu optimieren, werden in Kapitel \ref{attention} Attention Modelle eingeführt.
 
-
+\pagebreak
 \subsection{\textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory}
 \textbf{L}ong \textbf{S}hort \textbf{T}erm \textbf{M}emory (LSTM) Netze sind eine Untergruppe der Rekurrenten Neuronalen Netze (RNN), die es ermöglichen, Langzeitbeziehungen in Daten zu erlernen \citep{lstm}.
 Rekurrente Neuronale Netze zeichnen sich durch ihre rekurrenten Verbindungen innerhalb desselben Layers aus, wodurch die nächste RNN-Zelle die vorherigen Informationen weiterverarbeiten kann.

@@ -101,12 +101,12 @@ Durch die Masked Self-Attention Layer kann das GPT-2 Modell beim Training im Geg
 %Im nächsten Schritt wird diese Eingabesequenz und das generierte Token als nächste Eingabe verwendet.
 
 Zur Generierung von Textpassagen kann GPT-2 unkontrolliert Samples aus einer leeren Eingabesequenz generieren.
-Kontrolliert werden kann die Generierung durch das Festlegen einer spezifischen Starteingabe an die GPT-2 generierte Tokens anfügt.
+Kontrolliert werden kann die Generierung durch das Festlegen einer spezifischen Starteingabe, an die GPT-2 generierte Tokens anfügt.
 Weiterhin kann GPT-2 auf einen spezifischen Datensatz finegetuned werden, um so die zu erwartende Ausgabe zu beeinflussen.
 Während der Generierung selbst lässt sich allerdings die Ausgabe nicht direkt kontrollieren.
 
 GPT-2 verwendet zur Tokenisierung das BytePairEncoding Verfahren \citep{bytepairencoding}.
-Das Pretraining von GPT-2 wurde auf einem Datensatz mit ca. 8 Millionen Webseiten durchgeführt, mit der Aufgabenstellung jeweils in Texten das nächste Token vorherzusagen.
+Das Pretraining von GPT-2 wurde auf einem Datensatz mit ca. 8 Millionen Webseiten durchgeführt, um mit der Aufgabenstellung jeweils in Texten das nächste Token vorherzusagen.
 
 
 

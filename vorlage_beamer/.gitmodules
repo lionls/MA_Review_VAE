@@ -1,0 +1,3 @@
+[submodule "paper-build"]
+	path = paper-build
+	url = git@gitlab.cs.uni-duesseldorf.de:cn-tsn/general/templates/paper-build

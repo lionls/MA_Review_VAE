@@ -1,0 +1,33 @@
+
+
+\begin{frame}{Datensätze}
+  Es werden Datensätze mit mehreren Bewertungen und Zusammenfassungen zu einem Produkt benötigt.
+  \begin{itemize}   
+      \item Amazon-Datensatz: \begin{itemize}
+        \item Objektivere Bewertungen
+        \item Kleidung, Schuhe, Schmuck, Elektronikartikel, Gesundheitsprodukte, Einrichtung, Küchenartikel
+        \item 3 Gold-Standard Zusammenfassungen
+      \end{itemize}
+      \item Yelp-Datensatz: \begin{itemize}
+        \item Subjektivere Bewertungen
+        \item 1 Gold-Standard Zusammenfassung
+      \end{itemize}
+  \end{itemize}
+
+  \begin{table}[!h]
+    \centering
+    \scalebox{0.8}{
+    \begin{tabular}{@{}lccc|ccc@{}}
+        \toprule
+                              &            & \textbf{Amazon} &      &           & \textbf{Yelp} &      \\
+                              & Train      & Dev             & Test & Train     & Dev           & Test \\ \midrule
+    \# Produkte / Dienstleister & 244.652    &   28            &  32  & 75.988    &  100          &  100    \\
+    \# Rezensionen            & 13.053.202 &    224          &   256& 4.658.968 &  800          &  800 \\ \bottomrule
+    \end{tabular}}
+   % \caption{Enthaltene Rezensionen der einzelnen Datensätze}
+
+    \end{table}
+\end{frame}
+
+
+%MORE GRUNDLAGEN

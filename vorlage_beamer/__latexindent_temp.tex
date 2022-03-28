@@ -1,0 +1,52 @@
+
+
+\begin{frame}{Multi-Document Summarization}
+  Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Tokens bestehen.
+Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt repräsentiert.
+\begin{itemize}   
+  \item Extraktive Modelle: \begin{itemize}
+    \item LexRank
+  \end{itemize}
+  \item Abstraktive Modelle: \begin{itemize}
+    \item MeanSum
+    \item CopyCat
+    \item COOP
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Multi-Document Summarization}
+  Sei $R= \{x_i \}$ ein Datensatz von Bewertungen mit einzelnen Bewertungen $x=(x_1,...,x_{\| x \|})$, die aus einer Sequenz aus Tokens bestehen.
+Ziel ist es für ein gegebenes Produkt $p$ und die entsprechenden Bewertungen $R_p \subseteq R$ eine Zusammenfassung $s_p$ zu generieren, die alle relevanten Informationen faktisch korrekt repräsentiert.
+\end{frame}
+
+
+\begin{frame}{Multi-Document Summarization}
+  Webportale haben zu unterschiedlichen Produkten und Dienstleistungen eine große Zahl an Bewertungen
+  \begin{itemize}   
+      \item Amazon: \begin{itemize}
+        \item Objektivere Bewertungen
+        \item 3 Gold-Standard Zusammenfassungen
+      \end{itemize}
+      \item Yelp: \begin{itemize}
+        \item Subjektivere Bewertungen
+        \item 1 Gold-Standard Zusammenfassung
+      \end{itemize}
+  \end{itemize}
+
+  \begin{table}[!h]
+    \centering
+    \begin{tabular}{@{}lccc|ccc@{}}
+        \toprule
+                              &            & \textbf{Amazon} &      &           & \textbf{Yelp} &      \\
+                              & Train      & Dev             & Test & Train     & Dev           & Test \\ \midrule
+    \# Produkte / Dienstleister & 244.652    &   28            &  32  & 75.988    &  100          &  100    \\
+    \# Rezensionen            & 13.053.202 &    224          &   256& 4.658.968 &  800          &  800 \\ \bottomrule
+    \end{tabular}
+    \caption{Enthaltene Rezensionen der einzelnen Datensätze}
+
+    \end{table}
+\end{frame}
+
+
+%MORE GRUNDLAGEN

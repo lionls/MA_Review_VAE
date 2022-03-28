@@ -1,0 +1,181 @@
+\pdfoptionpdfminorversion=5
+
+\RequirePackage[table]{xcolor}
+
+
+\documentclass[10pt, aspectratio=169, t ,hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=right}
+
+\mode<presentation> {
+    \usetheme{HHUD}
+    \setbeamercovered{invisible}
+}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{subfigure}
+
+\usepackage{hyperref}
+\usepackage{xmpmulti}
+\usepackage{multicol}
+\usepackage{icomma}
+\usepackage{booktabs}
+\usepackage[backend=bibtex,style=verbose]{biblatex}
+\bibliography{lit}
+% If you want to exclude the appendix from the frame counter you have to use the appendixnumberbeamer package. But be aware that the current version causes a problem with the frame counter.
+\usepackage{appendixnumberbeamer}
+
+\usepackage{fancybox} % fuer die Rahmen
+\usepackage{shortvrb}
+\usepackage{url}
+\usepackage{calc}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,matrix}
+\usepackage{scrextend}
+
+\usepackage{graphicx}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[fileext=lop]{Rezension}
+
+\scriptsize
+%Define a reference depth. 
+%You can choose either relative or absolute.
+%--------------------------
+\newlength{\DepthReference}
+\settodepth{\DepthReference}{g}%relative to a depth of a letter.
+\setlength{\DepthReference}{1pt}%absolute value.
+
+%Define a reference Height. 
+%You can choose either relative or absolute.
+%--------------------------
+\newlength{\HeightReference}
+\settoheight{\HeightReference}{T}
+\setlength{\HeightReference}{4pt}
+
+
+%--------------------------
+\newlength{\Width}%
+
+\newcommand{\ccolorbox}[2][red]%
+{%
+    \settowidth{\Width}{#2}%
+    \setlength{\fboxsep}{1pt}%
+    \colorbox{#1}%
+    {%      
+        \raisebox{-\DepthReference}%
+        {%
+                \parbox[b][\HeightReference+\DepthReference][c]{\Width}{\centering#2}%
+        }%
+    }%
+}
+
+\normalsize
+
+
+
+\definecolor{HighlightColor}{HTML}{dc2626}
+\definecolor{BackgroundColor}{HTML}{bfdbfe}
+\normalsize
+
+
+
+%Vergleich Optimus vs BiMeanVAE an Texten
+\definecolor{ColorGray}{gray}{0.9}
+
+%% Die folgenden Zeilen können auskommentiert werden, um vor jedem Kapitel eine Gliederungsfolie einzufügen
+% \AtBeginSection[] {
+%   \begin{frame}<beamer>
+%     \thispagestyle{empty}
+%     \frametitle{Gliederung}
+%     \vspace{-5mm}
+%     \tableofcontents[currentsection]
+%   \end{frame}
+% }
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{fig/background_cd_2020}}
+
+\newcommand{\backgroundNormal}{\usebackgroundtemplate{
+    \includegraphics[width=\paperwidth]{fig/background_cd_2020}}}
+\newcommand{\backgroundTitle}{\usebackgroundtemplate{
+    \includegraphics[width=\paperwidth]{fig/background_heine}}}
+\newcommand{\backgroundEmpty}{\usebackgroundtemplate{
+    \includegraphics[width=\paperwidth]{fig/background_empty}}}
+    
+\setlength{\leftmargini}{9pt}
+\setbeamersize{text margin left=25pt,text margin right=25pt} 
+\setbeamertemplate{itemize/enumerate subbody end}{\vspace{.5\baselineskip}}
+
+% % % % % % % % % %  CHANGE TOPIC AND AUTHOR INFORMATION HERE % % % % % % % % %
+\newcommand{\abschluss}{Master}                              % HIER UNZUTREFFENDES LÖSCHEN
+\title{\abschluss{}arbeit:\\Optimierung von Multi-Review Summarization unter Verwendung von auf
+Transformern basierten Variational Autoencoder}                      % HIER DEN TITEL DER ARBEIT EINTRAGEN
+\author{Lionel Schockenhoff}                                                       % HIER DEN NAMEN UND VORNAMEN EINTRAGEN
+\date{DATUM}                                                                % HIER DAS PRÄSENTATIONSDATUM EINTRAGEN
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\institute{Institut für Informatik\\Heinrich-Heine-Universität Düsseldorf}
+\subject{Informatik}
+
+%
+% Hier beginnt das Dokument
+%
+\begin{document}
+
+\backgroundTitle
+  \begin{frame}
+    \thispagestyle{empty}
+    \begin{columns}
+    \column{0.4\paperwidth}
+    {
+    \footnotesize
+    \color{hhuBlau}
+    \put(20,-200){\insertdate}
+    
+    }
+    \column{0.6\paperwidth}
+    
+    \color{hhuBlau}
+    \LARGE \inserttitle\\[\baselineskip]
+    
+    \large \insertauthor
+    \end{columns}
+  \end{frame}
+  \backgroundNormal
+
+  % \begin{frame}
+  %   \thispagestyle{empty}
+  %   \frametitle{Gliederung}
+  %   Diese Gliederung ist optional und nicht unbedingt empfohlen (vor allem bei Präsentationen unter einer halben Stunde; löschen in master.tex – es ist auch jedem vollkommen klar, dass die grobe Struktur Einleitung, Methoden, Ergebnisse, Fazit ist; die Struktur erwähnt man kurz mündlich, solange man beim Titel-Slide ist)
+  %   \vspace{-5mm}
+  %   \tableofcontents
+  % \end{frame}
+
+  % % % % % % % % % % Ab hier werden die LaTeX-Dateien der einzelnen Abschnitte eingefügt % % % % % % % % % %
+
+  \input{einleitung}
+
+  \input{grundlagen}
+  \input{transformer}
+  \input{vae}
+  \input{dataset}
+  \input{coop}
+  \input{control}
+  \input{eval}
+  \input{ergebnisse}
+  
+  \input{schluss}
+
+  \appendix
+
+  \input{anhang}
+
+  % % % % % % % % % % Ende der eingefügten LaTeX-Dateien % % % % % % % % % %
+
+\end{document}
+
+%
+% Hier endet das Dokument
+%

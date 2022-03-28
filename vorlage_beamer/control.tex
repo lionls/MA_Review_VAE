@@ -1,0 +1,238 @@
+
+
+\begin{frame}{Kontrollierbare Textgenerierung mit Sprachmodellen}
+  COOP Suche der Kombinationen von Latentvektoren erzielt bereits gute Resultate.
+  Es werden die VAE Modelle Optimus und \textsc{BiMeanVAE} verwendet, welche zur Generierung den kombinierten Latentvektor $z$ mittels Decoder $p_\theta(x|z)$ zu einem Text $\hat{x}$ rekonstruieren.
+
+  \begin{block}{$\Rightarrow$ Fragestellung}
+    Lassen sich durch weitere Optimierungen noch bessere Ergebnisse erzielen?
+  \end{block}
+
+  \begin{itemize}
+    \item Optimierung des Generierungsprozess durch ein Attributmodell
+    \item Verbesserte Rankingfunktion
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Attributmodell}
+  \begin{itemize}
+    \item Unkontrollierte Sprachmodelle modellieren Texte über die Wahrscheinlichkeit $p(X)$ für eine Sequenz $X=(x_0,...,x_{\| x \|})$
+    \item Kontrollierbare Generierung von Texten $p(x|a)$ \begin{itemize} \item $a$ ist kontrollierbares Attribut in Bezug auf den generierten Text $x$ \end{itemize}
+    \item Satz von Bayes  $ \Rightarrow \  p(x|a)\propto p(a|x)p(x)$ 
+    \item Attributmodell $p(a|x)$ bewertet einen Satz $x$ auf den Besitz eines Attributs $a$ mit einer Wahrscheinlichkeit
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Attributmodell}
+  Transformer Sprachmodelle verwenden bei der Generierung, Key-Value Paare der Attention-Layer, die die bereits generierten Teilsequenzen in einer Vergangenheitsmatrix $H_t = [(K_t^{(1)},V_t^{(1)}), \ldots , (K_t^{(n)},V_t^{(n)})]$ speichern.
+
+Somit lässt sich bei der Generierung auf bereits vorher berechnete Key-, Value-Werte zurückgreifen, um somit effizienter Text zu generieren.
+
+  \begin{itemize}
+    \item Gradienten über Log-Likelihood des normalen Sprachmodells $log(p(x))$ und der Log-Likelihood des Attribut-Modells $log(p(a|x))$
+    \item Veränderung der Vergangenheitsmatrix $\tilde{H}_t = (H_t+\Delta H_t)$, um Wahrscheinlichkeit zu erhöhen gewünschte Tokens zu erzeugen
+    \item $\Delta H_t$ wird schrittweise durch den Gradienten des Attribut-Modells bestimmt
+  \end{itemize}
+  \begin{align*}
+\Delta H_t \leftarrow \Delta H_t + \alpha \frac{\nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)}{\| \nabla_{\Delta H_t} \text{log }p(a|H_t+\Delta H_t)\|^\gamma}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Attributmodell}
+
+\begin{itemize}
+\item Modifizierte Ausgangsverteilung $\tilde{p}_{t+1}$ wird mit der nicht modifizierten Ausgangsverteilung $p_{t+1}$ kombiniert
+\end{itemize}
+Samplen von den kombinierten Verteilungen durch:
+\begin{align} \label{combine_pplm}\hat{x}_{t+1} \sim \frac{1}{\beta} (\tilde{p}_{t+1}^{\text{ }\gamma} \cdot p_{t+1}^{1-\gamma})\end{align}
+\begin{itemize}
+  \item $\gamma$ bestimmt den Einfluss des unmodifizierten Sprachmodells auf die Ausgabe
+  \item $\gamma \rightarrow 1$ Ausgabe zur Verteilung des modifizierten Sprachmodells 
+  \item $\gamma \rightarrow 0$  Ausgabe zur Verteilung des unmodifizierten Sprachmodells
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bag of Words Attribut-Modell}
+  
+  Sei $\{w_0, \ldots, w_n\}$ eine Gruppe von Tokens, die zuvor gewählt wurden und $p_{t+1}$ die Ausgabeverteilung über die Tokens des Sprachmodells.
+
+  \textbf{Loss} über die Summe der Wahrscheinlichkeiten der einzelnen vorhergesagten Wörter.
+  \begin{align*}
+      \text{log }p(a|x) = \text{log }(\sum_{i=0}^n p_{t+1}[w_i])
+  \end{align*}
+
+  \begin{block}{Wie wird das Bag of Words Modell erzeugt?}
+    \begin{itemize}
+\item $k$ häufigsten Wörter der Eingaberezensionen
+\item Softmax Gewichtung der Wörter nach Vorkommen
+\item Keyword-Extraktionsmethoden wie zum Beispiel YAKE
+    \end{itemize}
+    
+  \end{block}
+  
+\end{frame}
+
+\begin{frame}{Bag of Words AttributModell}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{@{}llll@{}}
+  \toprule
+                  Modell   & \multicolumn{3}{c}{Amazon}              \\ 
+  \textbf{\textsc{BiMeanVAE} }    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
+%  \textsc{BiMeanVAE} &             &             &             \\
+  Baseline        & 39.50       & 8.62    &  22.79     \\
+  $\quad$ k = 50       &  40.72    &   \textbf{9.06}    &   \textbf{23.40}   \\
+  $\quad$ k = 150  &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+  $\quad$ k = 500 &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+  $\quad$ k = 50 + Softmax    &  40.72    &   \textbf{9.06}    &    \textbf{23.40}   \\
+  $\quad$ k = 150 + Softmax  &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+  $\quad$ k = 500 + Softmax   &  \textbf{40.75}   &    9.03  &  \textbf{23.40}   \\
+  %$\quad$ PRUNING??   &  40.75   &    9.03  &  23.40  \\
+  $\quad$ YAKE &  40.72   &     9.00  &  \textbf{23.40}   \\ \bottomrule
+  \end{tabular}
+  \caption{Ergebnisse für die unterschiedlichen Attributmodelle mit \textsc{BiMeanVAE} auf dem Amazon Dev-Datensatz. Die besten Ergebnisse sind \textbf{fett} markiert.}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{OPTIMUS mit Attributmodell}
+  Optimus generiert bereits durch Injektion des Latentvektors in die Vergangenheitsmatrix $p(x|z)$.
+
+  Da der Latentvektor $z$ in die Vergangenheitsmatrix $H_t$ injeziert wird, wird der Latentvektor direkt optimiert und $\Delta z$ ergibt sich durch die folgende Iteration:
+\begin{align*}
+    \Delta z \leftarrow \Delta z + \alpha \frac{\nabla_{\Delta z} \text{log }p(a|z+\Delta z)}{\| \nabla_{\Delta z} \text{log }p(a|z+\Delta z)\|^\gamma}
+\end{align*}
+  
+\end{frame}
+
+\begin{frame}{\textsc{BiMeanVAE} mit Attributmodell}
+  \textsc{BiMeanVAE} ist ein Variational Autoencoder, bestehend aus einem bidirektionalem LSTM Encoder, gepaart mit einem LSTM Decoder.
+
+Der LSTM Decoder erhält als Eingabe den Latentvektor $z$. Der Hiddenstate $h_t$ und Cellstate $c_t$ wird aus dem Embedding des Latentvektor $z$ initialisiert und anschließend autoregressiv über die LSTM Architektur aktualisiert.
+
+Um diesen LSTM Decoder mit einem Attributmodell zu optimieren, bieten sich drei unterschiedliche Ansätze:
+
+\begin{enumerate}
+    \item Optimieren über den Latentvektor $z$
+    \item Optimieren des vorherigen Hiddenstates $h_t$ vor der nächsten Berechnung
+    \item Optimieren des vorherigen Cellstates $c_t$ vor der nächsten Berechnung
+\end{enumerate}
+  
+\end{frame}
+
+
+\begin{frame}{\textsc{BiMeanVAE} mit Attributmodell}
+  \begin{table}[h!]
+      \centering
+      \begin{tabular}{@{}llll@{}}
+      \toprule
+                      Modell   & \multicolumn{3}{c}{Amazon}              \\ \midrule
+      \textbf{\textsc{BiMeanVAE}}    & \textbf{R1} & \textbf{R2} & \textbf{RL} \\ \midrule
+    %  \textsc{BiMeanVAE} &             &             &             \\
+      Baseline        & 39.50       & \underline{8.62}     &  22.79     \\
+      $\quad$ optimze $z$        &   \underline{40.04}     &   8.35    &    \textbf{23.64}   \\
+      $\quad$ optimze $h_t$      &  39.96   &    8.34  &  22.94  \\
+      $\quad$ optimze $c_t$      &  \textbf{40.81}   &     \textbf{8.91}  &   \underline{23.49}    \\ \bottomrule
+      \end{tabular}
+
+  \end{table}
+ Die größte Leistungssteigerung erzielt eine Optimierung der Variable $c_t$.
+  \begin{align}
+      \Delta c_t \leftarrow \Delta c_t + \alpha \frac{\nabla_{\Delta c_t} \text{log }p(a|c_t+\Delta c_t,z)}{\| \nabla_{\Delta c_t} \text{log }p(a|c_t +\Delta c_t ,z )\|^\gamma} \label{opt_lstm}
+  \end{align}
+  
+\end{frame}
+
+\begin{frame}{Moverscore}
+  \begin{itemize}
+    \item Evaluationsmetrik, zum semantischen Vergleich von Inhalten zweier Textsequenzen
+    \item nutzt kontextuelle Einbettungen zum Vergleich (DistilBERT)
+    \item hohe Ähnlichkeit mit menschlicher Bewertung
+    \item Metrik: Word-Mover-Distance
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Moverscore Ranking}
+  Neue Rankingfunktion, die ROUGE-1,ROUGE-2,ROUGE-L und den Moverscore miteinbezieht, um semantische Ähnlichkeit besser abbilden zu können.
+  \begin{align*}
+    \small
+    \begin{split}
+    Input\text{-}Output\text{-}Overlap(\hat{x_i}, R) &= x \cdot \text{R1}(\hat{x_i}, R)+y\cdot \text{R2}(\hat{x_i}, R)+z\cdot \text{RL}(\hat{x_i}, R) 
+\end{split}\\
+\small
+\begin{split}
+    \text{SCORE}(\hat{x_i}) &= Input\text{-}Output\text{-}Overlap(\hat{x_i}, R) + v \cdot Moverscore(\hat{x_i}, R) 
+\end{split}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Hyperparameter Optimierung mittels Dev-Datensatz}
+  
+ 
+  \begin{table}[!h]
+    \centering
+    \scalebox{0.74}{
+    \begin{tabular}{@{}lcccc|cccc@{}}
+    \toprule
+    DEV-Dataset                    & \multicolumn{4}{c}{Amazon} & \multicolumn{4}{c}{Yelp} \\ 
+    \textbf{Method} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV} & \textbf{R1} & \textbf{R2} & \textbf{RL} & \textbf{MV}\\ \midrule 
+    
+    \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.05$}             &        &   & &     \\
+    $\quad$ Optimus          &  36.31 & 7.17& 20.75&\textbf{56.82} &  36.31   &   \underline{8.12}   & \underline{20.02}  &  56.71    \\ 
+    %$\quad$ \textsc{BiMeanVae}   &  37.93 & 7.19& 21.85&56.77 &     &      &   &    \\[0.2cm] % TEST STEP 05
+    $\quad$ \textsc{BiMeanVae} & 36.40 & \underline{7.19} & \underline{21.65} & \textbf{56.55} &36.16 &7.51 &20.49 & 56.91\\ [0.2cm] % DEV STEP 05
+    
+    \textit{COOP + Attribute Model}        &         \multicolumn{3}{l}{Stepsize $\alpha= 0.1$}            &        &   & &     \\
+    $\quad$ Optimus            & \underline{36.40}  & \textbf{7.78}&\textbf{20.99} &56.78 &   36.31  &  8.08    &  19.91 & 56.67  \\ 
+    %$\quad$ \textsc{BiMeanVae} &  \textbf{38.16} & 7.30 & \underline{22.00} & 56.78&     &      &   &     \\[0.2cm]  %TEST STEP 1
+    $\quad$ \textsc{BiMeanVae}& 36.45 & 7.08 & 21.64 & \underline{56.54} & \underline{36.33}&\underline{7.61} & \textbf{20.50} &56.92 \\[0.2cm]  %DEV STEP 1
+
+
+    \textit{COOP + Attribute Model}        &      \multicolumn{3}{l}{Stepsize $\alpha= 0.3$}                &        &        &   & &     \\
+    $\quad$ Optimus            & \textbf{36.43}  & \underline{7.64}& \underline{20.76} &\underline{56.79} &   \underline{36.47}  &    \textbf{8.19}  & \textbf{20.21}  & \textbf{56.78}  \\ 
+    %$\quad$ \textsc{BiMeanVae} & 37.98  & \textbf{7.56} & 21.95& \underline{56.92} &     &      &   &     \\[0.2cm] %TEST STEP 3
+    $\quad$ \textsc{BiMeanVae} & \underline{36.55} & \textbf{7.32} & \textbf{21.78} & 56.43 & 36.33 & 7.53 & 20.39& \textbf{57.00}\\[0.2cm] %DEV STEP 3
+
+
+    \textit{COOP + Attribute Model}        &    \multicolumn{3}{l}{Stepsize $\alpha= 0.5$}            &        &   & &     \\
+    $\quad$ Optimus            & 35.84  &6.93 & 19.75& 56.23&   \textbf{36.54}  &   8.05   &19.84   & \underline{56.74}  \\ 
+    %$\quad$ \textsc{BiMeanVae} &   \underline{37.99}&\underline{7.44} &\textbf{22.24} & \textbf{57.00}&     &      &   &     \\ %TEST STEP 5
+    $\quad$ \textsc{BiMeanVae}& \textbf{36.58} & 7.07 & 21.39 & 56.49 & \textbf{36.45} & \textbf{7.67} & \underline{20.49}& \underline{56.94} \\ \midrule % DEV STEP 5
+
+    \textit{COOP}              &         &         &        &        &        & &   &    \\
+    % $\quad$ Optimus  $^{\star}$           & 35.98 & 7.17    & 20.16 & - & 35.51  & 7.84   & 19.27 & -\\ 
+    % $\quad$ \textsc{BiMeanVae} $^{\star}$  & 36.30 &  6.81 &  21.11 & - & 36.16  & 7.25  & 20.09 & -\\ 
+    $\quad$ Optimus        & 35.97 & 7.16 & 20.15 & 56.60 & 35.50  & 7.84  & 19.26 & 56.63\\  %CHECK OPTIMUS YELP
+    $\quad$ \textsc{BiMeanVae} &  35.67 &6.53 & 21.07 & 56.27 & 36.16 & 7.25 & 20.09 & 56.78\\ 
+    	\bottomrule
+    
+    \end{tabular}}
+    
+\end{table}
+  
+\end{frame}
+
+\begin{frame}{Hyperparameter Optimierung mittels Dev-Datensatz}
+
+  \begin{itemize}
+    \item Leistungssteigerung in allen Bereich durch Verwendung des COOP + Attributmodells
+    \item Aufgrund der unterschiedlichen Aspekte der Modelle und Datensätze, jeweils individuelle Hyperparameter
+  \end{itemize}
+  
+  \begin{table}[h!]
+    \centering
+    \begin{tabular}{@{}lccccc|ccccc@{}}
+    \toprule
+    & \multicolumn{5}{c}{Amazon} & \multicolumn{5}{c}{Yelp} \\ 
+    
+             &$\alpha$ & R1(x)  & R2(y)  & RL(z) & MV(v)&$\alpha$ &  R1(x)  & R2(y)  & RL(z) & MV(v) \\ \midrule
+
+    Optimus            & 0.3 & 1.0 & 0.5 & 1.5 & 3.5 & 0.5 & 3.5 & 1.0 & 0.0 & 2.5 \\
+    \textsc{BiMeanVAE} & 0.3 & 3.5 & 0.0 & 1.0 & 0.5 & 0.5 & 0.5 & 0.0 & 0.0 & 1.0 \\ \bottomrule
+    \end{tabular}
+    \caption{Gewichtung der einzelnen Metriken zur Bestimmung des Input-Output-Overlap gesamt Scores}
+
+\end{table}
+  
+\end{frame}
